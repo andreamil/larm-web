@@ -2,7 +2,7 @@ import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core
 import { CommonModule } from '@angular/common';
 import { NbAuthModule, NbPasswordAuthStrategy, NbAuthJWTToken } from '@nebular/auth';
 import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
-import { of as observableOf } from 'rxjs';
+// import { of as observableOf } from 'rxjs';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { DataModule } from './data/data.module';
@@ -45,7 +45,7 @@ export const NB_CORE_PROVIDERS = [
 
               //key: 'token', // this parameter tells where to look for the token
             },
-            baseEndpoint: 'https://larm-backend.herokuapp.com/',
+            baseEndpoint: 'https://larm-backend.herokuapp.com/auth/',
 
             login: {
              endpoint: 'login',
@@ -79,7 +79,7 @@ export const NB_CORE_PROVIDERS = [
            logout: {
              redirectDelay: 0,
            },
-         }
+         },
   }).providers,
 
   NbSecurityModule.forRoot({
@@ -92,15 +92,15 @@ export const NB_CORE_PROVIDERS = [
               'forms',
               'ui-features',
               'user',
-              '']
+              ''],
       },
       aluno: {
         parent:'user',
-        view: ['extra-components']
+        view: ['extra-components'],
       },
       professor: {
         parent:'user',
-        view: ['maps']
+        view: ['maps'],
       },
       admin: {
         view: '*',
