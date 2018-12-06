@@ -14,7 +14,6 @@ import { CoreModule } from './@core/core.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ThemeModule } from './@theme/theme.module';
-import { HeaderComponent } from './@theme/components/header/header.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NbAuthJWTInterceptor, NbAuthJWTToken, NB_AUTH_TOKEN_INTERCEPTOR_FILTER } from '@nebular/auth';

@@ -22,11 +22,11 @@ export class HeaderComponent implements OnInit {
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
-              private userService: UserService,
+            //  private userService: UserService,
               private analyticsService: AnalyticsService,
               private layoutService: LayoutService,
               private authService: NbAuthService,
-              private nbTokenService: NbTokenService,
+            //  private nbTokenService: NbTokenService,
               private router: Router) {
                 this.authService.onTokenChange()
                     .subscribe((token: NbAuthJWTToken) => {
