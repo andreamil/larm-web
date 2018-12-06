@@ -43,7 +43,7 @@ export const NB_CORE_PROVIDERS = [
             token: {
               class: NbAuthJWTToken,
 
-              //key: 'token', // this parameter tells where to look for the token
+              // key: 'token', // this parameter tells where to look for the token
             },
             baseEndpoint: 'https://larm-backend.herokuapp.com/auth/',
 
@@ -95,11 +95,11 @@ export const NB_CORE_PROVIDERS = [
               ''],
       },
       aluno: {
-        parent:'user',
+        parent: 'user',
         view: ['extra-components'],
       },
       professor: {
-        parent:'user',
+        parent: 'user',
         view: ['maps'],
       },
       admin: {

@@ -37,9 +37,9 @@ import { AuthGuard } from './pages/auth/auth-guard.service';
   ],
   bootstrap: [AppComponent],
   providers: [
-    //{ provide: HTTP_INTERCEPTORS, useClass: NbAuthJWTInterceptor, multi: true},
-    //{ provide: NB_AUTH_TOKEN_CLASS, useValue: NbAuthJWTToken },
-    //{ provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER, useValue: filterInterceptorRequest },
+    // { provide: HTTP_INTERCEPTORS, useClass: NbAuthJWTInterceptor, multi: true},
+    // { provide: NB_AUTH_TOKEN_CLASS, useValue: NbAuthJWTToken },
+    // { provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER, useValue: filterInterceptorRequest },
     { provide: APP_BASE_HREF, useValue: '/' },
 
     AuthGuard,

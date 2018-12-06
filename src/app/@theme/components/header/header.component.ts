@@ -4,7 +4,7 @@ import { NbMenuService, NbSidebarService } from '@nebular/theme';
 import { UserService } from '../../../@core/data/users.service';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
 import { LayoutService } from '../../../@core/data/layout.service';
-import { NbAuthJWTToken, NbAuthService,NbTokenService } from '@nebular/auth';
+import { NbAuthJWTToken, NbAuthService, NbTokenService } from '@nebular/auth';
 import { filter, map } from 'rxjs/operators';
 @Component({
   selector: 'ngx-header',
@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   @Input() position = 'normal';
   user = {};
 
-  //user: any;
+  // user: any;
 
   userMenu = [{ title: 'Perfil' }, { title: 'Sair' }];
 
@@ -26,12 +26,12 @@ export class HeaderComponent implements OnInit {
               private analyticsService: AnalyticsService,
               private layoutService: LayoutService,
               private authService: NbAuthService,
-              private nbTokenService:NbTokenService,
-              private router:Router) {
+              private nbTokenService: NbTokenService,
+              private router: Router) {
                 this.authService.onTokenChange()
                     .subscribe((token: NbAuthJWTToken) => {
                       if (token.isValid()) {
-                        this.user = token.getPayload(); // here we receive a payload from the token and assigne it to our `user` variable
+                        this.user = token.getPayload();
                         console.log(this.user);
                       }
                     });
@@ -46,12 +46,12 @@ export class HeaderComponent implements OnInit {
         map(({ item: { title } }) => title),
       )
     .subscribe(title => {
-        if(title==='Sair'){
+        if (title === 'Sair') {
           localStorage.removeItem('auth_app_token');
           this.router.navigate(['auth/login']);
 
         }
-        if(title==='Perfil'){
+        if (title === 'Perfil') {
           console.log(title);
         }
       });

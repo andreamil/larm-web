@@ -10,7 +10,7 @@ import {
   NbButtonModule,
   NbCheckboxModule,
   NbRadioModule,
-  NbInputModule
+  NbInputModule,
 } from '@nebular/theme';
 import {  LarmLoginComponent} from './login/login.component';
 import {  LarmRegisterComponent} from './register/register.component';

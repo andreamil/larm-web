@@ -12,13 +12,13 @@ const routes: Routes = [{
   component: PagesComponent,
 
   children: [{
-    path: 'dashboard',canActivate: [AuthGuard],
+    path: 'dashboard', canActivate: [AuthGuard],
     component: ECommerceComponent,
   }, {
-    path: 'iot-dashboard',canActivate: [AuthGuard],
+    path: 'iot-dashboard', canActivate: [AuthGuard],
     component: DashboardComponent,
   }, {
-    path: 'ui-features',canActivate: [AuthGuard],
+    path: 'ui-features', canActivate: [AuthGuard],
     loadChildren: './ui-features/ui-features.module#UiFeaturesModule',
   }, {
     path: 'modal-overlays',  canActivate: [AuthGuard],

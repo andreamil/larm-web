@@ -6,21 +6,21 @@ import { NbAccessChecker } from '@nebular/security';
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private authService: NbAuthService, private router: Router,private accessChecker: NbAccessChecker) {
+  constructor(private authService: NbAuthService, private router: Router, private accessChecker: NbAccessChecker) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.authService.isAuthenticated()
       .pipe(
         tap(authenticated => {
-          //console.log(route.url[0].path);
+          // console.log(route.url[0].path);
           if (authenticated) {
-            var path='';
-            if(route.url[0]===undefined)path = 'pages';
-            else path=route.url[0].path;
+            let path = '';
+            if (route.url[0] === undefined)path = 'pages';
+            else path = route.url[0].path;
             console.log(route.url);
                 this.accessChecker.isGranted('view', path).subscribe(granted => {
-                  if(!granted){console.log(path,granted);this.router.navigate(['pages/dashboard']);}
+                  if (!granted) {console.log(path, granted); this.router.navigate(['pages/dashboard']); }
                 });
           }else {
             this.router.navigate(['auth/login']);

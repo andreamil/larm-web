@@ -14,7 +14,7 @@ import { MENU_ITEMS } from './pages-menu';
     </ngx-sample-layout>
   `,
 })
-export class PagesComponent  implements OnInit{
+export class PagesComponent  implements OnInit {
 
   menu = MENU_ITEMS;
   constructor(private accessChecker: NbAccessChecker) {
