@@ -45,7 +45,7 @@ export const NB_CORE_PROVIDERS = [
 
               //key: 'token', // this parameter tells where to look for the token
             },
-            //baseEndpoint: 'localhost:8080/',
+            baseEndpoint: 'https://larm-backend.herokuapp.com/',
 
             login: {
              endpoint: 'login',

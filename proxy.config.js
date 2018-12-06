@@ -1,7 +1,7 @@
 const proxy = [
   {
     context: '/api',
-    target: 'http://localhost:8080',
+    target: 'https://larm-backend.herokuapp.com',
     pathRewrite: {'^/api' : ''}
   }
 ];''
