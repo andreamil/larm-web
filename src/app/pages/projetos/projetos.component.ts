@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class ProjetosComponent implements OnInit {
   projetos: any[] = [];
-  noProjeto = false;
+  noProjetos = false;
  /* settings = {
     add: {
       addButtonContent: 'Criar Projeto',
@@ -51,7 +51,7 @@ export class ProjetosComponent implements OnInit {
         if (response) {
           this.projetos = response.projetos;
         } else {
-          this.noProjeto = true;
+          this.noProjetos = true;
         }
         // console.log(this.events);
       });
