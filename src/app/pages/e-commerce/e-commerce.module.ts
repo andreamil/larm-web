@@ -45,6 +45,13 @@ import { EarningCardBackComponent } from './earning-card/back-side/earning-card-
 import { EarningPieChartComponent } from './earning-card/back-side/earning-pie-chart.component';
 import { EarningCardFrontComponent } from './earning-card/front-side/earning-card-front.component';
 import { EarningLiveUpdateChartComponent } from './earning-card/front-side/earning-live-update-chart.component';
+import { Routes, RouterModule } from '@angular/router';
+const routes: Routes = [{
+  path: '',
+  component: ECommerceComponent,
+  children: [
+  ],
+}];
 
 @NgModule({
   imports: [
@@ -53,7 +60,9 @@ import { EarningLiveUpdateChartComponent } from './earning-card/front-side/earni
     NgxEchartsModule,
     NgxChartsModule,
     LeafletModule,
+    RouterModule.forChild(routes),
   ],
+  exports: [RouterModule],
   declarations: [
     ECommerceComponent,
     StatsCardFrontComponent,

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class SmartTableService {
 
+
   data = [{
     id: 1,
     firstName: 'Mark',
@@ -428,4 +429,7 @@ export class SmartTableService {
   getData() {
     return this.data;
   }
+  /*getAllProjetos() {
+    throw new Error("Method not implemented.");
+  }*/
 }

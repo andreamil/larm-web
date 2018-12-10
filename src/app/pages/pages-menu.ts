@@ -21,6 +21,15 @@ export const MENU_ITEMS: NbMenuItem[] = [
     },
   },
   {
+    title: 'Projetos',
+    icon: 'nb-home',
+    link: '/pages/projetos',
+    data: {
+      permission: 'view',
+      resource: 'projetos',
+    },
+  },
+  {
     title: 'FEATURES',
     group: true,
     data: {

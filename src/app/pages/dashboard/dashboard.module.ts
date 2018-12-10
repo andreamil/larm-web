@@ -20,12 +20,22 @@ import { SolarComponent } from './solar/solar.component';
 import { PlayerComponent } from './rooms/player/player.component';
 import { TrafficComponent } from './traffic/traffic.component';
 import { TrafficChartComponent } from './traffic/traffic-chart.component';
+import { Routes, RouterModule } from '@angular/router';
+const routes: Routes = [{
+  path: '',
+  component: DashboardComponent,
+  children: [
+  ],
+}];
+
 
 @NgModule({
   imports: [
     ThemeModule,
     NgxEchartsModule,
+    RouterModule.forChild(routes),
   ],
+  exports: [RouterModule],
   declarations: [
     DashboardComponent,
     StatusCardComponent,
