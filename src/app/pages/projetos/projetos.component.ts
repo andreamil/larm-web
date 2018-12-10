@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjetoService } from '../../@core/data/projeto.service';
-import { Router } from '@angular/router';
 @Component({
   selector: 'ngx-projetos',
   templateUrl: './projetos.component.html',
@@ -39,7 +38,7 @@ export class ProjetosComponent implements OnInit {
 
   source: ServerDataSource;*/
 
-  constructor(private service: ProjetoService, private router: Router) {
+  constructor(private service: ProjetoService) {
 
   }
   ngOnInit() {
