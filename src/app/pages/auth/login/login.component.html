@@ -18,7 +18,7 @@
 <form (ngSubmit)="login()" #form="ngForm" aria-labelledby="title">
 
   <div class="form-control-group">
-    <label class="label" for="input-email">Indentificação:</label>
+    <label class="label" for="input-email">Identificação:</label>
     <input nbInput
            fullWidth
            [(ngModel)]="user.email"
@@ -26,7 +26,7 @@
            name="email"
            id="input-email"
            pattern=".+@.+\..+"
-           placeholder="Indentificação"
+           placeholder="Identificação"
            autofocus
            [status]="email.dirty ? (email.invalid  ? 'danger' : 'success') : ''"
            [required]="getConfigValue('forms.validation.email.required')"

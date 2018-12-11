@@ -7,7 +7,7 @@ import { ProjetoService } from '../../@core/data/projeto.service';
 })
 export class ProjetosComponent implements OnInit {
   projetos: any[] = [];
-  noProjetos = false;
+  noProjetos = true;
  /* settings = {
     add: {
       addButtonContent: 'Criar Projeto',
@@ -48,6 +48,7 @@ export class ProjetosComponent implements OnInit {
     this.service.getAllProjetos()
       .subscribe(response => {
         if (response) {
+          this.noProjetos = false;
           this.projetos = response.projetos;
         } else {
           this.noProjetos = true;
