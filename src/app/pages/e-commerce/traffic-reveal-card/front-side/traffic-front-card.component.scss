@@ -58,14 +58,8 @@
     }
   }
 
-  .date {
-    @include nb-for-theme(corporate) {
-      color: nb-theme(color-fg-heading);
-    }
-  }
-
   .value {
-    color: nb-theme(color-fg-heading);
+    color: #ffffff;
   }
 
   .delta {
@@ -102,8 +96,6 @@
       }
     }
   }
-
-  @include nb-for-theme(cosmic) {
     .traffic-list li {
       &:hover {
         &::before {
@@ -115,40 +107,6 @@
         }
       }
     }
-  }
-
-  @include nb-for-theme(corporate) {
-    .traffic-list li {
-      border-color: nb-theme(tabs-separator);
-
-      &:first-child {
-        border-top:
-          nb-theme(list-item-border-width)
-          nb-theme(card-header-border-type)
-          nb-theme(separator);
-      }
-
-      &:hover {
-        &::before {
-          background-color: nb-theme(color-primary);
-        }
-      }
-    }
-
-    .date {
-      color: nb-theme(color-fg-heading);
-    }
-
-    .delta {
-      &.up {
-        color: text-primary();
-
-        &::before {
-          border-bottom-color: text-primary();
-        }
-      }
-    }
-  }
 
   @include media-breakpoint-down(is) {
     ngx-traffic-bar {

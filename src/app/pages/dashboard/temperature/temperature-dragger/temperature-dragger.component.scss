@@ -39,10 +39,9 @@
     justify-content: center;
 
     border: 2px solid nb-theme(separator);
-    @include nb-for-theme(cosmic) {
       background-color: lighten(nb-theme(layout-bg), 2%);
       border: none;
-    }
+    
   }
 
   .power-bg {
@@ -61,7 +60,7 @@
     justify-content: center;
     cursor: pointer;
     font-size: 3rem;
-    color: nb-theme(color-fg-heading);
+    color: #ffffff;
     border: 2px solid nb-theme(separator);
 
     &:hover {
@@ -78,11 +77,9 @@
       text-shadow: none;
     }
   }
-
-  @include nb-for-theme(cosmic) {
     .circle {
-      fill: nb-theme(color-fg-heading);
-      stroke: nb-theme(color-fg-heading);
+      fill: #ffffff;
+      stroke: #ffffff;
     }
 
     .power-bg {
@@ -90,15 +87,5 @@
       box-shadow: nb-theme(card-shadow);
       text-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
     }
-  }
 
-  @include nb-for-theme(corporate) {
-    .circle {
-      stroke: nb-theme(color-warning);
-    }
-
-    .power-bg {
-      color: nb-theme(separator);
-    }
-  }
 }

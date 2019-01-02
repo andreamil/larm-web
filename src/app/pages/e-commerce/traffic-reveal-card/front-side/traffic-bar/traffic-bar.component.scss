@@ -44,18 +44,12 @@ $traffic-bar-background-color: #d0d8e3;
 
       &.success {
         background-color: text-success();
-
-        @include nb-for-theme(corporate) {
-          background-color: text-primary();
-        }
       }
 
       &.failure {
         background-color: text-danger();
       }
     }
-
-    @include nb-for-theme(cosmic) {
       .progress-line {
         background: linear-gradient(180deg, #a054fe 0%, #7a58ff 100%);
 
@@ -67,6 +61,6 @@ $traffic-bar-background-color: #d0d8e3;
           background: linear-gradient(180deg, #ff38ab 0%, #ff386c 100%);
         }
       }
-    }
+    
   }
 }

@@ -6,7 +6,7 @@
                       <nb-user [picture]="projeto.lider.foto" [name]="projeto.lider.fullName" [title]="projeto.lider.role" size="medium"></nb-user>
                     </div>
 
-                <a href="{{projeto._id}}">
+                <a routerLink="/pages/projetos/{{projeto._id}}">
                   <h5>{{projeto.titulo}}</h5>
                 </a>
 

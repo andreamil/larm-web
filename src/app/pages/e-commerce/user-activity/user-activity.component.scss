@@ -65,11 +65,7 @@
   }
 
   .visited-date {
-    color: nb-theme(color-fg-heading);
-
-    @include nb-for-theme(cosmic) {
       color: nb-theme(color-fg);
-    }
   }
 
   .title {
@@ -112,8 +108,6 @@
       }
     }
   }
-
-  @include nb-for-theme(cosmic) {
     .user-activity-list li {
       &:hover {
         &::before {
@@ -128,40 +122,7 @@
 
     .delta {
       &.down, &.up {
-        color: nb-theme(color-fg-heading);
+        color: #ffffff;
       }
     }
-  }
-
-  @include nb-for-theme(corporate) {
-    .user-activity-list li {
-      border-color: nb-theme(tabs-separator);
-
-      &:first-child {
-        border-color: nb-theme(tabs-separator);
-      }
-
-      &:hover {
-        &::before {
-          background-color: nb-theme(color-primary);
-        }
-      }
-    }
-
-    .visited-pages-count {
-      .value {
-        color: nb-theme(color-fg-heading);
-      }
-    }
-
-    .delta {
-      &.up {
-        color: text-primary();
-
-        &::before {
-          border-bottom-color: text-primary();
-        }
-      }
-    }
-  }
 }

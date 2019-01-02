@@ -53,7 +53,7 @@
     z-index: 40;
 
     .room-text {
-      fill: nb-theme(color-fg-heading);
+      fill: #ffffff;
       font-weight: nb-theme(font-weight-bolder);
     }
     .room-border {
@@ -67,13 +67,12 @@
     padding-bottom: 0;
   }
 
-  @include nb-for-theme(cosmic) {
     .stroke-pattern, .stroked-element, .room-border {
       stroke: #a1a1e5;
     }
 
     .room-text {
-      fill: nb-theme(color-fg-heading);
+      fill: #ffffff;
     }
 
     .selected-room {
@@ -91,13 +90,5 @@
         filter: url('#f2');
       }
     }
-  }
-
-  @include nb-for-theme(corporate) {
-    .selected-room {
-      .room-border {
-        stroke: nb-theme(color-primary);
-      }
-    }
-  }
+  
 }

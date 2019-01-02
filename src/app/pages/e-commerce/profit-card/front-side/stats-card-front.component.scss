@@ -46,10 +46,6 @@
 
       .currency {
         color: nb-theme(color-success);
-
-        @include nb-for-theme(corporate) {
-          color: nb-theme(color-primary);
-        }
       }
     }
 

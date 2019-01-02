@@ -7,6 +7,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { ThemeModule } from '../@theme/theme.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { ProjetosModule } from './projetos/projetos.module';
+import { BDHModule } from './banco-de-horas/bdh.module';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -20,6 +21,7 @@ const PAGES_COMPONENTS = [
     ECommerceModule,
     MiscellaneousModule,
     ProjetosModule,
+    BDHModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,

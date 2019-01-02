@@ -30,22 +30,18 @@
   }
 
   .title {
-    color: nb-theme(color-fg-heading);
+    color: #ffffff;
   }
 
   .value {
     color: nb-theme(color-success);
     font-size: 1.5rem;
-
-    @include nb-for-theme(corporate) {
-      color: nb-theme(color-primary);
-    }
   }
 
   .delta {
     position: absolute;
     display: inline-block;
-    color: nb-theme(color-fg-heading);
+    color: #ffffff;
     padding-left: 0.5rem;
     font-size: 1rem;
     top: 0;
@@ -90,27 +86,5 @@
     position: absolute;
     height: 100%;
     width: 100%;
-  }
-
-  @include nb-for-theme(corporate) {
-    .delta {
-      &.down {
-        color: text-danger();
-
-        &::before {
-          bottom: 4px;
-          border-top: 7px solid text-danger();
-        }
-      }
-
-      &.up {
-        color: text-primary();
-
-        &::before {
-          top: 4px;
-          border-bottom: 7px solid text-primary();
-        }
-      }
-    }
   }
 }

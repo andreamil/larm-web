@@ -52,16 +52,8 @@
       font-weight: nb-theme(font-weight-bold);
       color: nb-theme(card-fg-heading);
 
-      @include nb-for-theme(default) {
-        color: nb-theme(color-success);
-      }
-
       .currency {
         color: nb-theme(color-success);
-
-        @include nb-for-theme(corporate) {
-          color: nb-theme(color-primary);
-        }
       }
     }
   }

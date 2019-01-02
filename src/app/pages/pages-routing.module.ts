@@ -15,13 +15,16 @@ const routes: Routes = [{
   }, {
     path: 'iot-dashboard', canLoad: [LoadGuard],
     loadChildren: './dashboard/dashboard.module#DashboardModule',
-  }, {
-    path: 'ui-features', canLoad: [LoadGuard],
-    loadChildren: './ui-features/ui-features.module#UiFeaturesModule',
-  }, {
+  },  {
     path: 'projetos',  canLoad: [LoadGuard],
     loadChildren: './projetos/projetos.module#ProjetosModule',
-  }, {
+  },  {
+    path: 'banco-de-horas',  canLoad: [LoadGuard],
+    loadChildren: './banco-de-horas/bdh.module#BDHModule',
+  }, /*{
+    path: 'ui-features', canLoad: [LoadGuard],
+    loadChildren: './ui-features/ui-features.module#UiFeaturesModule',
+  },{
     path: 'modal-overlays',  canLoad: [LoadGuard],
     loadChildren: './modal-overlays/modal-overlays.module#ModalOverlaysModule',
   }, {
@@ -45,7 +48,7 @@ const routes: Routes = [{
   }, {
     path: 'tables',  canLoad: [LoadGuard],
     loadChildren: './tables/tables.module#TablesModule',
-  }, {
+  }, */ {
     path: 'miscellaneous',  canLoad: [LoadGuard],
     loadChildren: './miscellaneous/miscellaneous.module#MiscellaneousModule',
   }, {

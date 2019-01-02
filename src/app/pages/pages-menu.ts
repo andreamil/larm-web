@@ -30,6 +30,21 @@ export const MENU_ITEMS: NbMenuItem[] = [
     },
   },
   {
+    title: 'Banco de Horas',
+    icon: 'nb-home',
+    link: '/pages/banco-de-horas',
+    data: {
+      permission: 'view',
+      resource: 'banco-de-horas',
+    },
+    children: [
+      {
+        title: 'Registrar entrada/saida por ID',
+        link: '/pages/banco-de-horas/registrar-entrada-saida',
+      },
+    ],
+  },
+  {
     title: 'FEATURES',
     group: true,
     data: {

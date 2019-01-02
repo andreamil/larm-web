@@ -2,9 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbMenuService, NbSidebarService } from '@nebular/theme';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
-import { LayoutService } from '../../../@core/data/layout.service';
 import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 import { filter, map } from 'rxjs/operators';
+import { LayoutService } from '../../../@core/data/layout.service';
 @Component({
   selector: 'ngx-header',
   styleUrls: ['./header.component.scss'],
@@ -23,9 +23,9 @@ export class HeaderComponent implements OnInit {
               private menuService: NbMenuService,
             //  private userService: UserService,
               private analyticsService: AnalyticsService,
-              private layoutService: LayoutService,
               private authService: NbAuthService,
             //  private nbTokenService: NbTokenService,
+            private layoutService: LayoutService,
               private router: Router) {
                 this.authService.onTokenChange()
                     .subscribe((token: NbAuthJWTToken) => {
@@ -62,9 +62,8 @@ export class HeaderComponent implements OnInit {
 
     return false;
   }
-
   toggleSettings(): boolean {
-    this.sidebarService.toggle(false, 'settings-sidebar');
+    // this.sidebarService.toggle(false, 'settings-sidebar');
 
     return false;
   }

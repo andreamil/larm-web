@@ -11,14 +11,6 @@
   .leaflet-container {
     height: 100%;
     background-color: nb-theme(layout-bg);
-
-    @include nb-for-theme(default) {
-      background-color: nb-theme(color-white);
-    }
-
-    @include nb-for-theme(corporate) {
-      background-color: nb-theme(color-white);
-    }
   }
 
   /deep/ .leaflet-bar {
@@ -29,18 +21,11 @@
     border: none;
 
     a {
-      background-color: nb-theme(color-success);
       color: nb-theme(color-white);
       border-bottom: none;
       height: 2.5rem;
 
-      @include nb-for-theme(cosmic) {
         background-color: nb-theme(color-primary);
-      }
-
-      @include nb-for-theme(corporate) {
-        background-color: nb-theme(color-primary);
-      }
     }
 
     .leaflet-control-zoom-in {

@@ -22,14 +22,12 @@
 
     .title {
       font-family: nb-theme(font-secondary);
-      font-weight: nb-theme(font-weight-bold);
-      color: nb-theme(color-fg-heading);
+      color: #ffffff;
       font-size: 1.5rem;
       margin-bottom: 1rem;
 
-      @include nb-for-theme(cosmic) {
         font-weight: nb-theme(font-weight-bolder);
-      }
+      
     }
 
     .description {
@@ -54,7 +52,7 @@
       color: nb-theme(color-fg);
 
       &:hover {
-        color: nb-theme(color-fg-heading);
+        color: #ffffff;
       }
 
       i {

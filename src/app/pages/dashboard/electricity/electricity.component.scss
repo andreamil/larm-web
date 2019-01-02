@@ -23,10 +23,6 @@
     height: 100%;
     z-index: 2;
     box-shadow: nb-theme(card-shadow);
-
-    @include nb-for-theme(corporate) {
-      border-right: 1px solid nb-theme(card-border-color);
-    }
   }
 
   .table-header {
@@ -97,10 +93,6 @@
 
     &:not(:first-child) {
       border-top: 1px solid nb-theme(separator);
-
-      @include nb-for-theme(corporate) {
-        border-top-color: nb-theme(tabs-separator);
-      }
     }
 
     &:hover {
@@ -124,7 +116,7 @@
       font-family: nb-theme(font-secondary);
       font-size: 1.25rem;
       font-weight: nb-theme(font-weight-bolder);
-      color: nb-theme(color-fg-heading);
+      color: #ffffff;
     }
 
     .delta {
@@ -165,7 +157,7 @@
         font-family: nb-theme(font-secondary);
         font-size: 1rem;
         font-weight: nb-theme(font-weight-bolder);
-        color: nb-theme(color-fg-heading);
+        color: #ffffff;
       }
     }
   }
@@ -208,7 +200,7 @@
       font-family: nb-theme(font-secondary);
       font-size: 1.5rem;
       font-weight: nb-theme(font-weight-bold);
-      color: nb-theme(color-fg-heading);
+      color: #ffffff;
     }
 
     .unit {
@@ -221,8 +213,6 @@
   .dropdown {
     min-width: 130px;
   }
-
-  @include nb-for-theme(cosmic) {
     nb-tabset /deep/ ul li.active {
       background-color: nb-theme(color-primary);
       border-radius: nb-theme(radius);
@@ -247,37 +237,8 @@
         }
       }
     }
-  }
+  
 
-  @include nb-for-theme(corporate) {
-    nb-tabset /deep/ ul li.active {
-      &::before {
-        display: none;
-      }
-    }
-
-    .stats-block {
-      border-right: none;
-    }
-
-    .stats-month {
-      &:hover {
-        &::before {
-          background-color: nb-theme(color-primary);
-        }
-      }
-
-      .delta {
-        &.down {
-          color: text-primary();
-
-          &::before {
-            border-top: 8px solid text-primary();
-          }
-        }
-      }
-    }
-  }
 
   @include media-breakpoint-down(xxl) {
     .stats-block {

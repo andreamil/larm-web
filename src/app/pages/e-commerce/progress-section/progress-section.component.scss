@@ -4,7 +4,7 @@ $shadow-green: #00977e;
 
 @include nb-install-component() {
   .progress-info {
-    color: nb-theme(color-fg-heading);
+    color: #ffffff;
     margin-top: 2.5rem;
 
     &:first-child {
@@ -40,14 +40,7 @@ $shadow-green: #00977e;
     .progress-value {
       height: 0.6rem;
       background: nb-theme(progress-bar-background);
-
-      @include nb-for-theme(cosmic) {
         box-shadow: 0 0.2rem $shadow-green;
-      }
-
-      @include nb-for-theme(corporate) {
-        height: 100%;
-      }
     }
   }
 }

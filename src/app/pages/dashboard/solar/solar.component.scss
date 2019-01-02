@@ -28,7 +28,7 @@
     font-family: nb-theme(font-secondary);
     font-size: 2rem;
     font-weight: nb-theme(font-weight-bold);
-    color: nb-theme(color-fg-heading);
+    color: #ffffff;
   }
 
   .details {
@@ -44,9 +44,7 @@
   .text-hint {
     font-size: 1rem;
   }
-
-  @include nb-for-theme(cosmic) {
-    color: nb-theme(color-fg-heading);
+    color: #ffffff;
 
     .value {
       color: nb-theme(color-fg-highlight);
@@ -55,7 +53,7 @@
     .details span {
       color: nb-theme(color-fg);
     }
-  }
+  
 
   @include media-breakpoint-down(xs) {
     .value {
