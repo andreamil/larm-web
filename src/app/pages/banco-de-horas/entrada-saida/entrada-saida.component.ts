@@ -12,9 +12,9 @@ import { Config } from '../../../config';
                         placeholder="Insira o ID"
                         class="form-control"
                         [(ngModel)]="id">
-                <button nbButton (click)="registrar('entrada')"
+                <button nbButton (click)="registrar('entrada',id)"
                 style="cursor: pointer;margin: 1rem;">registrar entrada</button>
-                <button nbButton (click)="registrar('saida')" style="
+                <button nbButton (click)="registrar('saida',id)" style="
                 cursor: pointer;margin: 1rem;">registrar saida</button>
                 <span>{{msg}}</span>
         </nb-card-body>
@@ -45,7 +45,6 @@ import { Config } from '../../../config';
                     </nb-list-item>
                 </nb-list>
                 <span>{{msg}}</span>
-                <span>{{registros}}</span>
         </nb-card-body>
     </nb-card>
     `,
