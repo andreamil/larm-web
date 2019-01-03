@@ -4,11 +4,26 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { ProjetosComponent } from './projetos.component';
 import { ProjetoService } from '../../@core/data/projeto.service';
 import { Routes, RouterModule } from '@angular/router';
+import { CriarProjetoComponent } from './criar-projeto/criar-projeto.component';
+import { MeusProjetosComponent } from './meus-projetos/meus-projetos.component';
+import { TodosProjetosComponent } from './todos-projetos/todos-projetos.component';
 
 const routes: Routes = [{
   path: '',
   component: ProjetosComponent,
   children: [
+    {
+      path: 'criar',
+      component: CriarProjetoComponent,
+    },
+    {
+      path: 'meus',
+      component: MeusProjetosComponent,
+    },
+    {
+      path: 'todos',
+      component: TodosProjetosComponent,
+    },
   ],
 }];
 
@@ -20,9 +35,11 @@ const routes: Routes = [{
   exports: [RouterModule],
   declarations: [
     ProjetosComponent,
+    CriarProjetoComponent,
+    MeusProjetosComponent,
+    TodosProjetosComponent,
   ],
   providers: [
-  //  CountryOrdersMapService,
     ProjetoService,
   ],
 })

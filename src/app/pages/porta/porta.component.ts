@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ngx-projetos',
+  selector: 'ngx-porta',
   template: `
     <router-outlet></router-outlet>
   `,
 })
-export class ProjetosComponent {
+export class PortaComponent {
 }

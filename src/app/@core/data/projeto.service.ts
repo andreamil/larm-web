@@ -9,4 +9,7 @@ export class ProjetoService {
   getAllProjetos(): Observable<any> {
     return this.http.get<any>(Config.BASE_API_URL + 'projetos');
   }
+  getMeusProjetos(): Observable<any> {
+    return this.http.get<any>(Config.BASE_API_URL + 'meus-projetos');
+  }
 }

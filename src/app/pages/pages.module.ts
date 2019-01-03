@@ -7,7 +7,9 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { ThemeModule } from '../@theme/theme.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { ProjetosModule } from './projetos/projetos.module';
-import { BDHModule } from './banco-de-horas/bdh.module';
+import { UsuariosModule } from './usuarios/usuarios.module';
+import { PortaModule } from './porta/porta.module';
+import { EstoqueModule } from './estoque/estoque.module';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -17,11 +19,7 @@ const PAGES_COMPONENTS = [
   imports: [
     PagesRoutingModule,
     ThemeModule,
-    DashboardModule,
-    ECommerceModule,
     MiscellaneousModule,
-    ProjetosModule,
-    BDHModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,

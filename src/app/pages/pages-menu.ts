@@ -42,7 +42,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'Lista de usuarios',
-        link: '/pages/usuarios/lista',
+        link: '/pages/usuarios/listar',
       },
     ],
   },
@@ -61,7 +61,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'Meus Projetos',
-        link: '/pages/projetos/eu',
+        link: '/pages/projetos/meus',
       },
       {
         title: 'Todos os Projetos',
@@ -84,7 +84,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
           resource: 'porta',
         },
         title: 'Registrar entrada/saida teste',
-        link: '/pages/banco-de-horas/registrar-entrada-saida',
+        link: '/pages/porta/registrar-entrada-saida',
       },
       {
         data: {
@@ -92,11 +92,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
           resource: 'porta',
         },
         title: 'Gerar Relatório',
-        link: '/pages/banco-de-horas/relatorio',
+        link: '/pages/porta/relatorio',
       },
       {
         title: 'Histórico',
-        link: '/pages/banco-de-horas/meu-relatorio',
+        link: '/pages/porta/historico',
       },
     ],
   },

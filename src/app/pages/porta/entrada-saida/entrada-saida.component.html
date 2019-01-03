@@ -17,6 +17,7 @@
         <nb-card-body>
                 <h3>Teste Relatorio</h3>
                 <nb-list>
+                    
                     <nb-list-item *ngFor="let usuario of usuarios" style="display: flex;">
                         <nb-user style="width: 100%;"
                             [picture]="usuario.foto"
@@ -30,11 +31,11 @@
                                     <span>Hora saida: {{registro.horaSaida}}</span>
                                 </nb-list-item>
                             </nb-list>
-                        <button nbButton (click)="registrar('entrada',usuario._id)"
+                        <button (click)="registrar('entrada',usuario._id)" class="btn btn-success"
                             style="cursor: pointer;margin: 1rem;">registrar entrada</button>
-                        <button nbButton (click)="registrar('saida',usuario._id)"
+                        <button (click)="registrar('saida',usuario._id)" class="btn btn-danger"
                             style="cursor: pointer;margin: 1rem;">registrar saida</button>
-                        <button nbButton (click)="relatorio(usuario._id)"
+                        <button nbButton (click)="relatorio(usuario._id)" 
                             style="cursor: pointer;margin: 1rem; float: right;">relatorio</button>
                     </nb-list-item>
                 </nb-list>
