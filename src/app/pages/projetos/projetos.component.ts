@@ -3,11 +3,10 @@ import { ProjetoService } from '../../@core/data/projeto.service';
 @Component({
   selector: 'ngx-projetos',
   templateUrl: './projetos.component.html',
-  styles: ['./projetos.component.scss'],
 })
 export class ProjetosComponent implements OnInit {
   projetos: any[] = [];
-  noProjetos = true;
+  noProjetos = false;
  /* settings = {
     add: {
       addButtonContent: 'Criar Projeto',
@@ -50,6 +49,7 @@ export class ProjetosComponent implements OnInit {
         if (response) {
           this.noProjetos = false;
           this.projetos = response.projetos;
+          if (this.projetos === [])this.noProjetos = true;
         } else {
           this.noProjetos = true;
         }

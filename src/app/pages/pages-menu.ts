@@ -2,7 +2,7 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'E-commerce',
+    title: 'Painel',
     icon: 'nb-e-commerce',
     link: '/pages/dashboard',
     home: true,
@@ -12,7 +12,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     },
   },
   {
-    title: 'IoT Dashboard',
+    title: 'Painel IoT',
     icon: 'nb-home',
     link: '/pages/iot-dashboard',
     data: {
@@ -21,128 +21,93 @@ export const MENU_ITEMS: NbMenuItem[] = [
     },
   },
   {
+    title: 'Gerenciamento',
+    group: true,
+    data: {
+      permission: 'view',
+      resource: 'Gerenciamento',
+    },
+  },
+  {
+    title: 'Usuarios',
+    icon: 'nb-person',
+    data: {
+      permission: 'view',
+      resource: 'usuarios',
+    },
+    children: [
+      {
+        title: 'Cadastrar usuario',
+        link: '/pages/usuarios/cadastrar',
+      },
+      {
+        title: 'Lista de usuarios',
+        link: '/pages/usuarios/lista',
+      },
+    ],
+  },
+
+  {
     title: 'Projetos',
-    icon: 'nb-home',
-    link: '/pages/projetos',
+    icon: 'nb-compose',
     data: {
       permission: 'view',
       resource: 'projetos',
     },
+    children: [
+      {
+        title: 'Criar projeto',
+        link: '/pages/projetos/criar',
+      },
+      {
+        title: 'Meus Projetos',
+        link: '/pages/projetos/eu',
+      },
+      {
+        title: 'Todos os Projetos',
+        link: '/pages/projetos/todos',
+      },
+    ],
   },
   {
-    title: 'Banco de Horas',
-    icon: 'nb-home',
+    title: 'Porta',
+    icon: 'nb-locked',
     link: '/pages/banco-de-horas',
     data: {
       permission: 'view',
-      resource: 'banco-de-horas',
+      resource: 'porta',
     },
     children: [
       {
-        title: 'Registrar entrada/saida por ID',
+        data: {
+          permission: 'create',
+          resource: 'porta',
+        },
+        title: 'Registrar entrada/saida teste',
         link: '/pages/banco-de-horas/registrar-entrada-saida',
       },
-    ],
-  },
-  {
-    title: 'FEATURES',
-    group: true,
-    data: {
-      permission: 'view',
-      resource: 'FEATURES',
-    },
-  },
-  {
-    title: 'Extra Components',
-    icon: 'nb-star',
-    data: {
-      permission: 'view',
-      resource: 'extra-components',
-    },
-    children: [
       {
-        title: 'Calendar',
-        link: '/pages/extra-components/calendar',
+        data: {
+          permission: 'create',
+          resource: 'porta',
+        },
+        title: 'Gerar Relatório',
+        link: '/pages/banco-de-horas/relatorio',
       },
       {
-        title: 'Stepper',
-        link: '/pages/extra-components/stepper',
-      },
-      {
-        title: 'List',
-        link: '/pages/extra-components/list',
-      },
-      {
-        title: 'Infinite List',
-        link: '/pages/extra-components/infinite-list',
-      },
-      {
-        title: 'Accordion',
-        link: '/pages/extra-components/accordion',
-      },
-      {
-        title: 'Progress Bar',
-        link: '/pages/extra-components/progress-bar',
-      },
-      {
-        title: 'Spinner',
-        link: '/pages/extra-components/spinner',
-      },
-      {
-        title: 'Alert',
-        link: '/pages/extra-components/alert',
-      },
-      {
-        title: 'Tree',
-        link: '/pages/extra-components/tree',
-      },
-      {
-        title: 'Tabs',
-        link: '/pages/extra-components/tabs',
-      },
-      {
-        title: 'Calendar Kit',
-        link: '/pages/extra-components/calendar-kit',
-      },
-      {
-        title: 'Chat',
-        link: '/pages/extra-components/chat',
+        title: 'Histórico',
+        link: '/pages/banco-de-horas/meu-relatorio',
       },
     ],
   },
+
   {
-    title: 'Forms',
-    icon: 'nb-compose',
+    title: 'Estoque',
+    icon: 'nb-grid-a',
+    link: '/pages/estoque',
     data: {
       permission: 'view',
-      resource: 'forms',
-    },
-    children: [
-      {
-        title: 'Form Inputs',
-        link: '/pages/forms/inputs',
-      },
-      {
-        title: 'Form Layouts',
-        link: '/pages/forms/layouts',
-      },
-      {
-        title: 'Buttons',
-        link: '/pages/forms/buttons',
-      },
-      {
-        title: 'Datepicker',
-        link: '/pages/forms/datepicker',
-      },
-    ],
-  },
-  {
-    title: 'UI Features',
-    icon: 'nb-keypad',
-    link: '/pages/ui-features',
-    data: {
-      permission: 'view',
-      resource: 'ui-features',
+      resource: 'estoque',
     },
     children: [
       {

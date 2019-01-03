@@ -16,7 +16,7 @@ const routes: Routes = [{
     path: 'iot-dashboard', canLoad: [LoadGuard],
     loadChildren: './dashboard/dashboard.module#DashboardModule',
   },  {
-    path: 'projetos',  canLoad: [LoadGuard],
+    path: 'projetos/todos',  canLoad: [LoadGuard],
     loadChildren: './projetos/projetos.module#ProjetosModule',
   },  {
     path: 'banco-de-horas',  canLoad: [LoadGuard],
