@@ -3,14 +3,6 @@
     "node_modules/codelyzer"
   ],
   "rules": {
-    "rxjs-tslint-rules": {
-      "options": [{
-        "allowElsewhere": false,
-        "allowUnused": false,
-        "file": "./src/rxjs-imports.ts"
-      }],
-      "severity": "error"
-    },
     "trailing-comma": [
       true,
       {
