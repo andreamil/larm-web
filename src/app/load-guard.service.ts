@@ -19,7 +19,7 @@ export class LoadGuard implements CanLoad {
                   this.accessChecker.isGranted('view', url).subscribe(granted => {
                     if (!granted) {console.log(url, granted); this.router.navigate(['pages/dashboard']); }
                   });
-            }else {
+            } else {
               this.router.navigate(['auth/login']);
             }
           }),

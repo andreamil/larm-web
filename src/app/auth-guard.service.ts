@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
                 this.accessChecker.isGranted('view', path).subscribe(granted => {
                   if (!granted) {console.log(path, granted); this.router.navigate(['pages/dashboard']); }
                 });
-          }else {
+          } else {
             this.router.navigate(['auth/login']);
           }
         }),
