@@ -9,7 +9,6 @@ import { DataModule } from './data/data.module';
 import { AnalyticsService } from './utils/analytics.service';
 import { RoleProvider } from './role.provider';
 
-import { Config } from '../config';
 const formSetting: any = {
   redirectDelay: 100,
   showMessages: {
@@ -30,7 +29,7 @@ export const NB_CORE_PROVIDERS = [
 
               // key: 'token', // this parameter tells where to look for the token
             },
-            baseEndpoint: Config.BASE_API_URL,
+            baseEndpoint: 'http://larm-backend.herokuapp.com/',
             login: {
              endpoint: 'login',
              method: 'post',
