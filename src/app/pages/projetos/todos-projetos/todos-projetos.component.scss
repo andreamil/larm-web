@@ -17,9 +17,11 @@
     justify-content: space-between;
     color: nb-theme(color-fg);
     padding: 0.5rem;
-
-    &:not(:last-child) {
-      border-bottom: 1px solid nb-theme(separator);
-    }
+  }
+  nb-list-item:first-child {
+    border-top: none;
+  }
+  nb-list-item:last-child {
+    border-bottom: none;
   }
 }

@@ -25,8 +25,6 @@ import { StateService } from '../../../@core/data/state.service';
                    tag="menu-sidebar"
                    responsive
                    [end]="sidebar.id === 'end'">
-        <nb-sidebar-header *ngIf="currentTheme !== 'corporate'">
-        </nb-sidebar-header>
         <ng-content select="nb-menu"></ng-content>
       </nb-sidebar>
 
@@ -38,20 +36,9 @@ import { StateService } from '../../../@core/data/state.service';
         <nb-menu [items]="subMenu"></nb-menu>
       </nb-layout-column>
 
-      <nb-layout-column class="small" *ngIf="layout.id === 'three-column'">
-        <nb-menu [items]="subMenu"></nb-menu>
-      </nb-layout-column>
-
       <nb-layout-footer fixed>
         <ngx-footer></ngx-footer>
       </nb-layout-footer>
-
-      <nb-sidebar class="settings-sidebar"
-                   tag="settings-sidebar"
-                   state="collapsed"
-                   fixed
-                   [end]="sidebar.id !== 'end'">
-      </nb-sidebar>
     </nb-layout>
   `,
 })
@@ -112,7 +99,8 @@ export class SampleLayoutComponent implements OnDestroy {
               protected sidebarService: NbSidebarService) {
     this.stateService.onLayoutState()
       .pipe(takeWhile(() => this.alive))
-      .subscribe((layout: string) => this.layout = layout);
+      .subscribe((layout: string) => {this.layout = layout;
+        console.log(this.layout); });
 
     this.stateService.onSidebarState()
       .pipe(takeWhile(() => this.alive))

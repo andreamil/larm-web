@@ -24,6 +24,11 @@ const routes: Routes = [{
       path: 'todos',
       component: TodosProjetosComponent,
     },
+    {
+      path: '',
+      redirectTo: 'todos',
+      pathMatch: 'full',
+    },
   ],
 }];
 

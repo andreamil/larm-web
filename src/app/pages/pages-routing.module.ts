@@ -9,13 +9,8 @@ const routes: Routes = [{
 
   component: PagesComponent,
 
-  children: [{
-    path: 'dashboard', canLoad: [LoadGuard],
-    loadChildren: './e-commerce/e-commerce.module#ECommerceModule',
-  }, {
-    path: 'iot-dashboard', canLoad: [LoadGuard],
-    loadChildren: './dashboard/dashboard.module#DashboardModule',
-  }, {
+  children: [
+  {
     path: 'usuarios',  canLoad: [LoadGuard],
     loadChildren: './usuarios/usuarios.module#UsuariosModule',
   }, {
@@ -32,7 +27,7 @@ const routes: Routes = [{
     loadChildren: './miscellaneous/miscellaneous.module#MiscellaneousModule',
   }, {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'projetos/todos',
     pathMatch: 'full',
   }, {
     path: '**',

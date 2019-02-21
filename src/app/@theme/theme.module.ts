@@ -60,7 +60,6 @@ import {
   EvaIconsPipe,
 } from './pipes';
 import {
-  OneColumnLayoutComponent,
    SampleLayoutComponent,
   // ThreeColumnsLayoutComponent,
   // TwoColumnsLayoutComponent,
@@ -115,7 +114,6 @@ const COMPONENTS = [
   SearchInputComponent,
   // ThemeSettingsComponent,
   // TinyMCEComponent,
-   OneColumnLayoutComponent,
    SampleLayoutComponent,
   // ThreeColumnsLayoutComponent,
   // TwoColumnsLayoutComponent,

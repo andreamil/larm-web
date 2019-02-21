@@ -51,7 +51,7 @@ export class HeaderComponent implements OnInit {
 
         }
         if (title === 'Perfil') {
-          console.log(title);
+          this.router.navigate(['pages/perfil']);
         }
       });
   }
