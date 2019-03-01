@@ -31,10 +31,10 @@ export const NB_CORE_PROVIDERS = [
 
               // key: 'token', // this parameter tells where to look for the token
             },
-            baseEndpoint: Config.BASE_API_URL+'usuarios/',
+            baseEndpoint: Config.BASE_API_URL + 'usuarios/',
             login: {
              endpoint: 'login',
-             method: 'post',            
+             method: 'post',
              defaultErrors: ['Login/Senha incorreto, tente novamente.'],
              defaultMessages: ['Login efetuado com sucesso'],
             },

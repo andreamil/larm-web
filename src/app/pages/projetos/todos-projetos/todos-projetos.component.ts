@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjetoService } from '../../../@core/data/projeto.service';
-import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'ngx-todos-projetos',

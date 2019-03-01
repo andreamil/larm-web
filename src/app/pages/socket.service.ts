@@ -6,11 +6,11 @@ import { Socket } from 'ngx-socket-io';
 export interface Notificacao {
   body: string;
   title: string;
-  config : NbToastrConfig;
+  config: NbToastrConfig;
 }
 
-@Injectable({providedIn:'root'})
-export class SocketService extends Socket{
+@Injectable({providedIn: 'root'})
+export class SocketService extends Socket {
   msg = this.fromEvent<Notificacao>('notificacao');
   autorizado = this.fromEvent<boolean>('autorizado');
 

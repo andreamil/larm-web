@@ -30,7 +30,7 @@ import { AuthGuard } from './auth-guard.service';
 
     NgbModule,
     ThemeModule.forRoot(),
-    CoreModule.forRoot()
+    CoreModule.forRoot(),
   ],
   bootstrap: [AppComponent],
   providers: [

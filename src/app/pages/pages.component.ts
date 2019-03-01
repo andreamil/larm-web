@@ -20,27 +20,27 @@ import { Router } from '@angular/router';
 export class PagesComponent  implements OnInit, OnDestroy {
 
   menu = MENU_ITEMS;
-  //msg: any;
+  // msg: any;
   private _msgSub: Subscription;
   private _authSub: Subscription;
   constructor(
     private accessChecker: NbAccessChecker,
     private socketService: SocketService,
     private toastrService: NbToastrService,
-    private router: Router) {        
-    this._msgSub = this.socketService.msg.subscribe(msg => this.toastrService.show(msg.body,msg.title,msg.config));
+    private router: Router) {
+    this._msgSub = this.socketService.msg.subscribe(msg => this.toastrService.show(msg.body, msg.title, msg.config));
     this._authSub = this.socketService.autorizado.subscribe(autorizado => {
-      if(autorizado){
-        console.log('autorizado')
-      }else{        
+      if (autorizado) {
+        console.log('autorizado');
+      } else {
         localStorage.removeItem('auth_app_token');
         this.router.navigate(['auth/login']);
       }
     });
 
   }
-  
-  ngOnInit() {      
+
+  ngOnInit() {
 
     this.authMenuItems();
 
