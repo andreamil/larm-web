@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NbAccessChecker } from '@nebular/security';
-import { NbMenuItem } from '@nebular/theme';
+import { NbMenuItem, NbToastrService } from '@nebular/theme';
 
 import { MENU_ITEMS } from './pages-menu';
+import { Subscription } from 'rxjs';
+import { SocketService } from './socket.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-pages',
@@ -14,16 +17,38 @@ import { MENU_ITEMS } from './pages-menu';
     </ngx-sample-layout>
   `,
 })
-export class PagesComponent  implements OnInit {
+export class PagesComponent  implements OnInit, OnDestroy {
 
   menu = MENU_ITEMS;
-  constructor(private accessChecker: NbAccessChecker) {
-  }
+  //msg: any;
+  private _msgSub: Subscription;
+  private _authSub: Subscription;
+  constructor(
+    private accessChecker: NbAccessChecker,
+    private socketService: SocketService,
+    private toastrService: NbToastrService,
+    private router: Router) {        
+    this._msgSub = this.socketService.msg.subscribe(msg => this.toastrService.show(msg.body,msg.title,msg.config));
+    this._authSub = this.socketService.autorizado.subscribe(autorizado => {
+      if(autorizado){
+        console.log('autorizado')
+      }else{        
+        localStorage.removeItem('auth_app_token');
+        this.router.navigate(['auth/login']);
+      }
+    });
 
-  ngOnInit() {
+  }
+  
+  ngOnInit() {      
+
     this.authMenuItems();
-  }
 
+  }
+  ngOnDestroy() {
+    this._msgSub.unsubscribe();
+    this._authSub.unsubscribe();
+  }
   authMenuItems() {
     this.menu.forEach(item => {
       this.authMenuItem(item);

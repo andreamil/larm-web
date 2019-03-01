@@ -19,8 +19,8 @@ export class EntradaSaidaComponent implements OnInit {
         this.icon = 'close-circle';
         this.getUsuarios();
     }
-    registrar(dir: string, id: string) {
-        this.http.post<any>(Config.BASE_API_URL + 'registro/' + dir + '/', {id: id})
+    registrar(direcao: string, id: string) {
+        this.http.post<any>(Config.BASE_API_URL + 'registro/' + direcao + '/', {id: id})
             .subscribe(response => {
                 if (response) {
                     this.msg = response.msg;
@@ -47,7 +47,7 @@ export class EntradaSaidaComponent implements OnInit {
         this.icon = 'checkmark-circle-2';
     }
     getUsuarios() {
-        this.http.get<any>(Config.BASE_API_URL + 'user')
+        this.http.get<any>(Config.BASE_API_URL + 'usuarios/user')
             .subscribe(response => {
                 if (response) {
                     this.usuarios = response.usuarios;

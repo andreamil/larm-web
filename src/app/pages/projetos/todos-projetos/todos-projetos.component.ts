@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjetoService } from '../../../@core/data/projeto.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'ngx-todos-projetos',
@@ -7,7 +8,6 @@ import { ProjetoService } from '../../../@core/data/projeto.service';
   styleUrls: ['./todos-projetos.component.scss'],
 })
 export class TodosProjetosComponent implements OnInit {
-
   projetos: any[] = [];
   noProjetos = false;
   constructor(private service: ProjetoService) {
@@ -15,6 +15,8 @@ export class TodosProjetosComponent implements OnInit {
   }
   ngOnInit() {
     this.getProjetos();
+  }
+  ngOnDestroy() {
   }
   getProjetos(): void {
     this.service.getAllProjetos()

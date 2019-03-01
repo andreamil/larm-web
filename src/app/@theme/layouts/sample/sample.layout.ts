@@ -99,8 +99,7 @@ export class SampleLayoutComponent implements OnDestroy {
               protected sidebarService: NbSidebarService) {
     this.stateService.onLayoutState()
       .pipe(takeWhile(() => this.alive))
-      .subscribe((layout: string) => {this.layout = layout;
-        console.log(this.layout); });
+      .subscribe((layout: string) => this.layout = layout);
 
     this.stateService.onSidebarState()
       .pipe(takeWhile(() => this.alive))

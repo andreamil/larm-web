@@ -15,6 +15,7 @@ const formSetting: any = {
   showMessages: {
     success: true,
   },
+  defaultErrors: ['Algo deu errado, tente novamente.'],
 };
 
 
@@ -30,14 +31,17 @@ export const NB_CORE_PROVIDERS = [
 
               // key: 'token', // this parameter tells where to look for the token
             },
-            baseEndpoint: Config.BASE_API_URL,
+            baseEndpoint: Config.BASE_API_URL+'usuarios/',
             login: {
              endpoint: 'login',
-             method: 'post',
+             method: 'post',            
+             defaultErrors: ['Login/Senha incorreto, tente novamente.'],
+             defaultMessages: ['Login efetuado com sucesso'],
             },
             register: {
              endpoint: 'register',
              method: 'post',
+             defaultMessages: ['Registrado com sucesso'],
             },
             /*logout: {
             endpoint: 'logout',

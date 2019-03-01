@@ -11,6 +11,9 @@ const routes: Routes = [{
 
   children: [
   {
+    path: 'iot-dashboard',  canLoad: [LoadGuard],
+    loadChildren: './dashboard/dashboard.module#DashboardModule',
+  }, {
     path: 'usuarios',  canLoad: [LoadGuard],
     loadChildren: './usuarios/usuarios.module#UsuariosModule',
   }, {

@@ -3,13 +3,13 @@ import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NbAuthComponent } from '@nebular/auth';
 import { AppComponent } from './app.component';
 // import { AuthGuard } from './auth-guard.service';
-import { LoadGuard } from './load-guard.service';
+import { AuthGuard } from './auth-guard.service';
 
 const routes: Routes = [
   {
     path: 'pages',
-    // canActivate: [AuthGuard], // here we tell Angular to check the access with our AuthGuard
-    canLoad: [LoadGuard],
+    canActivate: [AuthGuard], // here we tell Angular to check the access with our AuthGuard
+    //canLoad: [LoadGuard],
     component: AppComponent,
     loadChildren: 'app/pages/pages.module#PagesModule',
   },
