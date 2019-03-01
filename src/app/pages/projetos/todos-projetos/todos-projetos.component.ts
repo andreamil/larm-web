@@ -16,8 +16,6 @@ export class TodosProjetosComponent implements OnInit {
   ngOnInit() {
     this.getProjetos();
   }
-  ngOnDestroy() {
-  }
   getProjetos(): void {
     this.service.getAllProjetos()
       .subscribe(response => {
