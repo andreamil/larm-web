@@ -4,7 +4,6 @@ import { PagesComponent } from './pages.component';
 import { PagesRoutingModule } from './pages-routing.module';
 import { ThemeModule } from '../@theme/theme.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
-import { LoadGuard } from '../load-guard.service';
 
 const PAGES_COMPONENTS = [
   PagesComponent,

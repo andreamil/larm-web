@@ -22,7 +22,7 @@ import { LoadGuard } from './load-guard.service';
 import { AuthGuard } from './auth-guard.service';
 import { SocketService } from './pages/socket.service';
 
-const config: SocketIoConfig = { url: '150.162.234.151:8080', 
+const config: SocketIoConfig = { url: '150.162.234.151:8080',
                                  options: {}};
 
 @NgModule({
