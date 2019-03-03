@@ -25,7 +25,7 @@
                             [title]="usuario.role"
                             size="medium">
                         </nb-user>
-                        <nb-list *ngIf="response.id===usuario._id">
+                        <nb-list *ngIf="response.id==usuario._id">
                                 <nb-list-item *ngFor="let registro of response.registros" style="display: flex;">
                                     <span>Hora entrada: {{registro.horaEntrada}}</span>
                                     <span>Hora saida: {{registro.horaSaida}}</span>

@@ -15,10 +15,15 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ThemeModule } from './@theme/theme.module';
 
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NbAuthJWTInterceptor, NB_AUTH_TOKEN_INTERCEPTOR_FILTER } from '@nebular/auth';
 import { LoadGuard } from './load-guard.service';
 import { AuthGuard } from './auth-guard.service';
+import { SocketService } from './pages/socket.service';
+
+const config: SocketIoConfig = { url: '150.162.234.151:8080', 
+                                 options: {}};
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,11 +36,13 @@ import { AuthGuard } from './auth-guard.service';
     NgbModule,
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
+    SocketIoModule.forRoot(config),
   ],
   bootstrap: [AppComponent],
   providers: [
     // { provide: NB_AUTH_TOKEN_CLASS, useValue: NbAuthJWTToken },
  //  { provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER, useValue: filterInterceptorRequest },
+ SocketService,
     AuthGuard,
     LoadGuard,
     { provide: APP_BASE_HREF, useValue: '/' },

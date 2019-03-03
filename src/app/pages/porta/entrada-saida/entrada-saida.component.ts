@@ -38,6 +38,7 @@ export class EntradaSaidaComponent implements OnInit {
                 if (response) {
                     this.response = response;
                     this.msg = response.msg;
+			console.log(response.registros);
                 } else {
                     this.msg = 'noResponse';
                 }

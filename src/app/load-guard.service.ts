@@ -20,7 +20,7 @@ export class LoadGuard implements CanLoad {
                   this.accessChecker.isGranted('view', url).subscribe(granted => {
                     if (!granted)this.router.navigate(['pages/dashboard']);
                     else {
-                      this.socketService.emit('check autorizado');
+                     this.socketService.emit('check autorizado',JSON.parse(localStorage.getItem('auth_app_token')).value)
                     }
                   });
             } else {

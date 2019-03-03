@@ -3,10 +3,12 @@ import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from
 import { NbAuthService } from '@nebular/auth';
 import { tap } from 'rxjs/operators';
 import { NbAccessChecker } from '@nebular/security';
+import { SocketService } from './pages/socket.service';
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private authService: NbAuthService, private router: Router, private accessChecker: NbAccessChecker) {
+  constructor(private authService: NbAuthService, private router: Router, private accessChecker: NbAccessChecker,
+  private socketService: SocketService) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
@@ -21,7 +23,7 @@ export class AuthGuard implements CanActivate {
             console.log(route.url);
                 this.accessChecker.isGranted('view', path).subscribe(granted => {
                   if (!granted) {console.log(path, granted); this.router.navigate(['pages/dashboard']); } else {
-                    // this.socketService.emit('check autorizado');
+                     this.socketService.emit('check autorizado',JSON.parse(localStorage.getItem('auth_app_token')).value)
                   }
                 });
           } else {
