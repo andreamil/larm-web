@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 import { SocketService } from './pages/socket.service';
 @Injectable()
 export class LoadGuard implements CanLoad {
-    constructor(private authService: NbAuthService, private router: Router, 
+    constructor(private authService: NbAuthService, private router: Router,
                 private accessChecker: NbAccessChecker, private socketService: SocketService) { }
 
     canLoad(route: Route) {
@@ -20,7 +20,7 @@ export class LoadGuard implements CanLoad {
                   this.accessChecker.isGranted('view', url).subscribe(granted => {
                     if (!granted)this.router.navigate(['pages/dashboard']);
                     else {
-                     this.socketService.emit('check autorizado',JSON.parse(localStorage.getItem('auth_app_token')).value)
+                     this.socketService.emit('check autorizado', JSON.parse(localStorage.getItem('auth_app_token')).value);
                     }
                   });
             } else {

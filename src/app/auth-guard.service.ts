@@ -23,7 +23,7 @@ export class AuthGuard implements CanActivate {
             console.log(route.url);
                 this.accessChecker.isGranted('view', path).subscribe(granted => {
                   if (!granted) {console.log(path, granted); this.router.navigate(['pages/dashboard']); } else {
-                     this.socketService.emit('check autorizado',JSON.parse(localStorage.getItem('auth_app_token')).value)
+                     this.socketService.emit('check autorizado', JSON.parse(localStorage.getItem('auth_app_token')).value);
                   }
                 });
           } else {
