@@ -73,8 +73,8 @@ export const NB_CORE_PROVIDERS = [
   NbSecurityModule.forRoot({
     accessControl: {
       user: {
-        view: ['pages',
-              'dashboard',
+        view: ['paginas',
+              'painel',
               'iot-dashboard',
               'FEATURES',
               'forms',

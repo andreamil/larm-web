@@ -20,7 +20,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NbAuthJWTInterceptor, NB_AUTH_TOKEN_INTERCEPTOR_FILTER } from '@nebular/auth';
 import { LoadGuard } from './load-guard.service';
 import { AuthGuard } from './auth-guard.service';
-import { SocketService } from './pages/socket.service';
+import { SocketService } from './paginas/socket.service';
 
 const config: SocketIoConfig = { url: '150.162.234.151:44444', 
                                  options: {}};

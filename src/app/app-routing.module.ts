@@ -7,19 +7,19 @@ import { AuthGuard } from './auth-guard.service';
 
 const routes: Routes = [
   {
-    path: 'pages',
+    path: 'paginas',
     canActivate: [AuthGuard], // here we tell Angular to check the access with our AuthGuard
     // canLoad: [LoadGuard],
     component: AppComponent,
-    loadChildren: 'app/pages/pages.module#PagesModule',
+    loadChildren: 'app/paginas/paginas.module#PaginasModule',
   },
   {
     path: 'auth',
     component: NbAuthComponent,
-    loadChildren: 'app/pages/auth/auth.module#AuthModule',
+    loadChildren: 'app/paginas/auth/auth.module#AuthModule',
   },
-  { path: '', redirectTo: 'pages/dashboard', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pages/dashboard' },
+  { path: '', redirectTo: 'paginas/painel', pathMatch: 'full' },
+  { path: '**', redirectTo: 'paginas/painel' },
 ];
 
 const config: ExtraOptions = {
