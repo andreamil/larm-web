@@ -1,0 +1,51 @@
+<div class="row">
+    <div>
+        <h1 style="margin-top: 0;">Todos os Projetos</h1>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-md-4" *ngFor="let projeto of projetos">
+      <nb-card size="small">
+        <nb-card-header>
+                    <div style="float: right;" >
+                        <nb-user [picture]="projeto.lider.foto" [name]="projeto.lider.fullName" [title]="projeto.lider.role" size="medium"></nb-user>
+                      </div>
+  
+                  <a routerLink="/pages/projetos/{{projeto._id}}">
+                    <h5>{{projeto.titulo}}</h5>
+                  </a>
+  
+        </nb-card-header>
+        <nb-card-body style="padding-top: 0;">
+            
+                <nb-tabset fullWidth >
+                  <nb-tab tabTitle="Descrição" >
+                    <div class="descricao" 
+                         [innerHTML]="projeto.descricao" 
+                         style="padding: 1.125rem;
+                                text-indent: 5%;
+                                text-align: justify;"></div>
+                  </nb-tab>
+                  <nb-tab tabTitle="Integrantes">
+                      <nb-list>
+                          <nb-list-item *ngFor="let integrante of projeto.integrantes">
+                            <div class="usuario" >
+                                <nb-user [picture]="integrante.foto" [name]="integrante.fullName" [title]="integrante.role" size="medium"></nb-user>
+                            </div>
+                          </nb-list-item>
+                        </nb-list>
+                  </nb-tab>
+                </nb-tabset>
+              
+  
+        </nb-card-body>
+      </nb-card>
+    </div>
+      <nb-card *ngIf="noProjetos">
+        <nb-card-body>
+          <div class="text-center" role="alert">
+            <strong>Não foi possivel localizar projetos</strong> Crie um
+            <a href="/pages/projetos/criar-projeto" class="alert-link">projeto</a>
+          </div>
+        </nb-card-body>
+      </nb-card>

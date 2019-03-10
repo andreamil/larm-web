@@ -1,0 +1,235 @@
+<div class="row">
+    <div>
+        <h1 style="margin-top: 0;">
+            Cadastrar novo Usuário</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+        <nb-card>
+                <nb-card-header>Usuario</nb-card-header>
+                <nb-card-body>
+                  <form  
+                  #form="ngForm"
+                  (ngSubmit)="form.valid?cadastrarUsuario():checkForm=true" >
+            <div class="row">
+                <div class="col-xl-6">
+                <nb-card>
+                <nb-card-header>Dados</nb-card-header>
+                <nb-card-body>
+                    <div class="form-group row">
+                      <label for="fullName" class="col-sm-3 col-form-label">Nome Completo</label>
+                      <div class="col-sm-9">
+                        <input nbInput
+                          [(ngModel)]="user.fullName"
+                          #fullName="ngModel"
+                          id="input-name"
+                          name="fullName"
+                          autofocus
+                          fullWidth
+                          [status]="checkForm||fullName.dirty ? (fullName.invalid  ? 'danger' : 'success') : ''"
+                          [required]="true"
+                          [minlength]="4"
+                          [maxlength]="50"
+                          [attr.aria-invalid]="(fullName.invalid && fullName.touched)||checkForm ? true : null">
+                   <ng-container *ngIf="(submitted||checkForm) || (fullName.invalid && fullName.touched)">
+                     <p class="error-message" *ngIf="fullName.errors?.required">
+                       Nome completo é necessário!
+                     </p>
+                     <p class="error-message" *ngIf="fullName.errors?.minlength || fullName.errors?.maxlength">
+                       Nome completo deve conter
+                       entre 4
+                       e 50
+                       caracteres
+                     </p>
+                   </ng-container>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="inputEmail1" class="col-sm-3 col-form-label">Email</label>
+                      <div class="col-sm-9">
+                        <input nbInput
+                          [(ngModel)]="user.email"
+                          #email="ngModel"
+                          id="inputEmail1"
+                          name="email"
+                          pattern=".+@.+\..+"
+                          fullWidth
+                          [status]="checkForm||email.dirty ? (email.invalid  ? 'danger' : 'success') : ''"
+                          [required]="true"
+                          [attr.aria-invalid]="(email.invalid && email.touched)||checkForm ? true : null">
+                        <ng-container *ngIf="(submitted||checkForm) || (email.invalid && email.touched)">
+                          <p class="error-message" *ngIf="email.errors?.required">
+                            Email é necessário!
+                          </p>
+                          <p class="error-message" *ngIf="email.errors?.pattern">
+                            Email deve ser válido!
+                          </p>
+                        </ng-container>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="dataDeNascimento" class="col-sm-3 col-form-label">Data de Nascimento</label>
+                      <div class="col-sm-9">
+                        <input type="date" class="form-control" id="dataDeNascimento" name="dataDeNascimento" [(ngModel)]="user.dataDeNascimento">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="role" class="col-sm-3 col-form-label">Permissão</label>
+                        <div class="form-control-group col-sm-9">
+                          <div [(ngModel)]="user.role" 
+                            ngbRadioGroup 
+                            id="role"
+                            name="role"
+                            class="btn-group btn-group-toggle btn-outline-toggle-group btn-group-full-width btn-toggle-radio-group" 
+                            #role="ngModel"
+                            [required]="true">
+                          
+                            <label ngbButtonLabel class="btn btn-outline-primary" [ngClass]="checkForm?(role.errors?.required?'danger':'success'):'' ">
+                              <input ngbButton type="radio" value="user"> Usuario
+                            </label>
+                            <label ngbButtonLabel class="btn btn-outline-primary" [ngClass]="checkForm?(role.errors?.required?'danger':'success'):'' ">
+                              <input ngbButton type="radio" value="aluno"> Aluno
+                            </label>
+                            <label ngbButtonLabel class="btn btn-outline-primary" [ngClass]="checkForm?(role.errors?.required?'danger':'success'):'' ">
+                              <input ngbButton type="radio" value="professor"> professor
+                            </label>
+                          </div>
+                          <ng-container  *ngIf="checkForm&&role.errors?.required">
+                              <p class="error-message">
+                                Permissão é necessária!
+                              </p>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="form-group row" *ngIf="user.role=='aluno'">
+                      <label for="matricula" class="col-sm-3 col-form-label">Matrícula</label>
+                      <div class="col-sm-9">
+                        <input type="number" class="form-control" name="matricula" id="matricula" [(ngModel)]="user.matricula">
+                      </div>
+                    </div>
+                    <div class="form-group row" *ngIf="user.role=='professor'">
+                      <label for="siape" class="col-sm-3 col-form-label">SIAPE</label>
+                      <div class="col-sm-9">
+                        <input type="number" class="form-control" name="siape" id="siape" [(ngModel)]="user.siape">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="inputPassword2" class="col-sm-3 col-form-label">Senha</label>
+                      <div class="col-sm-9">
+                          <input nbInput
+                          [(ngModel)]="user.password"
+                          #password="ngModel"
+                          type="password"
+                          id="input-password"
+                          name="password"
+                          fullWidth
+                          [status]="checkForm||password.dirty ? (password.invalid  ? 'danger' : 'success') : ''"
+                          [required]="true"
+                          [minlength]="4"
+                          [maxlength]="50"
+                          [attr.aria-invalid]="(password.invalid && password.touched)||checkForm ? true : null"
+                          autocomplete="new-password">
+                   <ng-container *ngIf="(submitted||checkForm) || (password.invalid && password.touched)">
+                     <p class="error-message" *ngIf="password.errors?.required">
+                       Senha é necessária!
+                     </p>
+                     <p class="error-message" *ngIf="password.errors?.minlength || password.errors?.maxlength">
+                        Senha deve conterentre 4 e 50 caracteres
+                     </p>
+                   </ng-container>
+                      </div>
+                    </div>
+                </nb-card-body>
+        </nb-card>
+                </div>
+                <div class="col-xl-6">
+                  
+                    <nb-card>
+                    <nb-card-header>Identificação</nb-card-header>
+                    <nb-card-body>
+                      <form>
+                        <div class="form-group row">
+                          <label for="fotoDePerfil" class="col-sm-3 col-form-label">Foto de Perfil</label>
+                          <div class="col-sm-9" style="text-align: center;">
+
+                              <input style="display: none;" type="file" #fotoInput (change)="fileChangeEvent($event)">
+                              <img [src]="croppedImage" #fotoImg width="200px" height="200px" 
+                              style="margin: 1rem;
+                                     border-radius: 50%; " >
+                              <button nbButton status="info" (click)="showCropper=false" *ngIf="showCropper"
+                              style="
+                              padding: 0rem 0.5rem;
+                              font-size: 3rem;
+                              line-height: 0;">
+                                <i  class="nb-checkmark"></i></button>
+                              <image-cropper *ngIf="showCropper"
+                                        [imageChangedEvent]="imageChangedEvent"
+                                        [maintainAspectRatio]="true"
+                                        format="png"
+                                        (imageCropped)="imageCropped($event)"
+                                        (imageLoaded)="imageLoaded()"
+                                        (loadImageFailed)="loadImageFailed()"
+                                        roundCropper=true
+                                    ></image-cropper>
+        
+                              <div class="row">
+                                  <div class="col-6">
+                                  <button
+                                    nbButton
+                                    fullWidth                                  
+                                    status="info"
+                                    [class.btn-pulse]="enviandoFoto"
+                                    (click)="fotoInput.click()"
+                                    style="float: right;width: 100%;">Enviar</button>
+                                  </div>
+                                  <div class="col-6">
+                                    <button
+                                      nbButton
+                                      fullWidth
+                                      status="info"
+                                      (click)="cameraLarm('http://150.162.234.21:8888/HP%20Webcam%20HD-4110/poll.php','fotoLarm.jpg')"
+                                      style="float: right;width: 100%;">Camera LARM</button>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="rfid" class="col-sm-3 col-form-label">RFID</label>
+                          <div class="col-md-2">
+                            <button type="button" class="form-control" 
+                            nbButton
+                            status="info"
+                            (click)="lerRFID()"
+                            [disabled]="rfidLoading">{{rfidButtonText}}</button>
+                          </div>
+                          <div class="col-md-7"
+                          [nbSpinner]="rfidLoading" nbSpinnerStatus="success" nbSpinnerSize="large" nbSpinnerMessage="Esperando RFID">
+                            <input type="rfid" class="form-control" id="rfid" name="rfid" [(ngModel)]="user.rfid" > 
+                          </div>
+                        </div>
+                        
+                      </form>
+                    </nb-card-body>
+                    
+                    </nb-card>
+                    </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <button
+                type="submit"
+                nbButton
+                fullWidth
+                status="success"
+                [disabled]="submitted"
+                [class.btn-pulse]="submitted"
+                style="float: right;width: 100%;">Cadastrar</button>
+              </div>
+            </div>
+                  </form>
+                </nb-card-body>
+        </nb-card>
+    </div>
+    </div>
+    
