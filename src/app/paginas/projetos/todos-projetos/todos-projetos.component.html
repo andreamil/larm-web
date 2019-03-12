@@ -8,7 +8,7 @@
     <nb-card size="small">
       <nb-card-header>
                   <div style="float: right;" >
-                      <nb-user [picture]="projeto.lider.temfoto?baseUrl+'fotosPerfil/'+projeto.lider._id+'.png':null" [name]="projeto.lider.fullName" [title]="projeto.lider.role" size="medium"></nb-user>
+                      <nb-user [picture]="projeto.lider.foto?baseUrl+'fotosPerfil/'+projeto.lider._id+'.'+projeto.lider.foto+'.png':null" [name]="projeto.lider.fullName" [title]="projeto.lider.role" size="medium"></nb-user>
                     </div>
 
                 <a routerLink="/pages/projetos/{{projeto._id}}">
@@ -30,7 +30,7 @@
                     <nb-list>
                         <nb-list-item *ngFor="let integrante of projeto.integrantes">
                           <div class="usuario" >
-                              <nb-user [picture]="integrante.temfoto?baseUrl+'fotosPerfil/'+integrante._id+'.png':null" [name]="integrante.fullName" [title]="integrante.role" size="medium"></nb-user>
+                              <nb-user [picture]="integrante.foto?baseUrl+'fotosPerfil/'+integrante._id+'.'+integrante.foto+'.png':null" [name]="integrante.fullName" [title]="integrante.role" size="medium"></nb-user>
                           </div>
                         </nb-list-item>
                       </nb-list>
