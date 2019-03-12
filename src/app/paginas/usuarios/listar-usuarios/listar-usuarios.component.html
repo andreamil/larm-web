@@ -10,7 +10,7 @@
                 
                 <nb-list-item *ngFor="let usuario of usuarios" style="display: flex;">
                     <nb-user style="width: 100%;"
-                        [picture]="usuario.temfoto?baseUrl+'fotosPerfil/'+usuario._id+'.png':null"
+                        [picture]="usuario.foto?baseUrl+'fotosPerfil/'+usuario._id+'.'+usuario.foto+'.png':null"
                         [name]="usuario.fullName"
                         [title]="usuario.role"
                         size="medium">

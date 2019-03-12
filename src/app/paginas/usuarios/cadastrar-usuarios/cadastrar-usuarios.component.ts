@@ -44,17 +44,17 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
     if(this.usuarioService.getUsuarioEdit()){
       this.user = this.usuarioService.getUsuarioEdit();
       this.usuarioService.setUsuarioEdit(undefined);
-      this.user.temfoto&&(this.croppedImage = Config.BASE_API_URL+'fotosPerfil/'+this.user._id+'.png');
+      this.user.foto&&(this.croppedImage = Config.BASE_API_URL+'fotosPerfil/'+this.user._id+'.'+this.user.foto+'.png');
     }else if(this.route.snapshot.paramMap.get('id')){
       this._getUsuarioIDSub=this.usuarioService.getUsuarioID(this.route.snapshot.paramMap.get('id')).pipe(take(1)).subscribe((body)=>{
           this.user = body.user;
-          body.user.temfoto&&(this.croppedImage = Config.BASE_API_URL+'fotosPerfil/'+body.user._id+'.png');
+          body.user.foto&&(this.croppedImage = Config.BASE_API_URL+'fotosPerfil/'+body.user._id+'.'+body.user.foto+'.png');
         })
       } 
       else if(this.route.snapshot.url[0].path=='meuperfil'){
         this._getUsuarioIDSub=this.usuarioService.getUsuarioEu().pipe(take(1)).subscribe((body)=>{
           this.user = body.user;
-          body.user.temfoto&&(this.croppedImage = Config.BASE_API_URL+'fotosPerfil/'+body.user._id+'.png');
+          body.user.foto&&(this.croppedImage = Config.BASE_API_URL+'fotosPerfil/'+body.user._id+'.'+body.user.foto+'.png');
         })
     }
     
@@ -127,7 +127,7 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
       if(res["success"]){
         this.user=res["user"];
         delete this.user.password;
-        this.user.temfoto&&(this.croppedImage = Config.BASE_API_URL+'fotosPerfil/'+this.user._id+'.png');
+        this.user.foto&&(this.croppedImage = Config.BASE_API_URL+'fotosPerfil/'+this.user._id+'.'+this.user.foto+'.png');
         this.authService.refreshToken('email',null).pipe(take(1)).subscribe()
       }
 
