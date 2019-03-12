@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ProjetoService } from '../projeto.service';
+import { Config } from '../../../config';
 
 @Component({
   selector: 'ngx-todos-projetos',
@@ -9,6 +10,7 @@ import { ProjetoService } from '../projeto.service';
 export class TodosProjetosComponent implements OnInit {
   projetos: any[] = [];
   noProjetos = false;
+  @Input() baseUrl = Config.BASE_API_URL;
   constructor(private service: ProjetoService) {
 
   }
@@ -19,9 +21,9 @@ export class TodosProjetosComponent implements OnInit {
     this.service.getAllProjetos()
       .subscribe(response => {
         if (response) {
-          this.noProjetos = false;
-          this.projetos = response.projetos;
+          console.log(response.projetos[0].lider)
           if (this.projetos === [])this.noProjetos = true;
+          this.projetos = response.projetos;
         } else {
           this.noProjetos = true;
         }

@@ -7,19 +7,28 @@ import { UsuariosComponent } from './usuarios.component';
 import { Routes, RouterModule } from '@angular/router';
 import { UsuariosService } from './usuarios.service';
 import { NbDialogModule } from '@nebular/theme';
-import { ImageCropperModule } from 'ngx-image-cropper';
+import { ImageCropperModule } from 'ngx-image-cropper'
+import { LoadGuard } from '../../load-guard.service';
 const routes: Routes = [{
   path: '',
-  component: UsuariosComponent,
+  //redirectTo: 'meuperfil',
   children: [
     {
-      path: 'listar',
+      path: 'listar', canLoad: [LoadGuard],
       component: ListarUsuariosComponent,
     },
     {
-      path: 'cadastrar',
+      path: 'user', canLoad: [LoadGuard],
       component: CadastrarUsuariosComponent,
     },
+    {
+      path: 'user/:id', canLoad: [LoadGuard],
+      component: CadastrarUsuariosComponent,
+    },
+    {
+      path: 'meuperfil',
+      component: CadastrarUsuariosComponent,
+    }
   ],
 }];
 

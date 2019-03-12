@@ -34,8 +34,8 @@ export class PaginasComponent  implements OnInit, OnDestroy {
         console.log('autorizado');
       } else {
         console.log('nao autorizado');
-        // localStorage.removeItem('auth_app_token');
-        // this.router.navigate(['auth/login']);
+         localStorage.removeItem('auth_app_token');
+         this.router.navigate(['auth/login']);
       }
     });
 

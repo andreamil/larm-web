@@ -5,6 +5,8 @@ import { AnalyticsService } from '../../../@core/utils/analytics.service';
 import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 import { filter, map } from 'rxjs/operators';
 import { LayoutService } from '../../../@core/data/layout.service';
+import { Config } from '../../../config';
+
 @Component({
   selector: 'ngx-header',
   styleUrls: ['./header.component.scss'],
@@ -13,8 +15,8 @@ import { LayoutService } from '../../../@core/data/layout.service';
 export class HeaderComponent implements OnInit {
 
   @Input() position = 'normal';
-  user = {};
-
+  @Input() user:any = {};
+  @Input() baseUrl = Config.BASE_API_URL;
   // user: any;
 
   userMenu = [{ title: 'Perfil' }, { title: 'Sair' }];
@@ -50,7 +52,8 @@ export class HeaderComponent implements OnInit {
 
         }
         if (title === 'Perfil') {
-          this.router.navigate(['pages/perfil']);
+          //this.usuarioService.setUsuarioEdit(this.user);
+          this.router.navigate(['paginas/usuarios/meuperfil']);
         }
       });
   }

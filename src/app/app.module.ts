@@ -22,8 +22,9 @@ import { LoadGuard } from './load-guard.service';
 import { AuthGuard } from './auth-guard.service';
 import { SocketService } from './paginas/socket.service';
 
-const config: SocketIoConfig = { url: '150.162.234.151:44444', 
-                                 options: {}};
+import { Config } from './config';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,7 +37,9 @@ const config: SocketIoConfig = { url: '150.162.234.151:44444',
     NgbModule,
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
-    SocketIoModule.forRoot(config),
+    SocketIoModule.forRoot({ url: Config.BASE_API_URL, 
+      options: {}}),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   bootstrap: [AppComponent],
   providers: [

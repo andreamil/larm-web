@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ProjetoService } from '../projeto.service';
+import { Config } from '../../../config';
 
 @Component({
   selector: 'ngx-meus-projetos',
@@ -8,6 +9,7 @@ import { ProjetoService } from '../projeto.service';
 })
 export class MeusProjetosComponent implements OnInit {
 
+  @Input() baseUrl = Config.BASE_API_URL;
   projetos: any[] = [];
   noProjetos = false;
   constructor(private service: ProjetoService) {
