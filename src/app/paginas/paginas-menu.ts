@@ -28,7 +28,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Cadastrar usuario',
-        link: '/paginas/usuarios/cadastrar',
+        link: '/paginas/usuarios/user',
       },
       {
         title: 'Lista de usuarios',

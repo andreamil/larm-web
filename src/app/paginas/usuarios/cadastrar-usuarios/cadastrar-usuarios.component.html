@@ -1,9 +1,15 @@
-<div class="row">
+<div class="row" *ngIf="!user._id">
     <div>
         <h1 style="margin-top: 0;">
             Cadastrar novo Usuário</h1>
     </div>
   </div>
+  <div class="row" *ngIf="user._id">
+      <div>
+          <h1 style="margin-top: 0;">
+              Editar Usuário</h1>
+      </div>
+    </div>
   <div class="row">
     <div class="col-12">
         <nb-card>
@@ -56,7 +62,7 @@
                           pattern=".+@.+\..+"
                           fullWidth
                           [status]="checkForm||email.dirty ? (email.invalid  ? 'danger' : 'success') : ''"
-                          [required]="true"
+                          [required]="!user._id"
                           [attr.aria-invalid]="(email.invalid && email.touched)||checkForm ? true : null">
                         <ng-container *ngIf="(submitted||checkForm) || (email.invalid && email.touched)">
                           <p class="error-message" *ngIf="email.errors?.required">
@@ -105,13 +111,29 @@
                     <div class="form-group row" *ngIf="user.role=='aluno'">
                       <label for="matricula" class="col-sm-3 col-form-label">Matrícula</label>
                       <div class="col-sm-9">
-                        <input type="number" class="form-control" name="matricula" id="matricula" [(ngModel)]="user.matricula">
+                        <input nbInput type="number" class="form-control" name="matricula" id="matricula" [(ngModel)]="user.matricula"
+                        [required]="user.role=='aluno'"                        
+                        #matricula="ngModel"
+                        [status]="checkForm||matricula.dirty ? (matricula.invalid  ? 'danger' : 'success') : ''">
+                        <ng-container  *ngIf="checkForm&&matricula.errors?.required">
+                            <p class="error-message">
+                              Matrícula é necessária!
+                            </p>
+                          </ng-container>
                       </div>
                     </div>
                     <div class="form-group row" *ngIf="user.role=='professor'">
                       <label for="siape" class="col-sm-3 col-form-label">SIAPE</label>
                       <div class="col-sm-9">
-                        <input type="number" class="form-control" name="siape" id="siape" [(ngModel)]="user.siape">
+                        <input nbInput type="number" class="form-control" name="siape" id="siape" [(ngModel)]="user.siape"
+                        [required]="user.role=='professor'"                        
+                        #siape="ngModel"
+                        [status]="checkForm||siape.dirty ? (siape.invalid  ? 'danger' : 'success') : ''">                        
+                        <ng-container  *ngIf="checkForm&&siape.errors?.required">
+                            <p class="error-message">
+                              Siape é necessário!
+                            </p>
+                          </ng-container>
                       </div>
                     </div>
                     <div class="form-group row">
@@ -125,7 +147,7 @@
                           name="password"
                           fullWidth
                           [status]="checkForm||password.dirty ? (password.invalid  ? 'danger' : 'success') : ''"
-                          [required]="true"
+                          [required]="!user._id"
                           [minlength]="4"
                           [maxlength]="50"
                           [attr.aria-invalid]="(password.invalid && password.touched)||checkForm ? true : null"
@@ -157,13 +179,13 @@
                               <img [src]="croppedImage" #fotoImg width="200px" height="200px" 
                               style="margin: 1rem;
                                      border-radius: 50%; " >
-                              <button nbButton status="info" (click)="showCropper=false" *ngIf="showCropper"
+                              <button nbButton status="info" (click)="showCropper=!showCropper" *ngIf="showCropper"
                               style="
                               padding: 0rem 0.5rem;
                               font-size: 3rem;
                               line-height: 0;">
                                 <i  class="nb-checkmark"></i></button>
-                              <image-cropper *ngIf="showCropper"
+                              <image-cropper id='image-cropper' [(hidden)]="!showCropper"
                                         [imageChangedEvent]="imageChangedEvent"
                                         [maintainAspectRatio]="true"
                                         format="png"
@@ -188,7 +210,7 @@
                                       nbButton
                                       fullWidth
                                       status="info"
-                                      (click)="cameraLarm('http://150.162.234.21:8888/HP%20Webcam%20HD-4110/poll.php','fotoLarm.jpg')"
+                                      (click)="cameraLarm()"
                                       style="float: right;width: 100%;">Camera LARM</button>
                                   </div>
                               </div>
@@ -217,14 +239,22 @@
             </div>
             <div class="form-group row">
               <div class="col-sm-12">
-                <button
-                type="submit"
-                nbButton
-                fullWidth
-                status="success"
-                [disabled]="submitted"
-                [class.btn-pulse]="submitted"
-                style="float: right;width: 100%;">Cadastrar</button>
+                  <button *ngIf="!user._id"
+                  type="submit"
+                  nbButton
+                  fullWidth
+                  status="success"
+                  [disabled]="submitted"
+                  [class.btn-pulse]="submitted"
+                  style="float: right;width: 100%;">Cadastrar</button>
+                  <button *ngIf="user._id"
+                  type="submit"
+                  nbButton
+                  fullWidth
+                  status="warning"
+                  [disabled]="submitted"
+                  [class.btn-pulse]="submitted"
+                  style="float: right;width: 100%;">Salvar</button>
               </div>
             </div>
                   </form>

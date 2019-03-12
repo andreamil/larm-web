@@ -1,3 +1,32 @@
-<p>
-  listar-usuarios works!
-</p>
+<div class="row">
+    <div>
+        <h1 style="margin-top: 0;">Lista de Usuarios</h1>
+    </div>
+  </div>
+<nb-card class="row">
+    <nb-card-body>
+            <h3>Teste Relatorio</h3>
+            <nb-list>
+                
+                <nb-list-item *ngFor="let usuario of usuarios" style="display: flex;">
+                    <nb-user style="width: 100%;"
+                        [picture]="usuario.temfoto?baseUrl+'fotosPerfil/'+usuario._id+'.png':null"
+                        [name]="usuario.fullName"
+                        [title]="usuario.role"
+                        size="medium">
+                    </nb-user>
+                    <nb-list *ngIf="response.rfid==usuario.rfid||response.id==usuario._id">
+                            <nb-list-item *ngFor="let registro of response.registros" style="display: flex;">
+                                <span>Hora entrada: {{registro.horaEntrada}}</span>
+                                <span>Hora saida: {{registro.horaSaida}}</span>
+                            </nb-list-item>
+                        </nb-list>
+                        <button (click)="editar(usuario)" class="btn btn-hero-warning" 
+                        style="cursor: pointer;margin: 1rem; float: right;">Editar</button>
+                        <button (click)="relatorioRFID(usuario.rfid)" class="btn btn-hero-info" 
+                        style="cursor: pointer;margin: 1rem; float: right;">relatorio RFID</button>
+                </nb-list-item>
+            </nb-list>
+    </nb-card-body>
+</nb-card>
+

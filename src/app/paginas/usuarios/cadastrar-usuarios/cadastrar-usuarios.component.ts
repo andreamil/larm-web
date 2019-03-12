@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { UsuariosService } from '../usuarios.service';
 import { NbDialogService } from '@nebular/theme';
 
@@ -7,31 +7,65 @@ import { NbDialogService } from '@nebular/theme';
   templateUrl: './cadastrar-usuarios.component.html',
   styleUrls: ['./cadastrar-usuarios.component.scss'],
 })
-export class CadastrarUsuariosComponent implements OnInit, OnDestroy {
-  options = [
+export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewInit {
+  @Input() image64: string;
+  ngAfterViewInit(): void {
+    this.imageCropper.imageCroppedBase64.subscribe((img)=>this.user.foto = img)
+  }
+  @Input() options = [
     { value: 'user', label: 'User' },
     { value: 'aluno', label: 'Aluno' },
     { value: 'professor', label: 'Professor' }
   ];
-  option: any;
-  user: any = {}
-  submitted = false;
-  rfidButtonText = 'Ler RFID'
-  password: any;
-  constructor(private usuarioService: UsuariosService, private dialogService: NbDialogService,private http: HttpClient,private socketService: SocketService) { }
+  @Input() user: any = {}
+  @Input() submitted = false;
+  @Input() rfidButtonText = 'Ler RFID'
+  @Input() checkForm: boolean;
+  @Input() enviandoFoto: boolean;
+  @ViewChild(ImageCropperComponent) imageCropper : ImageCropperComponent;
+  constructor(
+    private usuarioService: UsuariosService,
+    private dialogService : NbDialogService,
+    private socketService : SocketService,
+    private route: ActivatedRoute,
+    private authService: NbAuthService) { }
 
   private _lendoConfirmacaoSub: Subscription;
+  private _getFotoLarmSub: Subscription;
   private _novoRFIDSub: Subscription;
-  ngOnInit() {
-  }
-  ngOnDestroy(): void {
-    this._lendoConfirmacaoSub&&(this._lendoConfirmacaoSub.unsubscribe());
-    this._novoRFIDSub&&(this._novoRFIDSub.unsubscribe());
-  }
+  private _getUsuarioIDSub: Subscription;
+  private _cadastrarUsuarioSub: Subscription;
+
   imageChangedEvent: any = '';
   croppedImage: any = 'http://sg-fs.com/wp-content/uploads/2017/08/user-placeholder.png';
   showCropper = false;
   rfidLoading=false;
+  ngOnInit() { 
+    if(this.usuarioService.getUsuarioEdit()){
+      this.user = this.usuarioService.getUsuarioEdit();
+      this.usuarioService.setUsuarioEdit(undefined);
+      this.user.temfoto&&(this.croppedImage = Config.BASE_API_URL+'fotosPerfil/'+this.user._id+'.png');
+    }else if(this.route.snapshot.paramMap.get('id')){
+      this._getUsuarioIDSub=this.usuarioService.getUsuarioID(this.route.snapshot.paramMap.get('id')).pipe(take(1)).subscribe((body)=>{
+          this.user = body.user;
+          body.user.temfoto&&(this.croppedImage = Config.BASE_API_URL+'fotosPerfil/'+body.user._id+'.png');
+        })
+      } 
+      else if(this.route.snapshot.url[0].path=='meuperfil'){
+        this._getUsuarioIDSub=this.usuarioService.getUsuarioEu().pipe(take(1)).subscribe((body)=>{
+          this.user = body.user;
+          body.user.temfoto&&(this.croppedImage = Config.BASE_API_URL+'fotosPerfil/'+body.user._id+'.png');
+        })
+    }
+    
+  }
+  ngOnDestroy(): void {
+    this._lendoConfirmacaoSub&&(this._lendoConfirmacaoSub.unsubscribe());
+    this._novoRFIDSub&&(this._novoRFIDSub.unsubscribe());
+    this._getFotoLarmSub&&(this._getFotoLarmSub.unsubscribe());
+    this._getUsuarioIDSub&&(this._getUsuarioIDSub.unsubscribe());    
+    this._cadastrarUsuarioSub&&(this._cadastrarUsuarioSub.unsubscribe());
+  }
   fileChangeEvent(event: any): void {
       this.imageChangedEvent = event;
       this.showCropper = true;
@@ -39,15 +73,22 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy {
   imageCropped(event: ImageCroppedEvent) {
       this.croppedImage = event.base64;
   }
+  imageLoaded(){
+
+  }
+  loadImageFailed() {
+      // show message
+  }
   lerRFID(){
     this._lendoConfirmacaoSub = this.socketService.lendoConfirmacao.subscribe(msg => {
       
       if(msg){
         console.log('lendo rfid ',msg);
-        this._novoRFIDSub = this.socketService.novoRFID.subscribe(rfid => {
+        this._novoRFIDSub = this.socketService.novoRFID.pipe(take(1)).subscribe(rfid => {
           console.log('rfid lido',rfid);
           this.user.rfid=rfid;
           this.rfidLoading=false;
+          //this._novoRFIDSub.unsubscribe();
         });
         this.rfidLoading=true;
       }else{        
@@ -65,18 +106,17 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy {
     a.click();
     a.remove();
   };
-  cameraLarm(url: string, fileName: string){
-    /*this.http.get(url, { responseType: 'blob' }).subscribe(val => {
-      console.log(val);
-      let url = URL.createObjectURL(val);
-      this.downloadUrl(url, fileName);
-      URL.revokeObjectURL(url);
-    });*/
-    this.croppedImage = "http://150.162.234.21:8888/HP%20Webcam%20HD-4110/poll.php";
+  cameraLarm(){
+    this._getFotoLarmSub&&(this._getFotoLarmSub.unsubscribe());
+    this.showCropper = true;
+    this._getFotoLarmSub = this.socketService.getFotoLarm.subscribe(res=>this.imageCropper.imageBase64='data:image/jpeg;base64,'+res);    
+    this.socketService.emit('get foto larm');
   }
   cadastrarUsuario() {
     this.submitted = true;
-    this.usuarioService.cadastrarUsuario(this.user).subscribe((res) => {
+    console.log(this.user);
+    
+    this._cadastrarUsuarioSub=this.usuarioService.cadastrarUsuario(this.user).subscribe((res) => {
       this.dialogService.open(DialogUsuarioComponent, {
         context: {
           title: res["success"]?"Sucesso":"Falha",
@@ -84,6 +124,13 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy {
         },
         closeOnBackdropClick: false
       });
+      if(res["success"]){
+        this.user=res["user"];
+        delete this.user.password;
+        this.user.temfoto&&(this.croppedImage = Config.BASE_API_URL+'fotosPerfil/'+this.user._id+'.png');
+        this.authService.refreshToken('email',null).pipe(take(1)).subscribe()
+      }
+
       console.log(res);
       this.submitted = false;
     })
@@ -91,10 +138,13 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy {
 
 }
 import { NbDialogRef } from '@nebular/theme';
-import { ImageCroppedEvent } from 'ngx-image-cropper';
-import { HttpClient } from '@angular/common/http';
+import { ImageCroppedEvent, ImageCropperComponent } from 'ngx-image-cropper';
 import { SocketService } from '../../socket.service';
 import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
+import { Config } from '../../../config';
+import { ActivatedRoute } from '@angular/router';
+import { NbAuthService } from '@nebular/auth';
 
 @Component({
   selector: 'ngx-dialog-usuario',

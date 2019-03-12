@@ -31,6 +31,12 @@ export const NB_CORE_PROVIDERS = [
 
               // key: 'token', // this parameter tells where to look for the token
             },
+            errors:{
+              key:'err'
+            },
+            messages:{
+              key:'msg'
+            },
             baseEndpoint: Config.BASE_API_URL + 'usuarios/',
             login: {
              endpoint: 'login',
@@ -41,7 +47,13 @@ export const NB_CORE_PROVIDERS = [
             register: {
              endpoint: 'register',
              method: 'post',
+             defaultErrors: ['Erro ao registrar, tente novamente.'],
              defaultMessages: ['Registrado com sucesso'],
+            },
+            refreshToken: {
+             requireValidToken: false,
+             defaultMessages: ['Token atualizado'],
+             defaultErrors: ['Erro atualizar Token'],
             },
             /*logout: {
             endpoint: 'logout',

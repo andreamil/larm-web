@@ -11,10 +11,18 @@ export interface Notificacao {
 
 @Injectable({providedIn: 'root'})
 export class SocketService extends Socket {
+  private _idUser: string;
+  public get idUser(): string {
+    return this._idUser;
+  }
+  public set idUser(value: string) {
+    this._idUser = value;
+  }
   msg = this.fromEvent<Notificacao>('notificacao');
   autorizado = this.fromEvent<boolean>('autorizado');
   lendoConfirmacao = this.fromEvent<boolean>('lendo novo usuario');
   novoRFID = this.fromEvent<String>('novo RFID');
+  getFotoLarm = this.fromEvent<any>('foto larm');
   
 }
 
