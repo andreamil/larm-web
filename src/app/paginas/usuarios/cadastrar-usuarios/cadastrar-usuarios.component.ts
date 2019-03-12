@@ -18,6 +18,8 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy {
   submitted = false;
   rfidButtonText = 'Ler RFID'
   password: any;
+  checkForm: boolean;
+  enviandoFoto: boolean;
   constructor(private usuarioService: UsuariosService, private dialogService: NbDialogService,private http: HttpClient,private socketService: SocketService) { }
 
   private _lendoConfirmacaoSub: Subscription;
@@ -76,6 +78,7 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy {
   }
   cadastrarUsuario() {
     this.submitted = true;
+    this.checkForm=true;
     this.usuarioService.cadastrarUsuario(this.user).subscribe((res) => {
       this.dialogService.open(DialogUsuarioComponent, {
         context: {
