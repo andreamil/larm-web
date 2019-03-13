@@ -98,7 +98,35 @@
                               <input ngbButton type="radio" value="aluno"> Aluno
                             </label>
                             <label ngbButtonLabel class="btn btn-outline-primary" [ngClass]="checkForm?(role.errors?.required?'danger':'success'):'' ">
-                              <input ngbButton type="radio" value="professor"> professor
+                              <input ngbButton type="radio" value="professor"> Professor
+                            </label>
+                            <label ngbButtonLabel class="btn btn-outline-primary" [ngClass]="checkForm?(role.errors?.required?'danger':'success'):'' ">
+                              <input ngbButton type="radio" value="admin"> Admin
+                            </label>
+                          </div>
+                          <ng-container  *ngIf="checkForm&&role.errors?.required">
+                              <p class="error-message">
+                                Permissão é necessária!
+                              </p>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="permissao" class="col-sm-3 col-form-label">Permissão Porta</label>
+                        <div class="form-control-group col-sm-9">
+                          <div [(ngModel)]="user.permissao" 
+                            ngbRadioGroup 
+                            id="permissao"
+                            name="permissao"
+                            class="btn-group btn-group-toggle btn-outline-toggle-group btn-group-full-width btn-toggle-radio-group" 
+                            #permissao="ngModel"
+                            [required]="true">
+                          
+                            <label ngbButtonLabel class="btn btn-outline-primary" [ngClass]="checkForm?(role.errors?.required?'danger':'success'):'' ">
+                              <input ngbButton type="radio" value="s"> sim
+                            </label>
+                            <label ngbButtonLabel class="btn btn-outline-primary" [ngClass]="checkForm?(role.errors?.required?'danger':'success'):'' ">
+                              <input ngbButton type="radio" value="n"> nao
                             </label>
                           </div>
                           <ng-container  *ngIf="checkForm&&role.errors?.required">
