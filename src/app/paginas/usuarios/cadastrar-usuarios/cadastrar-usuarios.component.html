@@ -122,16 +122,16 @@
                             #permissao="ngModel"
                             [required]="true">
                           
-                            <label ngbButtonLabel class="btn btn-outline-primary" [ngClass]="checkForm?(role.errors?.required?'danger':'success'):'' ">
+                            <label ngbButtonLabel class="btn btn-outline-primary" [ngClass]="checkForm?(permissao.errors?.required?'danger':'success'):'' ">
                               <input ngbButton type="radio" value="s"> sim
                             </label>
-                            <label ngbButtonLabel class="btn btn-outline-primary" [ngClass]="checkForm?(role.errors?.required?'danger':'success'):'' ">
+                            <label ngbButtonLabel class="btn btn-outline-primary" [ngClass]="checkForm?(permissao.errors?.required?'danger':'success'):'' ">
                               <input ngbButton type="radio" value="n"> nao
                             </label>
                           </div>
-                          <ng-container  *ngIf="checkForm&&role.errors?.required">
+                          <ng-container  *ngIf="checkForm&&permissao.errors?.required">
                               <p class="error-message">
-                                Permissão é necessária!
+                                Permissão porta é necessária!
                               </p>
                             </ng-container>
                         </div>

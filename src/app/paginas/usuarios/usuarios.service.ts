@@ -9,8 +9,8 @@ export class UsuariosService {
     return this.http.post(Config.BASE_API_URL + 'usuarios/criar',user)
   } 
   setUsuarioEdit(user: any){    
+    if(user&&user.permissao!='n')user.permissao='s';
     this.usuarioEdit=user;
-    if(this.usuarioEdit!='n')this.usuarioEdit='s';
   }
   getUsuarioEdit(){
     return this.usuarioEdit;

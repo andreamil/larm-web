@@ -42,6 +42,8 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
   rfidLoading=false;
   ngOnInit() { 
     if(this.usuarioService.getUsuarioEdit()){
+      console.log(this.usuarioService.getUsuarioEdit());
+      
       this.user = this.usuarioService.getUsuarioEdit();
       this.usuarioService.setUsuarioEdit(undefined);
       this.user.foto&&(this.croppedImage = Config.BASE_API_URL+'fotosPerfil/'+this.user._id+'.'+this.user.foto+'.png');
