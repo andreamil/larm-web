@@ -26,7 +26,6 @@ install:
 before_script:
 
 script:
-  - npm run lint:ci
   - npm run build:prod
 
 git:
