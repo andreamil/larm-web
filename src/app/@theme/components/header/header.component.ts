@@ -6,6 +6,7 @@ import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 import { filter, map } from 'rxjs/operators';
 import { LayoutService } from '../../../@core/data/layout.service';
 import { Config } from '../../../config';
+import { UsuariosService } from '../../../paginas/usuarios/usuarios.service';
 
 @Component({
   selector: 'ngx-header',
@@ -28,7 +29,8 @@ export class HeaderComponent implements OnInit {
               private authService: NbAuthService,
             //  private nbTokenService: NbTokenService,
             private layoutService: LayoutService,
-              private router: Router) {
+              private router: Router,
+              private usuarioService: UsuariosService) {
                 this.authService.onTokenChange()
                     .subscribe((token: NbAuthJWTToken) => {
                       if (token.isValid()) {
@@ -52,7 +54,7 @@ export class HeaderComponent implements OnInit {
 
         }
         if (title === 'Perfil') {
-          //this.usuarioService.setUsuarioEdit(this.user);
+          this.usuarioService.setUsuarioEdit(this.user);
           this.router.navigate(['paginas/usuarios/meuperfil']);
         }
       });

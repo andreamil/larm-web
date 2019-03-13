@@ -8,8 +8,9 @@ export class UsuariosService {
   cadastrarUsuario(user: any){
     return this.http.post(Config.BASE_API_URL + 'usuarios/criar',user)
   } 
-  setUsuarioEdit(user: any){
+  setUsuarioEdit(user: any){    
     this.usuarioEdit=user;
+    if(this.usuarioEdit!='n')this.usuarioEdit='s';
   }
   getUsuarioEdit(){
     return this.usuarioEdit;

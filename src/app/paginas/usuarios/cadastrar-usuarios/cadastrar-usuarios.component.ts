@@ -48,12 +48,14 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
     }else if(this.route.snapshot.paramMap.get('id')){
       this._getUsuarioIDSub=this.usuarioService.getUsuarioID(this.route.snapshot.paramMap.get('id')).pipe(take(1)).subscribe((body)=>{
           this.user = body.user;
+          if(this.user.permissao!='n')this.user.permissao='s';          
           body.user.foto&&(this.croppedImage = Config.BASE_API_URL+'fotosPerfil/'+body.user._id+'.'+body.user.foto+'.png');
         })
       } 
       else if(this.route.snapshot.url[0].path=='meuperfil'){
         this._getUsuarioIDSub=this.usuarioService.getUsuarioEu().pipe(take(1)).subscribe((body)=>{
           this.user = body.user;
+          if(this.user.permissao!='n')this.user.permissao='s';        
           body.user.foto&&(this.croppedImage = Config.BASE_API_URL+'fotosPerfil/'+body.user._id+'.'+body.user.foto+'.png');
         })
     }
@@ -126,6 +128,7 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
       });
       if(res["success"]){
         this.user=res["user"];
+        if(res["user"].permissao!='n')this.user.permissao='s';
         delete this.user.password;
         this.user.foto&&(this.croppedImage = Config.BASE_API_URL+'fotosPerfil/'+this.user._id+'.'+this.user.foto+'.png');
         this.authService.refreshToken('email',null).pipe(take(1)).subscribe()
