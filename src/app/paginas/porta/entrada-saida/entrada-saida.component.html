@@ -1,46 +1,51 @@
 <nb-card class="row">
-        <nb-card-body>
-                <h3>Insira um RFID</h3>
-                <input  type="text"
-                        nbInput
-                        class="form-control"
-                        [(ngModel)]="rfid">
-                <button nbButton (click)="registrarRFID(rfid)"
-                style="cursor: pointer;margin: 1rem;">registrar entrada</button>
-                <span>{{msg}}</span>
-        </nb-card-body>
-    </nb-card>
-    <nb-card class="row">
-        <nb-card-body>
-                <h3>Teste Relatorio</h3>
-                <nb-list>
-                    
-                    <nb-list-item *ngFor="let usuario of usuarios" style="display: flex;">
-                        <nb-user style="width: 100%;"
-                            [picture]="usuario.foto?baseUrl+'fotosPerfil/'+usuario._id+'.'+usuario.foto+'.png':null"
-                            [name]="usuario.fullName"
-                            [title]="usuario.role"
-                            size="medium">
-                        </nb-user>
-                        <nb-list *ngIf="response.rfid==usuario.rfid||response.id==usuario._id">
-                                <nb-list-item *ngFor="let registro of response.registros" style="display: flex;">
-                                    <span>Hora entrada: {{registro.horaEntrada}}</span>
-                                    <span>Hora saida: {{registro.horaSaida}}</span>
-                                </nb-list-item>
-                            </nb-list>
-                        <button (click)="registrarId('entrada',usuario._id)" class="btn btn-hero-success"
-                            style="cursor: pointer;margin: 1rem;">registrar entrada</button>
-                        <button (click)="registrarId('saida',usuario._id)" class="btn btn-hero-danger"
-                            style="cursor: pointer;margin: 1rem;">registrar saida</button>
-                            <button (click)="relatorioId(usuario._id)" class="btn btn-hero-info" 
-                                style="cursor: pointer;margin: 1rem; float: right;">relatorio ID (web)</button>
-                            <button (click)="registrarRFID(usuario.rfid)"  class="btn btn-hero-warning" 
-                                style="cursor: pointer;margin: 1rem; float: right;">Simular porta</button>
-                            <button (click)="relatorioRFID(usuario.rfid)" class="btn btn-hero-info" 
-                            style="cursor: pointer;margin: 1rem; float: right;">relatorio RFID</button>
-                    </nb-list-item>
-                </nb-list>
-                <span>{{msg}}</span>
-        </nb-card-body>
-    </nb-card>
-    
+    <nb-card-body>
+        <h3>Insira um RFID</h3>
+        <input type="text" nbInput class="form-control" [(ngModel)]="rfid">
+        <button nbButton (click)="registrarRFID(rfid)" style="cursor: pointer;margin: 1rem;">registrar entrada</button>
+        <span>{{msg}}</span>
+    </nb-card-body>
+</nb-card>
+<nb-card class="row">
+    <nb-card-body style="
+        max-width: 100%;
+    ">
+        <h3>Teste Relatorio</h3>
+        <nb-list>
+
+            <nb-list-item *ngFor="let usuario of usuarios" style="display: flex;">
+                <div class="row" style="
+                            width: 100%;
+                            float: right;
+                        ">
+                    <nb-user style="width: 100%;"
+                        [picture]="usuario.foto?baseUrl+'fotosPerfil/'+usuario._id+'.'+usuario.foto+'.png':null"
+                        [name]="usuario.fullName" [title]="usuario.role" size="medium" class="col-xl-2 col-12"
+                        style="min-width: 140px">
+                    </nb-user>
+                    <nb-list *ngIf="response.rfid==usuario.rfid||response.id==usuario._id">
+                        <nb-list-item *ngFor="let registro of response.registros" style="display: flex;">
+                            <span>Hora entrada: {{registro.horaEntrada}}</span>
+                            <span>Hora saida: {{registro.horaSaida}}</span>
+                        </nb-list-item>
+                    </nb-list>
+                    <div class="col-12 col-xl-10" style="
+                                text-align: right;
+                            ">
+                        <button (click)="registrarId('entrada',usuario._id)" class="btn btn-hero-success col-1"
+                            style="cursor: pointer;margin: 1rem;min-width: 125px;">registrar entrada</button>
+                        <button (click)="registrarId('saida',usuario._id)" class="btn btn-hero-danger col-1"
+                            style="cursor: pointer;margin: 1rem;min-width: 125px;">registrar saida</button>
+                        <button (click)="relatorioId(usuario._id)" class="btn btn-hero-info col-1"
+                            style="cursor: pointer;margin: 1rem;min-width: 125px;">relatorio ID (web)</button>
+                        <button (click)="registrarRFID(usuario.rfid)" class="btn btn-hero-warning col-1"
+                            style="cursor: pointer;margin: 1rem;min-width: 125px;">Simular porta</button>
+                        <button (click)="relatorioRFID(usuario.rfid)" class="btn btn-hero-info col-1"
+                            style="cursor: pointer;margin: 1rem;min-width: 125px;">relatorio RFID</button>
+                    </div>
+                </div>
+            </nb-list-item>
+        </nb-list>
+        <span>{{msg}}</span>
+    </nb-card-body>
+</nb-card>
