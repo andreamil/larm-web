@@ -37,7 +37,7 @@ export const NB_CORE_PROVIDERS = [
             messages:{
               key:'msg'
             },
-            baseEndpoint: Config.BASE_API_URL + 'usuarios/',
+            baseEndpoint: '/usuarios/',
             login: {
              endpoint: 'login',
              method: 'post',
