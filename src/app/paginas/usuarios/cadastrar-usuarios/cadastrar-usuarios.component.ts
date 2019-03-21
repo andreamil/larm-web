@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewEncapsulation, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
-import { UsuariosService } from '../usuarios.service';
+import { UsuariosService, Usuario } from '../usuarios.service';
 import { NbDialogService } from '@nebular/theme';
 
 @Component({
@@ -18,7 +18,7 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
     { value: 'professor', label: 'Professor' }
   ];
 
-  @Input() user: any = {}
+  @Input() user: Usuario=new Usuario();
   @Input() submitted = false;
   @Input() rfidButtonText = 'Ler RFID'
   @Input() checkForm: boolean;
@@ -43,22 +43,16 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
   ngOnInit() { 
     if(this.usuarioService.getUsuarioEdit()){
       console.log(this.usuarioService.getUsuarioEdit());
-      
       this.user = this.usuarioService.getUsuarioEdit();
       this.usuarioService.setUsuarioEdit(undefined);
-      this.user.foto&&(this.croppedImage = Config.BASE_API_URL+'fotosPerfil/'+this.user._id+'.'+this.user.foto+'.png');
     }else if(this.route.snapshot.paramMap.get('id')){
       this._getUsuarioIDSub=this.usuarioService.getUsuarioID(this.route.snapshot.paramMap.get('id')).pipe(take(1)).subscribe((body)=>{
           this.user = body.user;
-          if(this.user.permissao!='n')this.user.permissao='s';          
-          body.user.foto&&(this.croppedImage = Config.BASE_API_URL+'fotosPerfil/'+body.user._id+'.'+body.user.foto+'.png');
         })
       } 
       else if(this.route.snapshot.url[0].path=='meuperfil'){
         this._getUsuarioIDSub=this.usuarioService.getUsuarioEu().pipe(take(1)).subscribe((body)=>{
           this.user = body.user;
-          if(this.user.permissao!='n')this.user.permissao='s';        
-          body.user.foto&&(this.croppedImage = Config.BASE_API_URL+'fotosPerfil/'+body.user._id+'.'+body.user.foto+'.png');
         })
     }
     
@@ -101,15 +95,6 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
     });
     this.socketService.emit('ler novo usuario');
   }
-  downloadUrl(url: string, fileName: string) {
-    let a: any = document.createElement('a');
-    a.href = url;
-    a.download = fileName;
-    document.body.appendChild(a);
-    a.style = 'display: none';
-    a.click();
-    a.remove();
-  };
   cameraLarm(){
     this._getFotoLarmSub&&(this._getFotoLarmSub.unsubscribe());
     this.showCropper = true;
@@ -130,9 +115,6 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
       });
       if(res["success"]){
         this.user=res["user"];
-        if(res["user"].permissao!='n')this.user.permissao='s';
-        delete this.user.password;
-        this.user.foto&&(this.croppedImage = Config.BASE_API_URL+'fotosPerfil/'+this.user._id+'.'+this.user.foto+'.png');
         this.authService.refreshToken('email',null).pipe(take(1)).subscribe()
       }
 
@@ -147,7 +129,6 @@ import { ImageCroppedEvent, ImageCropperComponent } from 'ngx-image-cropper';
 import { SocketService } from '../../socket.service';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { Config } from '../../../config';
 import { ActivatedRoute } from '@angular/router';
 import { NbAuthService } from '@nebular/auth';
 

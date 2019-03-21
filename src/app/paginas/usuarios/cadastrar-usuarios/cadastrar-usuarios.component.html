@@ -33,14 +33,14 @@
                         name="fullName"
                         autofocus
                         fullWidth
-                        [status]="checkForm||fullName.dirty ? (fullName.invalid  ? 'danger' : 'success') : ''"
+                        [status]="(checkForm||fullName.dirty) ? (fullName.invalid  ? 'danger' : 'success') : ''"
                         [required]="true"
                         [minlength]="4"
                         [maxlength]="50"
                         [attr.aria-invalid]="(fullName.invalid && fullName.touched)||checkForm ? true : null">
                  <ng-container *ngIf="(submitted||checkForm) || (fullName.invalid && fullName.touched)">
                    <p class="error-message" *ngIf="fullName.errors?.required">
-                     Nome completo é necessário!
+                     Nome completo é obrigatório!
                    </p>
                    <p class="error-message" *ngIf="fullName.errors?.minlength || fullName.errors?.maxlength">
                      Nome completo deve conter
@@ -54,19 +54,19 @@
                   <div class="form-group row">
                     <label for="inputEmail1" class="col-sm-3 col-form-label">Email</label>
                     <div class="col-sm-9">
-                      <input nbInput
+                      <input nbInput 
                         [(ngModel)]="user.email"
                         #email="ngModel"
                         id="inputEmail1"
                         name="email"
                         pattern=".+@.+\..+"
                         fullWidth
-                        [status]="checkForm||email.dirty ? (email.invalid  ? 'danger' : 'success') : ''"
+                        [status]="(checkForm||email.dirty) ? (email.invalid  ? 'danger' : 'success') : ''"
                         [required]="!user._id"
                         [attr.aria-invalid]="(email.invalid && email.touched)||checkForm ? true : null">
                       <ng-container *ngIf="(submitted||checkForm) || (email.invalid && email.touched)">
                         <p class="error-message" *ngIf="email.errors?.required">
-                          Email é necessário!
+                          Email é obrigatório!
                         </p>
                         <p class="error-message" *ngIf="email.errors?.pattern">
                           Email deve ser válido!
@@ -91,18 +91,18 @@
                           #role="ngModel"
                           [required]="true">                          
                           <label ngbButtonLabel class="btn btn-outline-primary" [ngClass]="checkForm?(role.errors?.required?'danger':'success'):'' ">
-                            <input ngbButton type="radio" value="aluno"> Aluno
+                            <input ngbButton type="radio" value="aluno">Aluno
                           </label>
                           <label ngbButtonLabel class="btn btn-outline-primary" [ngClass]="checkForm?(role.errors?.required?'danger':'success'):'' ">
-                            <input ngbButton type="radio" value="professor"> Professor
+                            <input ngbButton type="radio" value="professor">Professor
                           </label>
                           <label ngbButtonLabel class="btn btn-outline-primary" [ngClass]="checkForm?(role.errors?.required?'danger':'success'):'' ">
-                            <input ngbButton type="radio" value="admin"> Admin
+                            <input ngbButton type="radio" value="admin">Admin
                           </label>
                         </div>
                         <ng-container  *ngIf="checkForm&&role.errors?.required">
                             <p class="error-message">
-                              Permissão é necessária!
+                              Permissão é obrigatória!
                             </p>
                           </ng-container>
                       </div>
@@ -127,7 +127,7 @@
                         </div>
                         <ng-container  *ngIf="checkForm&&permissao.errors?.required">
                             <p class="error-message">
-                              Permissão porta é necessária!
+                              Permissão porta é obrigatória!
                             </p>
                           </ng-container>
                       </div>
@@ -138,10 +138,10 @@
                       <input nbInput type="number" class="form-control" name="matricula" id="matricula" [(ngModel)]="user.matricula"
                       [required]="user.role=='aluno'"                        
                       #matricula="ngModel"
-                      [status]="checkForm||matricula.dirty ? (matricula.invalid  ? 'danger' : 'success') : ''">
+                      [status]="(checkForm||matricula.dirty) ? (matricula.invalid  ? 'danger' : 'success') : ''">
                       <ng-container  *ngIf="checkForm&&matricula.errors?.required">
                           <p class="error-message">
-                            Matrícula é necessária!
+                            Matrícula é obrigatória!
                           </p>
                         </ng-container>
                     </div>
@@ -152,10 +152,10 @@
                       <input nbInput type="number" class="form-control" name="siape" id="siape" [(ngModel)]="user.siape"
                       [required]="user.role=='professor'"                        
                       #siape="ngModel"
-                      [status]="checkForm||siape.dirty ? (siape.invalid  ? 'danger' : 'success') : ''">                        
+                      [status]="(checkForm||siape.dirty) ? (siape.invalid  ? 'danger' : 'success') : ''">                        
                       <ng-container  *ngIf="checkForm&&siape.errors?.required">
                           <p class="error-message">
-                            Siape é necessário!
+                            Siape é obrigatório!
                           </p>
                         </ng-container>
                     </div>
@@ -170,7 +170,7 @@
                         id="input-password"
                         name="password"
                         fullWidth
-                        [status]="checkForm||password.dirty ? (password.invalid  ? 'danger' : 'success') : ''"
+                        [status]="(checkForm||password.dirty) ? (password.invalid  ? 'danger' : 'success') : ''"
                         [required]="!user._id"
                         [minlength]="4"
                         [maxlength]="50"
@@ -178,10 +178,10 @@
                         autocomplete="new-password">
                  <ng-container *ngIf="(submitted||checkForm) || (password.invalid && password.touched)">
                    <p class="error-message" *ngIf="password.errors?.required">
-                     Senha é necessária!
+                     Senha é obrigatória!
                    </p>
                    <p class="error-message" *ngIf="password.errors?.minlength || password.errors?.maxlength">
-                      Senha deve conterentre 4 e 50 caracteres
+                      Senha deve conter entre 4 e 50 caracteres
                    </p>
                  </ng-container>
                     </div>
@@ -200,7 +200,7 @@
                         <div class="col-sm-9" style="text-align: center;">
 
                             <input style="display: none;" type="file" #fotoInput (change)="fileChangeEvent($event)">
-                            <img [src]="croppedImage" #fotoImg width="200px" height="200px" 
+                            <img [src]="this.user.foto||croppedImage" #fotoImg width="200px" height="200px" 
                             style="margin: 1rem;
                                    border-radius: 50%; " >
                             <button nbButton status="info" (click)="showCropper=!showCropper" *ngIf="showCropper"
@@ -251,7 +251,19 @@
                         </div>
                         <div class="col-md-7"
                         [nbSpinner]="rfidLoading" nbSpinnerStatus="success" nbSpinnerSize="large" nbSpinnerMessage="Esperando RFID">
-                          <input type="rfid" class="form-control" id="rfid" name="rfid" [(ngModel)]="user.rfid" > 
+                          <input type="hidden" nbInput
+                          id="rfid" 
+                          name="rfid" 
+                          [(ngModel)]="user.rfid" 
+                          [required]="true"                   
+                          #rfid="ngModel"
+                          [status]="checkForm ? (rfid.invalid  ? 'danger' : 'success') : ''"> 
+                          
+                        <ng-container *ngIf="checkForm">
+                          <p class="error-message" *ngIf="rfid.errors?.required">
+                            RFID é obrigatório!
+                          </p>
+                        </ng-container>
                         </div>
                       </div>
                       
