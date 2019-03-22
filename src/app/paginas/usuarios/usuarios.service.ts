@@ -6,9 +6,10 @@ export class Usuario{
    _id: string='';
    role: string='';
    fullName:string='';
+   password:string='';
    dataDeNascimento:string='';
-   matricula:number=0;
-   siape:number=0;
+   matricula:number=null;
+   siape:number=null;
    foto:string='';
    rfid:string='';
    email:string='';
@@ -18,6 +19,7 @@ export class Usuario{
    usuario._id&&(this._id=usuario._id);
    usuario.role&&(this.role=usuario.role);
    usuario.fullName&&(this.fullName=usuario.fullName);
+   usuario.password&&(this.password=usuario.password);
    usuario.dataDeNascimento&&(this.dataDeNascimento=usuario.dataDeNascimento);
    usuario.matricula&&(this.matricula=usuario.matricula);
    usuario.siape&&(this.siape=usuario.siape);

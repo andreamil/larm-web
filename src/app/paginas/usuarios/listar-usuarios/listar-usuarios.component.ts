@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./listar-usuarios.component.scss'],
 })
 export class ListarUsuariosComponent implements OnInit {
-
+  textoFiltro;
   @Input() icon: string;
   @Input() rfid: string;
   @Input() msg: string;
