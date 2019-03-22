@@ -1,4 +1,4 @@
-<div class="row">
+ <div class="row">
     <div>
         <h1 style="margin-top: 0;">Lista de Usuarios</h1>
     </div>
@@ -7,29 +7,33 @@
     <nb-card-header>
         <h3>Filtro</h3>
         <input [(ngModel)]="textoFiltro"  nbInput fullWidth style="margin: 0.5rem;margin-bottom: 0;max-width: 100%;">
-    </nb-card-header>   
+    </nb-card-header>  
     <nb-card-body>
+            <h3>Teste Relatorio</h3>
             <nb-list>
-                
-                <nb-list-item *ngFor="let usuario of usuarios | filter : textoFiltro" style="display: flex;">
+
+                <nb-list-item *ngFor="let usuario of usuarios  | filter : textoFiltro" style="display: flex;">
                     <nb-user style="width: 100%;"
-                        [picture]="usuario.foto"
+                        [picture]="usuario.foto?baseUrl+'fotosPerfil/'+usuario._id+'.'+usuario.foto+'.png':null"
                         [name]="usuario.fullName"
                         [title]="usuario.role"
                         size="medium">
                     </nb-user>
-                    <nb-list *ngIf="responseRegistros&&usuario(responseRegistros.rfid==usuario.rfid||responseRegistros.id==usuario._id)">
-                            <nb-list-item *ngFor="let registro of responseRegistros.registros" style="display: flex;">
+                    <nb-list *ngIf="response.rfid==usuario.rfid||response.id==usuario._id">
+                            <nb-list-item *ngFor="let registro of response.registros" style="display: flex;">
                                 <span>Hora entrada: {{registro.horaEntrada}}</span>
                                 <span>Hora saida: {{registro.horaSaida}}</span>
                             </nb-list-item>
                         </nb-list>
-                        <button (click)="editar(usuario)" class="btn btn-hero-warning" 
-                        style="cursor: pointer;margin: 1rem; float: right;">Editar</button>
-                        <button (click)="relatorioRFID(usuario.rfid)" class="btn btn-hero-info" 
-                        style="cursor: pointer;margin: 1rem; float: right;">relatorio RFID</button>
-                </nb-list-item>
+                        <div>
+                            <button (click)="editar(usuario)" class="btn btn-hero-warning"
+                            style="cursor: pointer;margin: 1rem; float: right;">Editar</button>
+                        </div>
+                        <div>
+                            <button (click)="relatorioRFID(usuario.rfid)" class="btn btn-hero-info"
+                            style="cursor: pointer;margin: 1rem; float: right;">relatorio RFID</button>
+                        </div>
+                    </nb-list-item>
             </nb-list>
     </nb-card-body>
 </nb-card>
-

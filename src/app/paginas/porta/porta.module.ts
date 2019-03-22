@@ -10,7 +10,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [{
   path: '',
   component: PortaComponent,
-  children: [
+  children: [ 
     {
       path: 'registrar-entrada-saida',
       component: EntradaSaidaComponent,
