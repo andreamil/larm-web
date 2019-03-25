@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProjetoService } from '../projeto.service';
 import { Config } from '../../../config';
+import { ProjetosComponent } from '../projetos.component';
 
 @Component({
   selector: 'ngx-todos-projetos',
@@ -8,8 +9,10 @@ import { Config } from '../../../config';
   styleUrls: ['./todos-projetos.component.scss'],
 })
 export class TodosProjetosComponent implements OnInit {
-  @Input() projetos: any[] = [];
-  @Input() noProjetos = false;
+  projetos: any = {pesquisa:[],extensao:[]};
+  noProjetos = false;
+  noProjetosPesquisa = false;
+  noProjetosExtensao = false;
   @Input() baseUrl = Config.BASE_API_URL;
   constructor(private service: ProjetoService) {
 
@@ -22,10 +25,12 @@ export class TodosProjetosComponent implements OnInit {
       .subscribe(response => {
         console.log(response)
         if (response) {
-          if (!this.projetos)this.noProjetos = true;
           this.projetos = response.projetos;
+          if (!this.projetos.extensao.length)this.noProjetosExtensao = true;
+          if (!this.projetos.pesquisa.length)this.noProjetosPesquisa = true;          
         } else {
-          this.noProjetos = true;
+          this.noProjetosExtensao = true;
+          this.noProjetosPesquisa = true;    
         }
         // console.log(this.events);
       });

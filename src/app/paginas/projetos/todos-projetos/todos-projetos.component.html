@@ -44,6 +44,15 @@
       </nb-card-body>
     </nb-card>
   </div>   
+  
+  <nb-card  class="col-md-4" *ngIf="noProjetosPesquisa">
+      <nb-card-body>
+        <div class="text-center" role="alert">
+          <strong>Não há projetos de pesquisa vinculados</strong> Crie um
+          <a href="/pages/projetos/criar-projeto" class="alert-link">projeto</a>
+        </div>
+      </nb-card-body>
+    </nb-card>
 </div> 
 <div>
     <h3 style="margin-top: 0;">Extensao</h3>
@@ -84,12 +93,14 @@
   
         </nb-card-body>
       </nb-card>
-    </div></div>
-    <nb-card *ngIf="noProjetos">
-      <nb-card-body>
-        <div class="text-center" role="alert">
-          <strong>Não foi possivel localizar projetos</strong> Crie um
-          <a href="/pages/projetos/criar-projeto" class="alert-link">projeto</a>
-        </div>
-      </nb-card-body>
-    </nb-card>
+    </div>
+  
+    <nb-card  class="col-md-4" *ngIf="noProjetosExtensao">
+        <nb-card-body>
+          <div class="text-center" role="alert">
+            <strong>Não há projetos de extensao vinculados</strong> Crie um
+            <a href="/pages/projetos/criar-projeto" class="alert-link">projeto</a>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
