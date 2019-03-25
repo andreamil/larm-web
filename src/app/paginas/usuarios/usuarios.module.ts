@@ -8,22 +8,21 @@ import { Routes, RouterModule } from '@angular/router';
 import { UsuariosService } from './usuarios.service';
 import { NbDialogModule } from '@nebular/theme';
 import { ImageCropperModule } from 'ngx-image-cropper'
-import { LoadGuard } from '../../load-guard.service';
 import { AuthGuard } from '../../auth-guard.service';
 const routes: Routes = [{
   path: '',
   //redirectTo: 'meuperfil',
   children: [
     {
-      path: 'listar', canLoad: [LoadGuard],canActivate: [AuthGuard],
+      path: 'listar', canLoad: [AuthGuard],canActivate: [AuthGuard],
       component: ListarUsuariosComponent,
     },
     {
-      path: 'criar-editar-usuario', canLoad: [LoadGuard],canActivate: [AuthGuard],
+      path: 'criar-editar-usuario', canLoad: [AuthGuard],canActivate: [AuthGuard],
       component: CadastrarUsuariosComponent,
     },
     {
-      path: 'criar-editar-usuario/:id', canLoad: [LoadGuard],canActivate: [AuthGuard],
+      path: 'criar-editar-usuario/:id', canLoad: [AuthGuard],canActivate: [AuthGuard],
       component: CadastrarUsuariosComponent,
     },
     {

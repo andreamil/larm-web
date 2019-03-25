@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { PaginasComponent } from './paginas.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
-import { LoadGuard } from '../load-guard.service';
+import { AuthGuard } from '../auth-guard.service';
 const routes: Routes = [{
   path: '',
 
@@ -11,22 +11,25 @@ const routes: Routes = [{
 
   children: [
   {
-    path: 'painel',  canLoad: [LoadGuard],
+    path: 'painel',  canLoad: [AuthGuard],
     loadChildren: './dashboard/dashboard.module#DashboardModule',
   }, {
     path: 'usuarios',  
     loadChildren: './usuarios/usuarios.module#UsuariosModule',
   }, {
-    path: 'projetos',  canLoad: [LoadGuard],
+    path: 'projetos',  canLoad: [AuthGuard],
     loadChildren: './projetos/projetos.module#ProjetosModule',
   }, {
-    path: 'porta',  canLoad: [LoadGuard],
+    path: 'porta',  canLoad: [AuthGuard],
     loadChildren: './porta/porta.module#PortaModule',
   }, {
-    path: 'estoque',  canLoad: [LoadGuard],
+    path: 'estoque',  canLoad: [AuthGuard],
     loadChildren: './estoque/estoque.module#EstoqueModule',
   }, {
-    path: 'miscellaneous',  canLoad: [LoadGuard],
+    path: 'solicitacoes',  canLoad: [AuthGuard],
+    loadChildren: './solicitacoes/solicitacoes.module#SolicitacoesModule',
+  }, {
+    path: 'miscellaneous',  canLoad: [AuthGuard],
     loadChildren: './miscellaneous/miscellaneous.module#MiscellaneousModule',
   }, {
     path: '',
