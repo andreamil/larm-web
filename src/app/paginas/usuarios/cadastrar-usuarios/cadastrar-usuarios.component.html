@@ -23,7 +23,7 @@
                   #form="ngForm"
                   (ngSubmit)="form.valid&&user.rfid!=''&&user.rfid!=undefined&&user.rfid!=null?cadastrarUsuario():checkForm=true" >
             <div class="row">
-                <div class="col-xl-6">
+                <div class="col-lg-6">
                 <nb-card>
                 <nb-card-header>Dados</nb-card-header>
                 <nb-card-body>
@@ -105,7 +105,7 @@
                                 </div>
                             </div>
                           <div class="btn-group btn-group-toggle btn-divided-group col-3"  data-toggle="buttons">         
-                            <label ngbButtonLabel class="btn btn-outline-warning" [class.active]="checkboxAdmin" style="padding-left: 0;padding-right: 0;margin-left: -1rem;" >
+                            <label ngbButtonLabel class="btn btn-outline-warning" [class.active]="checkboxAdmin" style="padding-left: 0;padding-right: 0;margin-left: -10px;" >
                               <input ngbButton type="checkbox" [(ngModel)]="checkboxAdmin" name="roleAdmin">Admin
                             </label>
                           </div>
@@ -199,7 +199,7 @@
                 </nb-card-body>
         </nb-card>
                 </div>
-                <div class="col-xl-6">
+                <div class="col-lg-6">
                   
                     <nb-card>
                     <nb-card-header>Identificação</nb-card-header>
