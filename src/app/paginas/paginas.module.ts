@@ -5,13 +5,15 @@ import { PaginasRoutingModule } from './paginas-routing.module';
 import { ThemeModule } from '../@theme/theme.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
+import { SolicitacoesModule } from './solicitacoes/solicitacoes.module';
 
 @NgModule({
   imports: [
     PaginasRoutingModule,
     ThemeModule,
     MiscellaneousModule,
-    UsuariosModule
+    UsuariosModule,
+    SolicitacoesModule
   ],
   declarations: [
     PaginasComponent
