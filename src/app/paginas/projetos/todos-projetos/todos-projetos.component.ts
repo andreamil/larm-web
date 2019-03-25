@@ -22,7 +22,7 @@ export class TodosProjetosComponent implements OnInit {
       .subscribe(response => {
         console.log(response)
         if (response) {
-          if (this.projetos === [])this.noProjetos = true;
+          if (!this.projetos)this.noProjetos = true;
           this.projetos = response.projetos;
         } else {
           this.noProjetos = true;
