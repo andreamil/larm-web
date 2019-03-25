@@ -18,7 +18,7 @@ const routes: Routes = [{
     },
     {
       path: 'meus',
-      component: MeusProjetosComponent,
+      component: TodosProjetosComponent,
     },
     {
       path: 'todos',

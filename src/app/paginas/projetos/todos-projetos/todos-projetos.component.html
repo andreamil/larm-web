@@ -1,6 +1,6 @@
 <div class="row">
   <div>
-      <h1 style="margin-top: 0;">Todos os Projetos</h1>
+      <h1 style="margin-top: 0;">{{textTitle}} Projetos</h1>
   </div>
 </div>
 <div>
@@ -45,14 +45,15 @@
     </nb-card>
   </div>   
   
-  <nb-card  class="col-md-4" *ngIf="noProjetosPesquisa">
-      <nb-card-body>
-        <div class="text-center" role="alert">
-          <strong>Não há projetos de pesquisa vinculados</strong> Crie um
-          <a href="/pages/projetos/criar-projeto" class="alert-link">projeto</a>
-        </div>
-      </nb-card-body>
-    </nb-card>
+<div class="col-md-4">
+<nb-card   size="small" *ngIf="projetos.pesquisa.length<1">
+    <nb-card-body>
+      <div class="text-center" role="alert">
+        <strong>Não há projetos de pesquisa vinculados</strong> Crie um
+        <a [routerLink]="['/paginas/projetos/criar']" [queryParams]="{categoria: 'pesquisa'}" class="alert-link">projeto</a>
+      </div>
+    </nb-card-body>
+  </nb-card></div>
 </div> 
 <div>
     <h3 style="margin-top: 0;">Extensao</h3>
@@ -95,12 +96,13 @@
       </nb-card>
     </div>
   
-    <nb-card  class="col-md-4" *ngIf="noProjetosExtensao">
+    <div class="col-md-4">
+    <nb-card size="small" *ngIf="projetos.extensao.length<1">
         <nb-card-body>
           <div class="text-center" role="alert">
             <strong>Não há projetos de extensao vinculados</strong> Crie um
-            <a href="/pages/projetos/criar-projeto" class="alert-link">projeto</a>
+            <a [routerLink]="['/paginas/projetos/criar']" [queryParams]="{categoria: 'extensao'}" class="alert-link">projeto</a>
           </div>
         </nb-card-body>
-      </nb-card>
+      </nb-card></div>
     </div>

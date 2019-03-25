@@ -95,7 +95,9 @@ export const NB_CORE_PROVIDERS = [
               'banco-de-horas',
               'estoque',
               'projetos',
-              'solicitacoes'],
+              'solicitacoes',
+              'usuarios',
+              'listar'],
       },
       aluno: {
         parent: 'user',

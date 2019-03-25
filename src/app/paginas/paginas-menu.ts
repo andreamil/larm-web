@@ -29,6 +29,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'Cadastrar usuario',
         link: '/paginas/usuarios/criar-editar-usuario',
+        data: {
+          permission: 'create',
+          resource: 'usuarios',
+        },
       },
       {
         title: 'Lista de usuarios',
@@ -120,22 +124,22 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Solicitações',
-    icon: 'nb-info',
+    icon: 'nb-help',
     data: {
       permission: 'view',
       resource: 'solicitacoes',
     },
     children: [
       {
-        title: 'RETIRADA DE  MATERIAIS',
+        title: 'Retirada de materiais',
         link: '/paginas/solicitacoes/retirada-de-materiais',
       },
       {
-        title: 'PERMANECIA FORA DO HORÁRIO',
+        title: 'Permanência fora do horário',
         link: '/paginas/solicitacoes/permanencia-fora-do-horario',
       },
       {
-        title: 'NOVO MEMBRO',
+        title: 'Novo membro',
         link: '/paginas/solicitacoes/novo-membro',
         data: {
           permission: 'view',

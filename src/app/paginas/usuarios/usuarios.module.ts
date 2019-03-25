@@ -27,7 +27,7 @@ const routes: Routes = [{
       component: CadastrarUsuariosComponent,
     },
     {
-      path: 'meuperfil',
+      path: 'meu-perfil',
       component: CadastrarUsuariosComponent,
     }
   ],

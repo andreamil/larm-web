@@ -60,7 +60,7 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
           if(this.user.role.includes('aluno'))this.user.role='aluno';
         })
       } 
-      else if(this.route.snapshot.url[0].path=='meuperfil'){
+      else if(this.route.snapshot.url[0].path=='meu-perfil'){
         this.meuperfil=true;
         this._getUsuarioIDSub=this.usuarioService.getUsuarioEu().pipe(take(1)).subscribe((body)=>{
           this.user = body.user;

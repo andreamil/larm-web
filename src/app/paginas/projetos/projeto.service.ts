@@ -9,6 +9,9 @@ export class ProjetoService {
   getAllProjetos(): Observable<any> {
     return this.http.get<any>(Config.BASE_API_URL + 'projetos/todos');
   }
+  getProjetos(quais): Observable<any> {
+    return this.http.get<any>(Config.BASE_API_URL + 'projetos/'+quais);
+  }
   getMeusProjetos(): Observable<any> {
     return this.http.get<any>(Config.BASE_API_URL + 'projetos/meus');
   }

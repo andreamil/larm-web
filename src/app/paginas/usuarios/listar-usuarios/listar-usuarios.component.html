@@ -19,19 +19,19 @@
                         [title]="usuario.role"
                         size="medium">
                     </nb-user>
-                    <nb-list *ngIf="response.rfid==usuario.rfid||response.id==usuario._id">
+                    <!--nb-list *ngIf="response.rfid==usuario.rfid||response.id==usuario._id">
                             <nb-list-item *ngFor="let registro of response.registros" style="display: flex;">
                                 <span>Hora entrada: {{registro.horaEntrada}}</span>
                                 <span>Hora saida: {{registro.horaSaida}}</span>
                             </nb-list-item>
-                        </nb-list>
+                        </nb-list>-->
                         <div>
                             <button (click)="editar(usuario)" class="btn btn-hero-warning"
                             style="cursor: pointer;margin: 1rem; float: right;">Editar</button>
                         </div>
                         <div>
                             <button (click)="relatorioRFID(usuario.rfid)" class="btn btn-hero-info"
-                            style="cursor: pointer;margin: 1rem; float: right;">relatorio RFID</button>
+                            style="cursor: pointer;margin: 1rem; float: right;">Informações do usuario</button>
                         </div>
                     </nb-list-item>
             </nb-list>
