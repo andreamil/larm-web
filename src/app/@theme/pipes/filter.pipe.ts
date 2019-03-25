@@ -12,13 +12,13 @@ searchText = searchText.toLowerCase();
       return it.fullName.toLowerCase().includes(searchText)
           ||(it.matricula&&it.matricula.includes(searchText))
           ||(it.role.filter(r=>r.includes(searchText)).length);
-    });
+    });/*
     if(returnItems.length){
-      this.itemsAnterior=returnItems;
+      this.itemsAnterior=returnItems;*/
       return returnItems;
-    }
+    /*}
     else {
       return this.itemsAnterior;
-    }
+    }*/
    }
 }

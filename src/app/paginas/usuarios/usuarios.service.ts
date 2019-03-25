@@ -36,6 +36,9 @@ export class ResponseUsuario{
 }
 @Injectable()
 export class UsuariosService {
+  excluirUsuario(userId: any){
+    return this.http.delete(Config.BASE_API_URL + 'usuarios/excluir/'+userId)
+  } 
   constructor(private http: HttpClient) { }
   public usuarioEdit:any;
   cadastrarUsuario(user: any){

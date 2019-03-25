@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ListarUsuariosComponent } from './listar-usuarios/listar-usuarios.component';
-import { CadastrarUsuariosComponent, DialogUsuarioComponent } from './cadastrar-usuarios/cadastrar-usuarios.component';
+import { CadastrarUsuariosComponent, DialogUsuarioComponent, DialogExcluirUsuarioComponent } from './cadastrar-usuarios/cadastrar-usuarios.component';
 
 import { ThemeModule } from '../../@theme/theme.module';
 import { UsuariosComponent } from './usuarios.component';
@@ -9,20 +9,21 @@ import { UsuariosService } from './usuarios.service';
 import { NbDialogModule } from '@nebular/theme';
 import { ImageCropperModule } from 'ngx-image-cropper'
 import { LoadGuard } from '../../load-guard.service';
+import { AuthGuard } from '../../auth-guard.service';
 const routes: Routes = [{
   path: '',
   //redirectTo: 'meuperfil',
   children: [
     {
-      path: 'listar', canLoad: [LoadGuard],
+      path: 'listar', canLoad: [LoadGuard],canActivate: [AuthGuard],
       component: ListarUsuariosComponent,
     },
     {
-      path: 'user', canLoad: [LoadGuard],
+      path: 'criar-editar-usuario', canLoad: [LoadGuard],canActivate: [AuthGuard],
       component: CadastrarUsuariosComponent,
     },
     {
-      path: 'user/:id', canLoad: [LoadGuard],
+      path: 'criar-editar-usuario/:id', canLoad: [LoadGuard],canActivate: [AuthGuard],
       component: CadastrarUsuariosComponent,
     },
     {
@@ -44,13 +45,15 @@ const routes: Routes = [{
     UsuariosComponent,
     ListarUsuariosComponent,
     CadastrarUsuariosComponent,
-    DialogUsuarioComponent
+    DialogUsuarioComponent,
+    DialogExcluirUsuarioComponent
   ],
   providers: [
     UsuariosService
   ],
   entryComponents: [
     DialogUsuarioComponent,
+    DialogExcluirUsuarioComponent
   ],
 })
 export class UsuariosModule { }

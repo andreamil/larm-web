@@ -13,7 +13,11 @@
   <div class="row">
     <div class="col-12">
         <nb-card>
-                <nb-card-header>Usuario</nb-card-header>
+                <nb-card-header>
+                  <div  *nbIsGranted="['remove', 'user']">
+                    <div style="float: right;" *ngIf="!meuperfil&&user._id">
+                        <button class="btn btn-outline-danger btn-icon" type="button" (click)="excluirUsuario() "><i class="nb-trash"></i></button>
+                      </div></div>Usuario</nb-card-header>
                 <nb-card-body>
                   <form  
                   #form="ngForm"

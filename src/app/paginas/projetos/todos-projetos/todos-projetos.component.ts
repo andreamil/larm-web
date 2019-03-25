@@ -8,8 +8,8 @@ import { Config } from '../../../config';
   styleUrls: ['./todos-projetos.component.scss'],
 })
 export class TodosProjetosComponent implements OnInit {
-  projetos: any[] = [];
-  noProjetos = false;
+  @Input() projetos: any[] = [];
+  @Input() noProjetos = false;
   @Input() baseUrl = Config.BASE_API_URL;
   constructor(private service: ProjetoService) {
 
@@ -20,8 +20,8 @@ export class TodosProjetosComponent implements OnInit {
   getProjetos(): void {
     this.service.getAllProjetos()
       .subscribe(response => {
+        console.log(response)
         if (response) {
-          console.log(response.projetos[0].lider)
           if (this.projetos === [])this.noProjetos = true;
           this.projetos = response.projetos;
         } else {

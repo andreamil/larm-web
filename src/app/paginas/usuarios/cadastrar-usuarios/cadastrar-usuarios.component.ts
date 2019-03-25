@@ -31,7 +31,8 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
     private dialogService : NbDialogService,
     private socketService : SocketService,
     private route: ActivatedRoute,
-    private authService: NbAuthService) { }
+    private authService: NbAuthService,
+    private router: Router) { }
   private _lendoConfirmacaoSub: Subscription;
   private _getFotoLarmSub: Subscription;
   private _novoRFIDSub: Subscription;
@@ -42,6 +43,7 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
   croppedImage: any = 'http://sg-fs.com/wp-content/uploads/2017/08/user-placeholder.png';
   showCropper = false;
   rfidLoading=false;
+  meuperfil=false;
   ngOnInit() { 
     if(this.usuarioService.usuarioEdit){
       console.log(this.usuarioService.usuarioEdit);
@@ -59,6 +61,7 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
         })
       } 
       else if(this.route.snapshot.url[0].path=='meuperfil'){
+        this.meuperfil=true;
         this._getUsuarioIDSub=this.usuarioService.getUsuarioEu().pipe(take(1)).subscribe((body)=>{
           this.user = body.user;
           if(this.user.role.includes('admin'))this.checkboxAdmin=true;
@@ -105,6 +108,33 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
     this._getFotoLarmSub = this.socketService.getFotoLarm.subscribe(res=>this.imageCropper.imageBase64='data:image/jpeg;base64,'+res);    
     this.socketService.emit('get foto larm');
   }
+  excluirUsuario(){
+    
+    this.dialogService.open(DialogExcluirUsuarioComponent, {
+      context: {
+        title: "Confirmar exclusão",
+        conteudo: "Excluir usuario "+this.user.fullName+'?',
+      },
+      closeOnBackdropClick: false
+    })
+    .onClose.subscribe(resposta => {
+      if(resposta){
+        this._cadastrarUsuarioSub=this.usuarioService.excluirUsuario(this.user._id).subscribe((res) => {
+          this.dialogService.open(DialogUsuarioComponent, {
+            context: {
+              title: res["success"]?"Sucesso":"Falha",
+              conteudo: res["msg"],
+            },
+            closeOnBackdropClick: false
+          });
+          if(res["success"]){
+            this.user={};
+            this.router.navigate(['/paginas/usuarios/criar-editar-usuario/'])
+          }
+        })
+      }
+    });
+  }
   cadastrarUsuario() {
     this.submitted = true;
     console.log(this.user.rfid);
@@ -139,7 +169,7 @@ import { ImageCroppedEvent, ImageCropperComponent } from 'ngx-image-cropper';
 import { SocketService } from '../../socket.service';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NbAuthService } from '@nebular/auth';
 import { Config } from '../../../config';
 
@@ -153,7 +183,7 @@ import { Config } from '../../../config';
    Mensagem do servidor: {{conteudo}}
   </nb-card-body>
   <nb-card-footer>
-    <button nbButton hero status="primary" (click)="dismiss()">OK</button>
+    <button nbButton status="primary" (click)="dismiss()">OK</button>
   </nb-card-footer>
 </nb-card>`,
   styles: [`  
@@ -172,5 +202,44 @@ export class DialogUsuarioComponent {
 
   dismiss() {
     this.ref.close();
+  }
+}
+
+@Component({
+  selector: 'ngx-dialog-usuario',
+  encapsulation: ViewEncapsulation.None,
+  template: `
+<nb-card>
+  <nb-card-header>{{ title }}</nb-card-header>
+  <nb-card-body>
+   {{conteudo}}
+  </nb-card-body>
+  <nb-card-footer>
+  <div class="row">
+    <div class="col-6">
+      <button nbButton status="primary" (click)="dismiss(0)">Cancelar</button>
+    </div>
+    <div class="col-6">
+      <button nbButton status="danger" (click)="dismiss(1)">Confirmar</button>
+    </div>
+  </div>
+  </nb-card-footer>
+</nb-card>`,
+  styles: [`  
+    .cdk-global-scrollblock {
+      position: initial;
+      width: initial;
+      overflow: hidden;
+    }`],
+})
+export class DialogExcluirUsuarioComponent {
+
+  @Input() title: string;
+  @Input() conteudo: string;
+
+  constructor(protected ref: NbDialogRef<DialogExcluirUsuarioComponent>) { }
+
+  dismiss(res: any) {
+    this.ref.close(res);
   }
 }

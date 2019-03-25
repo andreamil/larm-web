@@ -10,8 +10,8 @@ import { Config } from '../../../config';
 export class MeusProjetosComponent implements OnInit {
 
   @Input() baseUrl = Config.BASE_API_URL;
-  projetos: any[] = [];
-  noProjetos = false;
+  @Input() projetos: any[] = [];
+  @Input() noProjetos = false;
   constructor(private service: ProjetoService) {
 
   }
@@ -21,6 +21,8 @@ export class MeusProjetosComponent implements OnInit {
   getMeusProjetos(): void {
     this.service.getMeusProjetos()
       .subscribe(response => {
+        console.log(response);
+        
         if (response) {
           this.noProjetos = false;
           this.projetos = response.projetos;

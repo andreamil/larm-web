@@ -29,7 +29,7 @@ export class ListarUsuariosComponent implements OnInit {
   }
   editar(usuario:any) {
     this.usuarioService.usuarioEdit=usuario;
-    this.router.navigate(['/paginas/usuarios/user/'+usuario._id])
+    this.router.navigate(['/paginas/usuarios/criar-editar-usuario/'+usuario._id])
   }
   relatorioRFID(rfid: string) {
       this.http.get<any>(Config.BASE_API_URL + 'registro/relatorio/porta/rfid/' + rfid)

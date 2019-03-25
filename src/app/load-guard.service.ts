@@ -17,6 +17,8 @@ export class LoadGuard implements CanLoad {
             // console.log(route.url[0].path);
             if (authenticated) {
               const url: string = route.path;
+              console.log(url);
+              
                   this.accessChecker.isGranted('view', url).subscribe(granted => {
                     if (!granted)this.router.navigate(['paginas/painel']);
                     else {
