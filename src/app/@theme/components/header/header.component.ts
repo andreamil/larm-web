@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit {
 
         }
         if (title === 'Perfil') {
-          this.usuarioService.setUsuarioEdit(this.user);
+          this.usuarioService.usuarioEdit=this.user;
           this.router.navigate(['paginas/usuarios/meuperfil']);
         }
       });

@@ -114,9 +114,8 @@
     flex: 1;
     min-width: 220px;
   }
-
-  nb-checkbox {
-    margin-bottom: 1rem;
+  .margin-auto{
+    margin:auto;
   }
 
   .form-inline > * {
@@ -133,4 +132,5 @@
   .danger {
     border-color: #ff386a;
   }
+
 }

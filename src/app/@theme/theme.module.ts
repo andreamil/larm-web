@@ -58,6 +58,7 @@ import {
   TimingPipe,
   NumberWithCommasPipe,
   EvaIconsPipe,
+  FilterPipe
 } from './pipes';
 import {
    SampleLayoutComponent,
@@ -65,6 +66,7 @@ import {
   // TwoColumnsLayoutComponent,
 } from './layouts';
 import { COSMIC_THEME } from './styles/theme.cosmic';
+import { SafeHtmlPipe } from './pipes/safehtml.pipe';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -130,6 +132,8 @@ const PIPES = [
   TimingPipe,
   NumberWithCommasPipe,
   EvaIconsPipe,
+  FilterPipe,
+  SafeHtmlPipe
 ];
 
 const NB_THEME_PROVIDERS = [

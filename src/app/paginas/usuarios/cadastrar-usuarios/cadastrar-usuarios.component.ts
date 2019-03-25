@@ -8,21 +8,23 @@ import { NbDialogService } from '@nebular/theme';
   styleUrls: ['./cadastrar-usuarios.component.scss'],
 })
 export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewInit {
-  @Input() image64: string;
+  image64: string;
   ngAfterViewInit(): void {
     this.imageCropper.imageCroppedBase64.subscribe((img)=>this.user.foto = img)
   }
-  @Input() options = [
+  options = [
     { value: 'user', label: 'User' },
     { value: 'aluno', label: 'Aluno' },
     { value: 'professor', label: 'Professor' }
   ];
 
-  @Input() user: Usuario=new Usuario();
-  @Input() submitted = false;
-  @Input() rfidButtonText = 'Ler RFID'
-  @Input() checkForm: boolean;
-  @Input() enviandoFoto: boolean;
+  user: any={};
+  submitted = false;
+  rfidButtonText = 'Ler RFID'
+  checkForm: boolean;
+  enviandoFoto: boolean;
+  baseUrl = Config.BASE_API_URL;
+  checkboxAdmin=false;
   @ViewChild(ImageCropperComponent) imageCropper : ImageCropperComponent;
   constructor(
     private usuarioService: UsuariosService,
@@ -35,24 +37,33 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
   private _novoRFIDSub: Subscription;
   private _getUsuarioIDSub: Subscription;
   private _cadastrarUsuarioSub: Subscription;
-
+  
   imageChangedEvent: any = '';
   croppedImage: any = 'http://sg-fs.com/wp-content/uploads/2017/08/user-placeholder.png';
   showCropper = false;
   rfidLoading=false;
   ngOnInit() { 
-    if(this.usuarioService.getUsuarioEdit()){
-      console.log(this.usuarioService.getUsuarioEdit());
-      this.user = this.usuarioService.getUsuarioEdit();
-      this.usuarioService.setUsuarioEdit(undefined);
+    if(this.usuarioService.usuarioEdit){
+      console.log(this.usuarioService.usuarioEdit);
+      this.user = this.usuarioService.usuarioEdit;
+      if(this.user.role.includes('admin'))this.checkboxAdmin=true;
+      if(this.user.role.includes('professor'))this.user.role='professor';
+      if(this.user.role.includes('aluno'))this.user.role='aluno';
+      this.usuarioService.usuarioEdit=null;
     }else if(this.route.snapshot.paramMap.get('id')){
       this._getUsuarioIDSub=this.usuarioService.getUsuarioID(this.route.snapshot.paramMap.get('id')).pipe(take(1)).subscribe((body)=>{
           this.user = body.user;
+          if(this.user.role.includes('admin'))this.checkboxAdmin=true;
+          if(this.user.role.includes('professor'))this.user.role='professor';
+          if(this.user.role.includes('aluno'))this.user.role='aluno';
         })
       } 
       else if(this.route.snapshot.url[0].path=='meuperfil'){
         this._getUsuarioIDSub=this.usuarioService.getUsuarioEu().pipe(take(1)).subscribe((body)=>{
           this.user = body.user;
+          if(this.user.role.includes('admin'))this.checkboxAdmin=true;
+          if(this.user.role.includes('professor'))this.user.role='professor';
+          if(this.user.role.includes('aluno'))this.user.role='aluno';
         })
     }
     
@@ -78,22 +89,15 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
       // show message
   }
   lerRFID(){
-    this._lendoConfirmacaoSub = this.socketService.lendoConfirmacao.subscribe(msg => {
-      
-      if(msg){
-        console.log('lendo rfid ',msg);
-        this._novoRFIDSub = this.socketService.novoRFID.pipe(take(1)).subscribe(rfid => {
-          console.log('rfid lido',rfid);
-          this.user.rfid=rfid;
-          this.rfidLoading=false;
-          //this._novoRFIDSub.unsubscribe();
-        });
-        this.rfidLoading=true;
-      }else{        
-        this.rfidLoading=false;
-      }
-    });
+    this.rfidLoading=true;
     this.socketService.emit('ler novo usuario');
+    this._novoRFIDSub = this.socketService.novoRFID.subscribe(rfid => {
+      console.log('lido rfid ',rfid);
+      if(rfid){
+        this.user.rfid=rfid;
+      }   
+      this.rfidLoading=false;
+    });
   }
   cameraLarm(){
     this._getFotoLarmSub&&(this._getFotoLarmSub.unsubscribe());
@@ -103,7 +107,10 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
   }
   cadastrarUsuario() {
     this.submitted = true;
-    console.log(this.user);
+    console.log(this.user.rfid);
+    this.user.role=[this.user.role];
+    if(this.checkboxAdmin)this.user.role.push('admin');
+    console.log(this.user.role);
     
     this._cadastrarUsuarioSub=this.usuarioService.cadastrarUsuario(this.user).subscribe((res) => {
       this.dialogService.open(DialogUsuarioComponent, {
@@ -115,6 +122,9 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
       });
       if(res["success"]){
         this.user=res["user"];
+        if(this.user.role.includes('admin'))this.checkboxAdmin=true;
+        if(this.user.role.includes('professor'))this.user.role='professor';
+        if(this.user.role.includes('aluno'))this.user.role='aluno';
         this.authService.refreshToken('email',null).pipe(take(1)).subscribe()
       }
 
@@ -131,6 +141,7 @@ import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { NbAuthService } from '@nebular/auth';
+import { Config } from '../../../config';
 
 @Component({
   selector: 'ngx-dialog-usuario',

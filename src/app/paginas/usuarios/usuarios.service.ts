@@ -30,23 +30,17 @@ export class Usuario{
   }
 }
 export class ResponseUsuario{  
-  public usuarios: Array<Usuario>; 
-  public user: Usuario;
+  public usuarios: Array<any>; 
+  public user: any;
   public msg: string;
 }
 @Injectable()
 export class UsuariosService {
   constructor(private http: HttpClient) { }
-  usuarioEdit:Usuario;
-  cadastrarUsuario(user: Usuario){
+  public usuarioEdit:any;
+  cadastrarUsuario(user: any){
     return this.http.post(Config.BASE_API_URL + 'usuarios/criar',user)
   } 
-  setUsuarioEdit(user: Usuario){
-    this.usuarioEdit=user;
-  }
-  getUsuarioEdit(){
-    return this.usuarioEdit;
-  }
   getUsuarios() : Observable<ResponseUsuario>{
     return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'usuarios/user')
   }

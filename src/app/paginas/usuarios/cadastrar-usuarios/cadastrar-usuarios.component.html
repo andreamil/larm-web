@@ -17,7 +17,7 @@
                 <nb-card-body>
                   <form  
                   #form="ngForm"
-                  (ngSubmit)="form.valid?cadastrarUsuario():checkForm=true" >
+                  (ngSubmit)="form.valid&&user.rfid!=''&&user.rfid!=undefined&&user.rfid!=null?cadastrarUsuario():checkForm=true" >
             <div class="row">
                 <div class="col-xl-6">
                 <nb-card>
@@ -80,40 +80,40 @@
                         <input type="date" class="form-control" id="dataDeNascimento" name="dataDeNascimento" [(ngModel)]="user.dataDeNascimento">
                       </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row"  *nbIsGranted="['edit', 'user']">
                         <label for="role" class="col-sm-3 col-form-label">Permissão</label>
                         <div class="form-control-group col-sm-9">
-                            <div class="col-10">
-                          <div [(ngModel)]="user.role" 
-                            ngbRadioGroup 
-                            id="role"
-                            name="role"
-                            class="btn-group btn-group-toggle btn-outline-toggle-group btn-group-full-width btn-toggle-radio-group" 
-                            #role="ngModel"
-                            [required]="true">                          
-                            <label ngbButtonLabel class="btn btn-outline-primary" [ngClass]="checkForm?(role.errors?.required?'danger':'success'):'' ">
-                              <input ngbButton type="radio" value="aluno">Aluno
-                            </label>
-                            <label ngbButtonLabel class="btn btn-outline-primary" [ngClass]="checkForm?(role.errors?.required?'danger':'success'):'' ">
-                              <input ngbButton type="radio" value="professor">Professor
+                          <div class="row">
+                            <div class="col-9">
+                                <div [(ngModel)]="user.role" 
+                                  ngbRadioGroup 
+                                  id="role"
+                                  name="role"
+                                  class="btn-group btn-group-toggle btn-outline-toggle-group btn-group-full-width btn-toggle-radio-group" 
+                                  #role="ngModel"
+                                  [required]="true">                          
+                                  <label ngbButtonLabel class="btn btn-outline-primary" [ngClass]="checkForm?(role.errors?.required?'danger':'success'):'' ">
+                                    <input ngbButton type="radio" value="aluno">Aluno
+                                  </label>
+                                  <label ngbButtonLabel class="btn btn-outline-primary" [ngClass]="checkForm?(role.errors?.required?'danger':'success'):'' ">
+                                    <input ngbButton type="radio" value="professor">Professor
+                                  </label>
+                                </div>
+                            </div>
+                          <div class="btn-group btn-group-toggle btn-divided-group col-3"  data-toggle="buttons">         
+                            <label ngbButtonLabel class="btn btn-outline-warning" [class.active]="checkboxAdmin" >
+                              <input ngbButton type="checkbox" [(ngModel)]="checkboxAdmin" name="roleAdmin">Admin
                             </label>
                           </div>
-                            </div>
-                            
-                            <div class="col-2">
-                          <nb-checkbox [(ngModel)]="user.admin" 
-                          id="admin"
-                          name="admin"
-                          #admin="ngModel"></nb-checkbox>
-                            </div>
-                          <ng-container  *ngIf="checkForm&&role.errors?.required">
+                        </div>
+                          <ng-container  *ngIf="checkForm&&(user.role==''||user.role==null||user.role==undefined)">
                               <p class="error-message">
                                 Permissão é obrigatória!
                               </p>
                             </ng-container>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row"  *nbIsGranted="['edit', 'user']">
                         <label for="permissao" class="col-sm-3 col-form-label">Permissão Porta</label>
                         <div class="form-control-group col-sm-9">
                           <div [(ngModel)]="user.permissao" 
@@ -206,7 +206,7 @@
                           <div class="col-sm-9" style="text-align: center;">
   
                               <input style="display: none;" type="file" #fotoInput (change)="fileChangeEvent($event)">
-                              <img [src]="this.usuario.foto?baseUrl+'fotosPerfil/'+this.usuario._id+'.'+this.usuario.foto+'.png':null||croppedImage" #fotoImg width="200px" height="200px" 
+                              <img [src]="this.user.foto?baseUrl+'fotosPerfil/'+this.user._id+'.'+this.user.foto+'.png':null||croppedImage" #fotoImg width="200px" height="200px" 
                               style="margin: 1rem;
                                      border-radius: 50%; " >
                               <button nbButton status="info" (click)="showCropper=!showCropper" *ngIf="showCropper"
@@ -236,7 +236,7 @@
                                     style="float: right;width: 100%;">Enviar</button>
                                   </div>
                                   <div class="col-6">
-                                    <button
+                                    <button  *nbIsGranted="['edit', 'user']"
                                       nbButton
                                       fullWidth
                                       status="info"
@@ -246,30 +246,37 @@
                               </div>
                           </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row"  *nbIsGranted="['edit', 'user']">
                           <label for="rfid" class="col-sm-3 col-form-label">RFID</label>
-                          <div class="col-md-2">
+                          <div class="col-sm-9" style="text-align: center;">
+                            <div class="row">
+                          <div class="col-md-6">
                             <button type="button" class="form-control" 
                             nbButton
                             status="info"
                             (click)="lerRFID()"
                             [disabled]="rfidLoading">{{rfidButtonText}}</button>
                           </div>
-                          <div class="col-md-7"
-                          [nbSpinner]="rfidLoading" nbSpinnerStatus="success" nbSpinnerSize="large" nbSpinnerMessage="Esperando RFID">
-                            <input type="hidden" nbInput
+                          <div class="col-md-6"
+                          [nbSpinner]="rfidLoading" nbSpinnerStatus="success" nbSpinnerSize="large" nbSpinnerMessage="Esperando RFID" [ngClass]="{'margin-auto':!rfidLoading}">
+                            <input nbInput
                             id="rfid" 
                             name="rfid" 
+                            type="hidden"
                             [(ngModel)]="user.rfid" 
-                            [required]="true"                   
+                            required                  
                             #rfid="ngModel"
                             [status]="checkForm ? (rfid.invalid  ? 'danger' : 'success') : ''"> 
                             
+                            <span  style="
+                            font-size: 1.5rem;
+                        ">{{user.rfid?user.rfid:'Não registrado'}}</span>
                           <ng-container *ngIf="checkForm">
                             <p class="error-message" *ngIf="rfid.errors?.required">
                               RFID é obrigatório!
                             </p>
                           </ng-container>
+                          </div></div>
                           </div>
                         </div>
                         

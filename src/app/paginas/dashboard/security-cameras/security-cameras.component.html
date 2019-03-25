@@ -2,30 +2,43 @@
   <nb-card-header>
     <div class="cameras-card-header">
       <span class="cameras-card-title">Ao Vivo no LARM</span>
-      <!--span class="cameras-filter">
+      <span class="cameras-filter">
         <a [class.active]="isSingleView" (click)="isSingleView = true">
           <i class="nb-square"></i>
         </a>
         <a [class.active]="!isSingleView" (click)="isSingleView = false">
           <i class="nb-grid-a"></i>
         </a>
-      </span-->
+      </span>
     </div>
   </nb-card-header>
   <nb-card-body>
-    <div class="cameras single-view">
-      <div class="camera"> 
-        <!---span>{{ selectedCamera.title }}</span-->
-        <iframe id="iframe0" name="iframe0" src="http://150.162.234.21:8888/HP%20Webcam%20HD-4110/snapshotfull.php?clickurl=summarysnapshot.php" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
-       
+    <div class="cameras single-view" *ngIf="isSingleView">
+      <div class="camera" [innerHTML]="selectedCamera.html | safeHtml">
       </div>
     </div>
-    <!---div class="cameras" *ngIf="!isSingleView">
-      <div class="camera col-sm-6" *ngFor="let camera of cameras" [innerHTML]="camera.html"
-           (click)="selectCamera(camera)">
-        <span>{{ camera.title }}</span>
+    <div class="cameras" *ngIf="!isSingleView">
+      <div class="camera col-sm-6" (click)="selectCamera(0)">
+           <span>Camera #1</span>
+           <iframe id="iframe0" name="iframe0" src="http://150.162.234.21:8888/Camera%2001/snapshotfull.php?clickurl=summarysnapshot.php" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
+           
       </div>
-    </div-->
+      <div class="camera col-sm-6" (click)="selectCamera(1)">
+           <span>Camera #2</span>
+           <iframe  id="iframe0" name="iframe0" src="http://150.162.234.21:8888/Camera%2002/snapshotfull.php?clickurl=summarysnapshot.php" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
+           
+      </div>
+      <div class="camera col-sm-6" (click)="selectCamera(2)">
+           <span>Camera #3</span>
+           <iframe id="iframe0" name="iframe0" src="http://150.162.234.21:8888/Camera%2003/snapshotfull.php?clickurl=summarysnapshot.php" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
+           
+      </div>
+      <div class="camera col-sm-6" (click)="selectCamera(3)">
+           <span>Camera #4</span>
+           <iframe id="iframe0" name="iframe0" src="http://150.162.234.21:8888/Camera%2004/snapshotfull.php?clickurl=summarysnapshot.php" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
+           
+      </div>
+    </div>
   </nb-card-body>
   <nb-card-footer>
     <nb-actions size="medium" fullWidth>

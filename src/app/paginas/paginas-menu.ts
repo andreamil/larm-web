@@ -119,33 +119,29 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: 'Modal & Overlays',
-    icon: 'nb-layout-default',
+    title: 'Solicitações',
+    icon: 'nb-info',
     data: {
       permission: 'view',
-      resource: 'ModaleOverlays',
+      resource: 'solicitacoes',
     },
     children: [
       {
-        title: 'Dialog',
-        link: '/paginas/modal-overlays/dialog',
+        title: 'RETIRADA DE  MATERIAIS',
+        link: '/paginas/solicitacoes/retirada-de-materiais',
       },
       {
-        title: 'Window',
-        link: '/paginas/modal-overlays/window',
+        title: 'PERMANECIA FORA DO HORÁRIO',
+        link: '/paginas/solicitacoes/permanencia-fora-do-horario',
       },
       {
-        title: 'Popover',
-        link: '/paginas/modal-overlays/popover',
-      },
-      {
-        title: 'Toastr',
-        link: '/paginas/modal-overlays/toastr',
-      },
-      {
-        title: 'Tooltip',
-        link: '/paginas/modal-overlays/tooltip',
-      },
+        title: 'NOVO MEMBRO',
+        link: '/paginas/solicitacoes/novo-membro',
+        data: {
+          permission: 'view',
+          resource: 'novo-membro',
+        },
+      }
     ],
   },
   {

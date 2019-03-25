@@ -20,7 +20,6 @@ export class SocketService extends Socket {
   }
   msg = this.fromEvent<Notificacao>('notificacao');
   autorizado = this.fromEvent<boolean>('autorizado');
-  lendoConfirmacao = this.fromEvent<boolean>('lendo novo usuario');
   novoRFID = this.fromEvent<string>('novo RFID');
   getFotoLarm = this.fromEvent<any>('foto larm');
   

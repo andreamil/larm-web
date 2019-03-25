@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Config } from '../../../config';
 import { HttpClient } from '@angular/common/http';
-import { SocketService } from '../../socket.service';
 import { UsuariosService } from '../usuarios.service';
 import { Router } from '@angular/router';
 
@@ -12,13 +11,13 @@ import { Router } from '@angular/router';
 })
 export class ListarUsuariosComponent implements OnInit {
   textoFiltro;
-  @Input() icon: string;
-  @Input() rfid: string;
-  @Input() msg: string;
-  @Input() submitted = false;
-  @Input() usuarios: any[] = [];
-  @Input() response: any[] = [];
-  @Input() baseUrl = Config.BASE_API_URL;
+  icon: string;
+  rfid: string;
+  msg: string;
+  submitted = false;
+  usuarios: any[] = [];
+  response: any[] = [];
+  baseUrl = Config.BASE_API_URL;
   constructor(private http: HttpClient,
       // private socketService : SocketService,
       private usuarioService: UsuariosService,
@@ -29,7 +28,7 @@ export class ListarUsuariosComponent implements OnInit {
       this.getUsuarios();
   }
   editar(usuario:any) {
-    this.usuarioService.setUsuarioEdit(usuario);
+    this.usuarioService.usuarioEdit=usuario;
     this.router.navigate(['/paginas/usuarios/user/'+usuario._id])
   }
   relatorioRFID(rfid: string) {

@@ -94,7 +94,8 @@ export const NB_CORE_PROVIDERS = [
               'user',
               'banco-de-horas',
               'estoque',
-              'projetos'],
+              'projetos',
+              'solicitacoes'],
       },
       aluno: {
         parent: 'user',
@@ -102,7 +103,7 @@ export const NB_CORE_PROVIDERS = [
       },
       professor: {
         parent: 'user',
-        view: ['maps', 'certificados', 'cadastro'],
+        view: ['maps', 'certificados', 'cadastro','novo-membro'],
       },
       admin: {
         view: '*',

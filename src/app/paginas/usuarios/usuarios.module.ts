@@ -9,7 +9,6 @@ import { UsuariosService } from './usuarios.service';
 import { NbDialogModule } from '@nebular/theme';
 import { ImageCropperModule } from 'ngx-image-cropper'
 import { LoadGuard } from '../../load-guard.service';
-import { PipesModule } from '../pipes.module';
 const routes: Routes = [{
   path: '',
   //redirectTo: 'meuperfil',
@@ -38,15 +37,14 @@ const routes: Routes = [{
     ThemeModule,
     RouterModule.forChild(routes),
     NbDialogModule.forChild(),
-    ImageCropperModule,
-    PipesModule
+    ImageCropperModule
   ],
   exports: [RouterModule],
   declarations: [
     UsuariosComponent,
     ListarUsuariosComponent,
     CadastrarUsuariosComponent,
-    DialogUsuarioComponent,
+    DialogUsuarioComponent
   ],
   providers: [
     UsuariosService
