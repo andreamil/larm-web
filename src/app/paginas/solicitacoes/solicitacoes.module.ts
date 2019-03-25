@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RetiradaDeMateriaisComponent } from './retirada-de-materiais/retirada-de-materiais.component';
 import { PermanenciaForaDoHorarioComponent } from './permanencia-fora-do-horario/permanencia-fora-do-horario.component';
 import { NovoMembroComponent } from './novo-membro/novo-membro.component';
@@ -29,7 +30,8 @@ const routes: Routes = [{
   declarations: [RetiradaDeMateriaisComponent, PermanenciaForaDoHorarioComponent, NovoMembroComponent, SolicitacoesComponent],
   imports: [
     ThemeModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    CommonModule
   ],
   exports: [RouterModule],
 })
