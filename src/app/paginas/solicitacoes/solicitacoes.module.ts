@@ -30,8 +30,7 @@ const routes: Routes = [{
   declarations: [RetiradaDeMateriaisComponent, PermanenciaForaDoHorarioComponent, NovoMembroComponent, SolicitacoesComponent],
   imports: [
     ThemeModule,
-    RouterModule.forChild(routes),
-    CommonModule
+    RouterModule.forChild(routes)
   ],
   exports: [RouterModule],
 })
