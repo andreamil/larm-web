@@ -51,6 +51,7 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
       if(this.user.role.includes('admin'))this.checkboxAdmin=true;
       if(this.user.role.includes('professor'))this.user.role='professor';
       if(this.user.role.includes('aluno'))this.user.role='aluno';
+      this.user.foto&&(this.croppedImage=this.baseUrl+'fotosPerfil/'+this.user._id+'.'+this.user.foto+'.png')
       this.usuarioService.usuarioEdit=null;
     }else if(this.route.snapshot.paramMap.get('id')){
       this._getUsuarioIDSub=this.usuarioService.getUsuarioID(this.route.snapshot.paramMap.get('id')).pipe(take(1)).subscribe((body)=>{
@@ -58,6 +59,7 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
           if(this.user.role.includes('admin'))this.checkboxAdmin=true;
           if(this.user.role.includes('professor'))this.user.role='professor';
           if(this.user.role.includes('aluno'))this.user.role='aluno';
+          this.user.foto&&(this.croppedImage=this.baseUrl+'fotosPerfil/'+this.user._id+'.'+this.user.foto+'.png')
         })
       } 
       else if(this.route.snapshot.url[0].path=='meu-perfil'){
@@ -67,6 +69,7 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
           if(this.user.role.includes('admin'))this.checkboxAdmin=true;
           if(this.user.role.includes('professor'))this.user.role='professor';
           if(this.user.role.includes('aluno'))this.user.role='aluno';
+          this.user.foto&&(this.croppedImage=this.baseUrl+'fotosPerfil/'+this.user._id+'.'+this.user.foto+'.png')
         })
     }
     
