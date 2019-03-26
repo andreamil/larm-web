@@ -66,7 +66,7 @@
                           pattern=".+@.+\..+"
                           fullWidth
                           [status]="(checkForm||email.dirty) ? (email.invalid  ? 'danger' : 'success') : ''"
-                          [required]="!user._id"
+                          [required]="true"
                           [attr.aria-invalid]="(email.invalid && email.touched)||checkForm ? true : null">
                         <ng-container *ngIf="(submitted||checkForm) || (email.invalid && email.touched)">
                           <p class="error-message" *ngIf="email.errors?.required">

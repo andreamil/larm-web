@@ -2,7 +2,7 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'Painel',
+    title: 'Pagina Inicial',
     icon: 'nb-home',
     link: '/paginas/painel',
     data: {

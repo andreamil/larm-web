@@ -12,16 +12,16 @@ const routes: Routes = [{
   //redirectTo: 'meuperfil',
   children: [
     {
-      path: 'novo-membro', canLoad: [AuthGuard],canActivate: [AuthGuard],
-      component: NovoMembroComponent,
+      path: 'retirada-de-materiais',
+      component: RetiradaDeMateriaisComponent,
     },
     {
-      path: 'permanencia-fora-do-horario', canLoad: [AuthGuard],canActivate: [AuthGuard],
+      path: 'permanencia-fora-do-horario',
       component: PermanenciaForaDoHorarioComponent,
     },
     {
-      path: 'retirada-de-materiais',
-      component: RetiradaDeMateriaisComponent,
+      path: 'novo-membro', canLoad: [AuthGuard],canActivate: [AuthGuard],
+      component: NovoMembroComponent,
     }
   ],
 }];

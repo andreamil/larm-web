@@ -25,7 +25,7 @@
                                 <span>Hora saida: {{registro.horaSaida}}</span>
                             </nb-list-item>
                         </nb-list>-->
-                        <div>
+                        <div *nbIsGranted="['edit', 'user']">
                             <button (click)="editar(usuario)" class="btn btn-hero-warning"
                             style="cursor: pointer;margin: 1rem; float: right;">Editar</button>
                         </div>

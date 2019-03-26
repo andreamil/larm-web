@@ -25,7 +25,7 @@
            #email="ngModel"
            name="email"
            id="input-email"
-           pattern=".+@.+\..+"
+           pattern=".+@.+\..+|\d{5,9}"
            placeholder="Identificação"
            autofocus
            [status]="email.dirty ? (email.invalid  ? 'danger' : 'success') : ''"

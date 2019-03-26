@@ -11,7 +11,7 @@ const routes: Routes = [{
 
   children: [
   {
-    path: 'painel',  canLoad: [AuthGuard],
+    path: 'painel',  
     loadChildren: './dashboard/dashboard.module#DashboardModule',
   }, {
     path: 'usuarios',  canLoad: [AuthGuard],
