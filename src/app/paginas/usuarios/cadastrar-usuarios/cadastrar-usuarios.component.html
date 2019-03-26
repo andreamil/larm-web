@@ -230,7 +230,7 @@
                                     ></image-cropper>
         
                               <div class="row">
-                                  <div class="col-6">
+                                  <div class="col-12">
                                   <button
                                     nbButton
                                     fullWidth                                  
@@ -239,14 +239,14 @@
                                     (click)="fotoInput.click()"
                                     style="float: right;width: 100%;">Enviar</button>
                                   </div>
-                                  <div class="col-6">
+                                  <!--div class="col-6">
                                     <button  *nbIsGranted="['edit', 'user']"
                                       nbButton
                                       fullWidth
                                       status="info"
                                       (click)="cameraLarm()"
                                       style="float: right;width: 100%;">Camera LARM</button>
-                                  </div>
+                                  </div>-->
                               </div>
                           </div>
                         </div>
@@ -255,14 +255,15 @@
                           <div class="col-sm-9" style="text-align: center;">
                             <div class="row">
                           <div class="col-md-6">
-                            <button type="button" class="form-control" 
+                          <button 
                             nbButton
+                            fullWidth   
                             status="info"
                             (click)="lerRFID()"
                             [disabled]="rfidLoading">{{rfidButtonText}}</button>
                           </div>
-                          <div class="col-md-6"
-                          [nbSpinner]="rfidLoading" nbSpinnerStatus="success" nbSpinnerSize="large" nbSpinnerMessage="Esperando RFID" [ngClass]="{'margin-auto':!rfidLoading}">
+                          <div class="col-md-6" [nbSpinner]="rfidLoading" nbSpinnerStatus="success"
+                           nbSpinnerSize="large" nbSpinnerMessage="Esperando RFID" [ngClass]="{'margin-auto':!rfidLoading}">
                             <input nbInput
                             id="rfid" 
                             name="rfid" 

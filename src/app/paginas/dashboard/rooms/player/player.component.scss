@@ -57,13 +57,20 @@
     height: 1rem;
 
     .progress-foreground {
+      background-color: nb-theme(color-success);
       height: 2px;
       position: absolute;
       left: 0;
       margin-top: calc(0.75rem - 1px);
       width: 100px;
 
+      @include nb-for-theme(cosmic) {
         background-color: nb-theme(link-color);
+      }
+
+      @include nb-for-theme(corporate) {
+        background-color: nb-theme(color-primary);
+      }
     }
 
     .progress {
@@ -91,11 +98,17 @@
         background: nb-theme(separator);
       }
 
+      @include nb-for-theme(cosmic) {
         @include install-thumb() {
           background: nb-theme(link-color);
         }
-      
+      }
 
+      @include nb-for-theme(corporate) {
+        @include install-thumb() {
+          background: nb-theme(color-primary);
+        }
+      }
     }
   }
 
@@ -138,8 +151,11 @@
       color: nb-theme(color-fg);
 
       &.active {
+        color: nb-theme(color-success);
+
+        @include nb-for-theme(cosmic) {
           color: nb-theme(link-color);
-        
+        }
       }
     }
 

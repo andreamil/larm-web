@@ -26,11 +26,15 @@
                             </nb-list-item>
                         </nb-list>-->
                         <div *nbIsGranted="['edit', 'user']">
-                            <button (click)="editar(usuario)" class="btn btn-hero-warning"
+                            <button (click)="editar(usuario)" 
+                            nbButton
+                            status="warning"
                             style="cursor: pointer;margin: 1rem; float: right;">Editar</button>
                         </div>
                         <div>
-                            <button (click)="relatorioRFID(usuario.rfid)" class="btn btn-hero-info"
+                            <button (click)="relatorioRFID(usuario.rfid)" 
+                            nbButton
+                            status="info"
                             style="cursor: pointer;margin: 1rem; float: right;">Informações do usuario</button>
                         </div>
                     </nb-list-item>

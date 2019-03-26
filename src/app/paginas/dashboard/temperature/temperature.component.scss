@@ -43,7 +43,7 @@
 
     .value {
       position: relative;
-      color: #ffffff;
+      color: nb-theme(color-fg-heading);
       font-family: nb-theme(font-secondary);
       font-size: 4rem;
       font-weight: nb-theme(font-weight-bolder);
@@ -115,12 +115,22 @@
     }
   }
 
+  @include nb-for-theme(cosmic) {
     .btn-icon.active {
-      color: #ffffff;
+      color: nb-theme(color-fg-heading);
       border-color: nb-theme(color-fg-highlight);
       box-shadow: 0 2px 12px 0 rgba(nb-theme(color-fg-highlight), 0.25);
       background-color: rgba(nb-theme(color-fg-highlight), 0.25);
     }
+  }
+
+  @include nb-for-theme(corporate) {
+    .btn-icon.active {
+      color: nb-theme(color-primary);
+      border: none;
+      background-color: nb-theme(layout-bg);
+    }
+  }
 
   @include media-breakpoint-down(is) {
     ngx-temperature-dragger {

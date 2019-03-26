@@ -65,7 +65,7 @@ import {
   // ThreeColumnsLayoutComponent,
   // TwoColumnsLayoutComponent,
 } from './layouts';
-import { COSMIC_THEME } from './styles/theme.cosmic';
+import { CORPORATE_THEME } from './styles/theme.corporate';
 import { SafeHtmlPipe } from './pipes/safehtml.pipe';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
@@ -139,9 +139,9 @@ const PIPES = [
 const NB_THEME_PROVIDERS = [
   ...NbThemeModule.forRoot(
     {
-      name: 'cosmic',
+      name: 'corporate',
     },
-    [ /* DEFAULT_THEME ,*/ COSMIC_THEME/*, CORPORATE_THEME*/ ],
+    [ /* DEFAULT_THEME ,*/ /*COSMIC_THEME,*/ CORPORATE_THEME ],
   ).providers,
   ...NbSidebarModule.forRoot().providers,
   ...NbMenuModule.forRoot().providers,

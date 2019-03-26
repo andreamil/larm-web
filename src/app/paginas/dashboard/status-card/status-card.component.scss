@@ -57,6 +57,16 @@
         color: nb-theme(card-fg);
       }
 
+      @include nb-for-theme(corporate) {
+        &.primary,
+        &.success,
+        &.info,
+        &.warning,
+        &.danger,
+        &.secondary {
+          box-shadow: none;
+        }
+      }
     }
 
     &:hover {
@@ -129,6 +139,8 @@
       color: nb-theme(card-fg);
     }
   }
+
+  @include nb-for-theme(cosmic) {
     nb-card {
       &.off .icon-container {
         @include nb-ltr(border-right, 1px solid nb-theme(separator));
@@ -160,4 +172,13 @@
         font-weight: nb-theme(font-weight-light);
       }
     }
+  }
+
+  @include nb-for-theme(corporate) {
+    nb-card {
+      .icon-container {
+        height: auto;
+      }
+    }
+  }
 }

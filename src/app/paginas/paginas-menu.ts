@@ -82,11 +82,19 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         data: {
-          permission: 'create',
-          resource: 'porta',
+          permission: 'view',
+          resource: 'uso-laboratorio',
         },
-        title: 'Gerar Relatório',
-        link: '/paginas/porta/relatorio',
+        title: 'Uso do Laboratorio',
+        link: '/paginas/porta/uso-laboratorio',
+      },
+      {
+        data: {
+          permission: 'view',
+          resource: 'uso-laboratorio-pessoa',
+        },
+        title: 'Uso do Laboratorio por pessoa',
+        link: '/paginas/porta/uso-laboratorio-pessoa',
       },
       {
         title: 'Histórico',
@@ -104,22 +112,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
       resource: 'estoque',
     },
     children: [
-      {
-        title: 'Grid',
-        link: '/paginas/ui-features/grid',
-      },
-      {
-        title: 'Icons',
-        link: '/paginas/ui-features/icons',
-      },
-      {
-        title: 'Typography',
-        link: '/paginas/ui-features/typography',
-      },
-      {
-        title: 'Animated Searches',
-        link: '/paginas/ui-features/search-fields',
-      },
     ],
   },
   {
@@ -149,145 +141,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: 'Bootstrap',
-    icon: 'nb-gear',
+    title: 'Logs do Sistema',
+    icon: 'nb-list',
+    link: '/paginas/logs-sistema',
     data: {
       permission: 'view',
-      resource: 'bootstrap',
+      resource: 'logs',
     },
-    children: [
-      {
-        title: 'Form Inputs',
-        link: '/paginas/bootstrap/inputs',
-      },
-      {
-        title: 'Buttons',
-        link: '/paginas/bootstrap/buttons',
-      },
-      {
-        title: 'Modal',
-        link: '/paginas/bootstrap/modal',
-      },
-    ],
-  },
-  {
-    title: 'Maps',
-    icon: 'nb-location',
-    data: {
-      permission: 'view',
-      resource: 'maps',
-    },
-    children: [
-      {
-        title: 'Google Maps',
-        link: '/paginas/maps/gmaps',
-      },
-      {
-        title: 'Leaflet Maps',
-        link: '/paginas/maps/leaflet',
-      },
-      {
-        title: 'Bubble Maps',
-        link: '/paginas/maps/bubble',
-      },
-      {
-        title: 'Search Maps',
-        link: '/paginas/maps/searchmap',
-      },
-    ],
-  },
-  {
-    title: 'Charts',
-    icon: 'nb-bar-chart',
-    data: {
-      permission: 'view',
-      resource: 'charts',
-    },
-    children: [
-      {
-        title: 'Echarts',
-        link: '/paginas/charts/echarts',
-      },
-      {
-        title: 'Charts.js',
-        link: '/paginas/charts/chartjs',
-      },
-      {
-        title: 'D3',
-        link: '/paginas/charts/d3',
-      },
-    ],
-  },
-  {
-    title: 'Editors',
-    icon: 'nb-title',
-    data: {
-      permission: 'view',
-      resource: 'editors',
-    },
-    children: [
-      {
-        title: 'TinyMCE',
-        link: '/paginas/editors/tinymce',
-      },
-      {
-        title: 'CKEditor',
-        link: '/paginas/editors/ckeditor',
-      },
-    ],
-  },
-  {
-    title: 'Tables',
-    icon: 'nb-tables',
-    data: {
-      permission: 'view',
-      resource: 'tables',
-    },
-    children: [
-      {
-        title: 'Smart Table',
-        link: '/paginas/tables/smart-table',
-      },
-    ],
-  },
-  {
-    title: 'Miscellaneous',
-    icon: 'nb-shuffle',
-    data: {
-      permission: 'view',
-      resource: 'miscellaneous',
-    },
-    children: [
-      {
-        title: '404',
-        link: '/paginas/miscellaneous/404',
-      },
-    ],
-  },
-  {
-    title: 'Auth',
-    icon: 'nb-locked',
-    data: {
-      permission: 'view',
-      resource: 'auth',
-    },
-    children: [
-      {
-        title: 'Login',
-        link: '/auth/login',
-      },
-      {
-        title: 'Register',
-        link: '/auth/register',
-      },
-      {
-        title: 'Request Password',
-        link: '/auth/request-password',
-      },
-      {
-        title: 'Reset Password',
-        link: '/auth/reset-password',
-      },
-    ],
-  },
+  }
 ];

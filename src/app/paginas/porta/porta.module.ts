@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { GerarRelatorioComponent } from './gerar-relatorio/gerar-relatorio.component';
+import { UsoLaboratorioComponent } from './uso-laboratorio/uso-laboratorio.component';
 import { EntradaSaidaComponent } from './entrada-saida/entrada-saida.component';
 import { HistoricoComponent } from './historico/historico.component';
 import { PortaComponent } from './porta.component';
@@ -16,8 +16,8 @@ const routes: Routes = [{
       component: EntradaSaidaComponent,
     },
     {
-      path: 'relatorio',
-      component: GerarRelatorioComponent,
+      path: 'uso-laboratorio',
+      component: UsoLaboratorioComponent,
     },
     {
       path: 'historico',
@@ -34,7 +34,7 @@ const routes: Routes = [{
   exports: [RouterModule],
   declarations: [
     PortaComponent,
-    GerarRelatorioComponent,
+    UsoLaboratorioComponent,
     HistoricoComponent,
     EntradaSaidaComponent,
   ],

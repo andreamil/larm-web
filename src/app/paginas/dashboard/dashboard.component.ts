@@ -13,32 +13,76 @@ interface CardSettings {
   styleUrls: ['./dashboard.component.scss'],
   templateUrl: './dashboard.component.html',
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnDestroy {
 
-  statusCards: CardSettings[] = [
-    {
-      title: 'Luzes',
-      iconClass: 'nb-lightbulb',
-      type: 'primary',
-    },
-    {
-      title: 'Cortina',
-      iconClass: 'nb-roller-shades',
-      type: 'success',
-    },
-    {
-      title: 'Som',
-      iconClass: 'nb-audio',
-      type: 'info',
-    },
-    {
-      title: 'Cafeteira',
-      iconClass: 'nb-coffee-maker',
-      type: 'warning',
-    },
+  private alive = true;
+
+  lightCard: CardSettings = {
+    title: 'Luzes',
+    iconClass: 'nb-lightbulb',
+    type: 'primary',
+  };
+  rollerShadesCard: CardSettings = {
+    title: 'Cortina',
+    iconClass: 'nb-roller-shades',
+    type: 'success',
+  };
+  wirelessAudioCard: CardSettings = {
+    title: 'Som',
+    iconClass: 'nb-audio',
+    type: 'info',
+  };
+  coffeeMakerCard: CardSettings = {
+    title: 'Cafeteira',
+    iconClass: 'nb-coffee-maker',
+    type: 'warning',
+  };
+
+  statusCards: string;
+
+  commonStatusCardsSet: CardSettings[] = [
+    this.lightCard,
+    this.rollerShadesCard,
+    this.wirelessAudioCard,
+    this.coffeeMakerCard,
   ];
 
-  constructor() {
+  statusCardsByThemes: {
+    default: CardSettings[];
+    cosmic: CardSettings[];
+    corporate: CardSettings[];
+  } = {
+    default: this.commonStatusCardsSet,
+    cosmic: this.commonStatusCardsSet,
+    corporate: [
+      {
+        ...this.lightCard,
+        type: 'warning',
+      },
+      {
+        ...this.rollerShadesCard,
+        type: 'primary',
+      },
+      {
+        ...this.wirelessAudioCard,
+        type: 'danger',
+      },
+      {
+        ...this.coffeeMakerCard,
+        type: 'secondary',
+      },
+    ],
+  };
+
+  constructor(private themeService: NbThemeService) {
+    this.themeService.getJsTheme()
+      .pipe(takeWhile(() => this.alive))
+      .subscribe(theme => {
+        this.statusCards = this.statusCardsByThemes[theme.name];
+    });
   }
 
+  ngOnDestroy() {
+    this.alive = false;
+  }
 }
