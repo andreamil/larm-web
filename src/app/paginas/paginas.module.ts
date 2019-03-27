@@ -6,6 +6,7 @@ import { ThemeModule } from '../@theme/theme.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { SolicitacoesModule } from './solicitacoes/solicitacoes.module';
+import { PortaModule } from './porta/porta.module';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { SolicitacoesModule } from './solicitacoes/solicitacoes.module';
     MiscellaneousModule,
     UsuariosModule,
     SolicitacoesModule,
+    PortaModule
   ],
   declarations: [
     PaginasComponent
