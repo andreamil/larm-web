@@ -1,16 +1,20 @@
-<nb-card size="large">
+<nb-card size="xlarge">
   <nb-tabset fullWidth>
-    <nb-tab tabTitle="Contacts">
-      <div class="contact" *ngFor="let c of contacts">
-        <nb-user [picture]="c.user.picture" [name]="c.user.name" [title]="c.type" size="large"></nb-user>
-        <i class="i-contact nb-phone"></i>
+    <nb-tab tabTitle="Usuarios no Lab">
+      <div class="contact" *ngFor="let r of registros" (mouseover)="r.hover=true" (mouseleave)="r.hover=false">
+        <nb-user [picture]="r.usuario.foto?baseUrl+'fotosPerfil/'+r.usuario._id+'.'+r.usuario.foto+'.png':null" [name]="r.usuario.fullName" [title]="r.usuario.role" size="large"></nb-user>
+       
+        <span class="time">{{r.horaEntrada| date:'medium'}}</span>
+        <div style="position:absolute;right: 2rem;background: white;" *ngIf="r.hover">
+        <button class="btn btn-outline-danger btn-icon" type="button" (click)="registrarSaida(r.usuario.rfid) "><i class="ion-log-out"></i></button>
+        </div>
       </div>
     </nb-tab>
-    <nb-tab tabTitle="Recent">
+    <!--nb-tab tabTitle="Recent">
       <div class="contact" *ngFor="let c of recent">
         <nb-user [picture]="c.user.picture" [name]="c.user.name" [title]="c.type" size="large"></nb-user>
         <span class="time">{{ c.time }}</span>
       </div>
-    </nb-tab>
+    </nb-tab>-->
   </nb-tabset>
 </nb-card>

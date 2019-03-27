@@ -73,6 +73,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
     },
     children: [
       {
+        title: 'Histórico',
+        link: '/paginas/porta/historico',
+      },
+      {
         data: {
           permission: 'create',
           resource: 'porta',
@@ -95,10 +99,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
         },
         title: 'Uso do Laboratorio por pessoa',
         link: '/paginas/porta/uso-laboratorio-pessoa',
-      },
-      {
-        title: 'Histórico',
-        link: '/paginas/porta/historico',
       },
     ],
   },

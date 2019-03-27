@@ -31,6 +31,7 @@ export class Usuario{
 }
 export class ResponseUsuario{  
   public usuarios: Array<any>; 
+  public registros: Array<any>; 
   public user: any;
   public msg: string;
 }
@@ -46,6 +47,9 @@ export class UsuariosService {
   } 
   getUsuarios() : Observable<ResponseUsuario>{
     return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'usuarios/user')
+  }
+  getUsuariosNoLab() : Observable<ResponseUsuario>{
+    return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'registro/relatorio/porta/agora')
   }
   getUsuarioID(id:string): Observable<ResponseUsuario> {
     return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'usuarios/user/'+id)

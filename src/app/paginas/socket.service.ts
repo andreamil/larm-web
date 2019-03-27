@@ -22,6 +22,7 @@ export class SocketService extends Socket {
   autorizado = this.fromEvent<boolean>('autorizado');
   novoRFID = this.fromEvent<string>('novo RFID');
   getFotoLarm = this.fromEvent<any>('foto larm');
+  getUsuariosNoLab = this.fromEvent<any>('get usuarios no lab');
   
 }
 

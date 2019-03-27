@@ -13,7 +13,7 @@ import { SolicitacoesModule } from './solicitacoes/solicitacoes.module';
     ThemeModule,
     MiscellaneousModule,
     UsuariosModule,
-    SolicitacoesModule
+    SolicitacoesModule,
   ],
   declarations: [
     PaginasComponent
