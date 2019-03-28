@@ -1,6 +1,4 @@
 import {Component, OnDestroy} from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
-import { takeWhile } from 'rxjs/operators' ;
 
 interface CardSettings {
   title: string;
@@ -38,23 +36,7 @@ export class DashboardComponent implements OnDestroy {
     type: 'warning',
   };
 
-  statusCards: string;
-
-  commonStatusCardsSet: CardSettings[] = [
-    this.lightCard,
-    this.rollerShadesCard,
-    this.wirelessAudioCard,
-    this.coffeeMakerCard,
-  ];
-
-  statusCardsByThemes: {
-    default: CardSettings[];
-    cosmic: CardSettings[];
-    corporate: CardSettings[];
-  } = {
-    default: this.commonStatusCardsSet,
-    cosmic: this.commonStatusCardsSet,
-    corporate: [
+  statusCards: CardSettings[]=[
       {
         ...this.lightCard,
         type: 'warning',
@@ -71,15 +53,8 @@ export class DashboardComponent implements OnDestroy {
         ...this.coffeeMakerCard,
         type: 'secondary',
       },
-    ],
-  };
-
-  constructor(private themeService: NbThemeService) {
-    this.themeService.getJsTheme()
-      .pipe(takeWhile(() => this.alive))
-      .subscribe(theme => {
-        this.statusCards = this.statusCardsByThemes[theme.name];
-    });
+    ];
+  constructor() {
   }
 
   ngOnDestroy() {
