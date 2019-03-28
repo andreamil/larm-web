@@ -2,7 +2,7 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'Pagina Inicial',
+    title: 'Página Inicial',
     icon: 'nb-home',
     link: '/paginas/painel',
     data: {
@@ -19,7 +19,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     },
   },
   {
-    title: 'Usuarios',
+    title: 'Usuários',
     icon: 'nb-person',
     data: {
       permission: 'view',
@@ -27,7 +27,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     },
     children: [
       {
-        title: 'Cadastrar usuario',
+        title: 'Cadastrar usuário',
         link: '/paginas/usuarios/criar-editar-usuario',
         data: {
           permission: 'create',
@@ -35,7 +35,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
         },
       },
       {
-        title: 'Lista de usuarios',
+        title: 'Lista de usuários',
         link: '/paginas/usuarios/listar',
       },
     ],
@@ -89,7 +89,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
           permission: 'view',
           resource: 'uso-laboratorio',
         },
-        title: 'Uso do Laboratorio',
+        title: 'Uso do Laboratório',
         link: '/paginas/porta/uso-laboratorio',
       },
       {
@@ -97,7 +97,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
           permission: 'view',
           resource: 'uso-laboratorio-pessoa',
         },
-        title: 'Uso do Laboratorio por pessoa',
+        title: 'Uso do Laboratório por pessoa',
         link: '/paginas/porta/uso-laboratorio-pessoa',
       },
     ],

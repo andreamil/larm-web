@@ -5,7 +5,10 @@ import { ServerDataSource, ViewCell } from 'ng2-smart-table';
 @Component({
   selector: 'ngx-historico',
   templateUrl: './historico.component.html',
-  styleUrls: ['./historico.component.scss'],
+  styles: [`
+  .ng2-smart-action .ng2-smart-actions .ng2-smart-actions-title{
+    display:none;
+  }`],
 })
 
 export class HistoricoComponent {
