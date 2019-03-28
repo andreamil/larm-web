@@ -2,11 +2,11 @@
   <nb-tabset fullWidth>
     <nb-tab tabTitle="Usuarios no Lab">
       <div class="contact" *ngFor="let r of registros" (mouseover)="r.hover=true" (mouseleave)="r.hover=false">
-        <nb-user [picture]="r.usuario.foto?baseUrl+'fotosPerfil/'+r.usuario._id+'.'+r.usuario.foto+'.png':null" [name]="r.usuario.fullName" [title]="r.usuario.role" size="large"></nb-user>
+        <nb-user [usuario]="r.usuario" size="large"></nb-user>
        
         <span class="time">{{r.horaEntrada| date:'medium'}}</span>
-        <div style="position:absolute;right: 2rem;background: white;" *ngIf="r.hover">
-        <button class="btn btn-outline-danger btn-icon" type="button" (click)="registrarSaida(r.usuario.rfid) "><i class="ion-log-out"></i></button>
+          <div style="position:absolute;right: 2rem;background: white;" *ngIf="r.hover">
+          <button *nbIsGranted="['edit','user']" class="btn btn-outline-danger btn-icon" type="button" (click)="registrarSaida(r.usuario.rfid) "><i class="ion-log-out"></i></button>
         </div>
       </div>
     </nb-tab>

@@ -19,8 +19,7 @@
                             float: right;
                         ">
                     <nb-user style="width: 100%;"
-                        [picture]="usuario.foto?baseUrl+'fotosPerfil/'+usuario._id+'.'+usuario.foto+'.png':null"
-                        [name]="usuario.fullName" [title]="usuario.role" size="medium" class="col-xl-2 col-12"
+                        [usuario]="usuario" size="medium" class="col-xl-2 col-12"
                         style="min-width: 140px">
                     </nb-user>
                     <nb-list *ngIf="response.rfid==usuario.rfid||response.id==usuario._id">

@@ -14,16 +14,19 @@ export class HistoricoComponent {
     columns: {
       horaEntrada: {
         type: 'custom',
+        editable:false,
         renderComponent: CustomRenderDataComponent,
         title: 'Entrada',
       },
       horaSaida: {
         type: 'custom',
+        editable:false,
         renderComponent: CustomRenderDataComponent,
         title: 'Saida',
       },
       usuario: {
         title: 'Usuario',
+        editable:false,
         type: 'custom',
         renderComponent: CustomRenderComponent,
       },
@@ -40,11 +43,8 @@ export class HistoricoComponent {
 export class CustomRenderDataComponent implements ViewCell {
   @Input() rowData: any;
   @Input() value: any;
-  constructor(){
-    console.log(this.rowData);
-  }
 }
-@Component({template: `<nb-user [usuario]="value" size="small">`,})
+@Component({template: `<nb-user [usuario]="value" size="medium">`,})
 export class CustomRenderComponent implements ViewCell {
   @Input() rowData: any;
   @Input() value: any;

@@ -17,7 +17,6 @@ export class ListarUsuariosComponent implements OnInit {
   submitted = false;
   usuarios: any[] = [];
   response: any[] = [];
-  baseUrl = Config.BASE_API_URL;
   constructor(private http: HttpClient,
       // private socketService : SocketService,
       private usuarioService: UsuariosService,

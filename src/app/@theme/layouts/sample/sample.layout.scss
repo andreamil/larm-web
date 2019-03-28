@@ -3,6 +3,10 @@
 @import '~@nebular/theme/styles/global/breakpoints';
 
 @include nb-install-component() {
+  
+  /deep/ .ng2-smart-action .ng2-smart-actions .ng2-smart-actions-title{
+    display:none;
+  }
   nb-layout-column.small {
     flex: 0.15 !important;
   }

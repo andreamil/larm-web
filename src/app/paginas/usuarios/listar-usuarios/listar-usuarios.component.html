@@ -14,9 +14,7 @@
 
                 <nb-list-item *ngFor="let usuario of usuarios  | filter : textoFiltro" style="display: flex;">
                     <nb-user style="width: 100%;"
-                        [picture]="usuario.foto?baseUrl+'fotosPerfil/'+usuario._id+'.'+usuario.foto+'.png':null"
-                        [name]="usuario.fullName"
-                        [title]="usuario.role"
+                        [usuario]="usuario"
                         size="medium">
                     </nb-user>
                     <!--nb-list *ngIf="response.rfid==usuario.rfid||response.id==usuario._id">
