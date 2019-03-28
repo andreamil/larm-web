@@ -13,7 +13,7 @@ import {
   NbSidebarModule,
   NbTabsetModule,
   NbThemeModule,
-  NbUserModule,
+  // NbUserModule,
   NbCheckboxModule,
 //  NbPopoverModule,
   NbContextMenuModule,
@@ -32,6 +32,7 @@ import {
   NbAlertModule,
   NbSpinnerModule,
   NbRadioModule,
+  NbUserModule,
 //  NbSelectModule,
 //  NbChatModule,
 //  NbTooltipModule,
@@ -67,6 +68,7 @@ import {
 } from './layouts';
 import { CORPORATE_THEME } from './styles/theme.corporate';
 import { SafeHtmlPipe } from './pipes/safehtml.pipe';
+import { NbLarmUserModule } from './larm-user.module';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -76,7 +78,8 @@ const NB_MODULES = [
   NbTabsetModule,
   // NbRouteTabsetModule,
   NbMenuModule,
-  NbUserModule,
+  NbLarmUserModule,
+  // NbUserModule,
   NbActionsModule,
   NbSearchModule,
   NbSidebarModule,

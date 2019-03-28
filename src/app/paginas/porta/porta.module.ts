@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { UsoLaboratorioComponent } from './uso-laboratorio/uso-laboratorio.component';
 import { EntradaSaidaComponent } from './entrada-saida/entrada-saida.component';
-import { HistoricoComponent, CustomRenderComponent } from './historico/historico.component';
+import { HistoricoComponent, CustomRenderComponent, CustomRenderDataComponent } from './historico/historico.component';
 import { PortaComponent } from './porta.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 
@@ -40,9 +40,9 @@ const routes: Routes = [{
     PortaComponent,
     UsoLaboratorioComponent,
     HistoricoComponent,
-    EntradaSaidaComponent,CustomRenderComponent
+    EntradaSaidaComponent,CustomRenderComponent,CustomRenderDataComponent
   ],
-  entryComponents:[CustomRenderComponent],
+  entryComponents:[CustomRenderComponent,CustomRenderDataComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: NbAuthJWTInterceptor, multi: true },
   ],

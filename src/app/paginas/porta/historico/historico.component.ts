@@ -2,7 +2,6 @@ import { Component ,OnInit, Input} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
   
 import { ServerDataSource, ViewCell } from 'ng2-smart-table';
-import { Config } from '../../../config';
 @Component({
   selector: 'ngx-historico',
   templateUrl: './historico.component.html',
@@ -14,11 +13,13 @@ export class HistoricoComponent {
   settings = {
     columns: {
       horaEntrada: {
-        type:'date',
+        type: 'custom',
+        renderComponent: CustomRenderDataComponent,
         title: 'Entrada',
       },
       horaSaida: {
-        type:'date',
+        type: 'custom',
+        renderComponent: CustomRenderDataComponent,
         title: 'Saida',
       },
       usuario: {
@@ -31,31 +32,20 @@ export class HistoricoComponent {
 
   source: ServerDataSource;
   constructor(private http: HttpClient) {
-    this.source = new ServerDataSource(this.http, { endPoint: 'http://150.162.234.151:45454/registro/relatorio/porta',dataKey: 'registros' });
+    this.source = new ServerDataSource(this.http, { endPoint: 'http://150.162.234.151:45454/registro/relatorio/porta',dataKey: 'registros',totalKey:'total'});
   }
-
 }
 
-
-@Component({
-  template: `
-  <nb-user
-  [picture]="value.foto?baseUrl+'fotosPerfil/'+value._id+'.'+value.foto+'.png':null"
-  [name]="value.fullName"
-  [title]="value.role"
-  size="small">
-  `,
-})
-export class CustomRenderComponent implements ViewCell, OnInit {
-
-  //renderValue: string;
-
-  @Input() baseUrl = Config.BASE_API_URL;
-  @Input() value: any;
+@Component({template: `{{value|date:'medium'}}`,})
+export class CustomRenderDataComponent implements ViewCell {
   @Input() rowData: any;
-
-  ngOnInit() {
-    //this.renderValue = this.value.toString().toUpperCase();
+  @Input() value: any;
+  constructor(){
+    console.log(this.rowData);
   }
-
+}
+@Component({template: `<nb-user [usuario]="value" size="small">`,})
+export class CustomRenderComponent implements ViewCell {
+  @Input() rowData: any;
+  @Input() value: any;
 }
