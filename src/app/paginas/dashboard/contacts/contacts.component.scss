@@ -19,7 +19,7 @@
     align-items: center;
     justify-content: space-between;
     color: nb-theme(color-fg);
-    padding: 1rem;
+    padding: 0.25rem;
 
     &:not(:last-child) {
       border-bottom: 1px solid nb-theme(separator);
@@ -27,6 +27,9 @@
       @include nb-for-theme(corporate) {
         border-bottom-color: nb-theme(tabs-separator);
       }
+    }
+    .user-name{
+        text-transform: capitalize;
     }
   }
 

@@ -95,25 +95,27 @@ export class NbLarmUserComponent {
     return this.sizeValue === NbLarmUserComponent.SIZE_XLARGE;
   }
 
+  @Input() set usuario(user: any) {
+    user.fullName&&(this.name=user.fullName.replace(/\w\S*/g, function(txt){
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    }));
+    user.role&&(this.title=user.role);
+    this.imageBackgroundStyle = user.foto ? this.domSanitizer.bypassSecurityTrustStyle(`url(${this.baseUrl+'fotosPerfil/'+user._id+'.'+user.foto+'.png'})`) : null;
+  }
   /**
    * Specifies a name to be shown on the right of a user picture
    * @type string
    */
   @Input() name: string = 'Anonymous';
 
+
+
+
   /**
    * Specifies a title (written in a smaller font) to be shown under the **name**
    * @type string
    */
   @Input() title: string;
-
-
-  @Input() set usuario(user: any) {
-    user.fullName&&(this.name=user.fullName);
-    user.role&&(this.title=user.role);
-    this.imageBackgroundStyle = user.foto ? this.domSanitizer.bypassSecurityTrustStyle(`url(${this.baseUrl+'fotosPerfil/'+user._id+'.'+user.foto+'.png'})`) : null;
-  }
-
 
   /**
    * Absolute path to a user picture. Or base64 image
