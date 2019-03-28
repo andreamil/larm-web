@@ -5,16 +5,20 @@ import { ServerDataSource, ViewCell } from 'ng2-smart-table';
 @Component({
   selector: 'ngx-historico',
   templateUrl: './historico.component.html',
-  styles: [`
-  .ng2-smart-action .ng2-smart-actions .ng2-smart-actions-title{
-    display:none;
-  }`],
+  styleUrls: ['./historico.component.scss'],
 })
 
 export class HistoricoComponent {
 
   settings = {
+    actions: null,
     columns: {
+      usuario: {
+        title: 'Usuario',
+        editable:false,
+        type: 'custom',
+        renderComponent: CustomRenderComponent,
+      },
       horaEntrada: {
         type: 'custom',
         editable:false,
@@ -27,12 +31,12 @@ export class HistoricoComponent {
         renderComponent: CustomRenderDataComponent,
         title: 'Saida',
       },
-      usuario: {
-        title: 'Usuario',
-        editable:false,
+      /*tempoTotal: {
         type: 'custom',
-        renderComponent: CustomRenderComponent,
-      },
+        editable:false,
+        renderComponent: CustomRenderTotalComponent,
+        title: 'Total da sessão',
+      },*/
     },
   };
 
@@ -49,6 +53,11 @@ export class CustomRenderDataComponent implements ViewCell {
 }
 @Component({template: `<nb-user [usuario]="value" size="medium">`,})
 export class CustomRenderComponent implements ViewCell {
+  @Input() rowData: any;
+  @Input() value: any;
+}
+@Component({template: `{{value|}}`,})
+export class CustomRenderTotalComponent implements ViewCell {
   @Input() rowData: any;
   @Input() value: any;
 }
