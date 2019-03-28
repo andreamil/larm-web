@@ -8,7 +8,7 @@ export class SecurityCamerasComponent {
 
   cameras: any[]=[{}];
 
-  selectedCamera: any = this.cameras[0];
+  selectedCamera: any;
 
   isSingleView = false;
 
