@@ -1,8 +1,8 @@
-<nb-card size="xlarge">
+<nb-card size="xxlarge">
   <nb-tabset fullWidth>
     <nb-tab tabTitle="Usuarios no Lab">
       <div class="contact" *ngFor="let r of registros" (mouseover)="r.hover=true" (mouseleave)="r.hover=false">
-          <nb-user [picture]="r.usuario.foto?baseUrl+'fotosPerfil/'+r.usuario._id+'.'+r.usuario.foto+'.png':null" [name]="r.usuario.fullName" [title]="r.usuario.role.includes('aluno')?'aluno':r.usuario.role.includes('professor')?'professor':''" size="large"></nb-user>
+          <nb-user [picture]="r.usuario.foto?baseUrl+'fotosPerfil/'+r.usuario._id+'.'+r.usuario.foto+'.png':null" [name]="r.usuario.fullName" [title]="r.usuario.role.includes('aluno')?'aluno':r.usuario.role.includes('professor')?'professor':''" size="medium"></nb-user>
       
         <span class="time">{{r.horaEntrada| date:'medium'}}</span>
           <div style="position:absolute;right: 2rem;background: white;" *ngIf="r.hover">
