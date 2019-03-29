@@ -43,6 +43,7 @@ export class HistoricoComponent {
   source: ServerDataSource;
   constructor(private http: HttpClient) {
     this.source = new ServerDataSource(this.http, { endPoint: 'http://150.162.234.151:45454/registro/relatorio/porta',dataKey: 'registros',totalKey:'total'});
+    this.source.setSort([{ field: 'horaSaida', direction: 'desc' }]);
   }
 }
 
