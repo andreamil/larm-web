@@ -55,9 +55,9 @@ export class CustomRenderDataComponent implements ViewCell {
 export class CustomRenderComponent implements ViewCell {
   @Input() rowData: any;
   @Input() value: any;
-}
+}/*
 @Component({template: `{{value|}}`,})
 export class CustomRenderTotalComponent implements ViewCell {
   @Input() rowData: any;
   @Input() value: any;
-}
+}*/
