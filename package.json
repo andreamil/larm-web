@@ -21,6 +21,7 @@
     "start:prod": "ng serve --prod --aot --host 0.0.0.0",
     "build": "ng build",
     "build:prod": "ng build --configuration='production'",
+    "build:gitprod": "git pull && ng build --configuration='production' && ng build --configuration='production' --output-path='/var/www/html'",
     "test": "ng test",
     "test:coverage": "rimraf coverage && npm run test -- --code-coverage",
     "lint": "ng lint --fix",
