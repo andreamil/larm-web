@@ -9,10 +9,10 @@
             <nb-badge *ngIf="badgeText" [text]="badgeText" [status]="badgeStatus" [position]="badgePosition"></nb-badge>
           </div>
           <div class="info-container">
-                <div *ngIf="showNameValue && name">
+                <div *ngIf="name">
                   <a *ngIf="user" routerLink="/paginas/usuarios/info-usuario/{{user._id}}" class="user-name">{{ name }}</a>
                   <div *ngIf="!user" class="user-name">{{ name }}</div>
                 </div>
-                <div *ngIf="showTitleValue && title" class="user-title">{{ title }}</div>
+                <div *ngIf="title" class="user-title">{{ title }}</div>
               </div>
       </nb-card>
