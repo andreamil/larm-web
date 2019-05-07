@@ -3,18 +3,19 @@
         <h1 style="margin-top: 0;">Lista de Usuários</h1>
     </div>
   </div>
-<nb-card class="row">
+<nb-card class="row" style="max-width: 100%;">
     <nb-card-header>
         <h3>Filtro</h3>
-        <input [(ngModel)]="textoFiltro"  nbInput fullWidth style="margin: 0.5rem;margin-bottom: 0;max-width: 100%;">
+        <input [(ngModel)]="textoFiltro"  nbInput fullWidth style="margin: 0.5rem;margin-bottom: 0;">
     </nb-card-header>  
-    <nb-card-body>
+    <nb-card-body style="max-width: 100%;">
             <nb-list>
 
                 <nb-list-item *ngFor="let usuario of usuarios  | filter : textoFiltro" style="display: flex;">
-                    <nb-user style="width: 100%;"
+                        <div class="row" style="width: 100%;">
+                    <nb-user class="col-9" style="width: 100%;"
                         [usuario]="usuario"
-                        size="medium">
+                        size="large">
                     </nb-user>
                     <!--nb-list *ngIf="response.rfid==usuario.rfid||response.id==usuario._id">
                             <nb-list-item *ngFor="let registro of response.registros" style="display: flex;">
@@ -22,18 +23,12 @@
                                 <span>Hora saida: {{registro.horaSaida}}</span>
                             </nb-list-item>
                         </nb-list>-->
-                        <div *nbIsGranted="['edit', 'user']">
+                        <div class="col-3" style="padding: 0;" *nbIsGranted="['edit', 'user']">
                             <button (click)="editar(usuario)" 
-                            nbButton
+                            nbButton style="margin:1rem; cursor: pointer; float: right;"
                             status="warning"
-                            style="cursor: pointer;margin: 1rem; float: right;">Editar</button>
-                        </div>
-                        <div>
-                            <button (click)="relatorioRFID(usuario.rfid)" 
-                            nbButton
-                            status="info"
-                            style="cursor: pointer;margin: 1rem; float: right;">Informações do usuario</button>
-                        </div>
+                            >Editar</button>
+                        </div></div>
                     </nb-list-item>
             </nb-list>
     </nb-card-body>

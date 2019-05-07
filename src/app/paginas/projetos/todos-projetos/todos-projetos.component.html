@@ -14,7 +14,7 @@
                       <nb-user [usuario]="projetoPesquisa.lider" size="medium"></nb-user>
                     </div>
 
-                <a routerLink="/pages/projetos/{{projetoPesquisa._id}}">
+                <a routerLink="/paginas/projetos/{{projetoPesquisa._id}}">
                   <h5>{{projetoPesquisa.titulo}}</h5>
                 </a>
 
@@ -65,7 +65,7 @@
                         <nb-user [picture]="projetoExtensao.lider.foto?baseUrl+'fotosPerfil/'+projetoExtensao.lider._id+'.'+projetoExtensao.lider.foto+'.png':null" [name]="projetoExtensao.lider.fullName" [title]="projetoExtensao.lider.role" size="medium"></nb-user>
                       </div>
   
-                  <a routerLink="/pages/projetos/{{projetoExtensao._id}}">
+                  <a routerLink="/paginas/projetos/{{projetoExtensao._id}}">
                     <h5>{{projetoExtensao.titulo}}</h5>
                   </a>
   

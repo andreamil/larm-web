@@ -79,6 +79,7 @@
     "ngx-socket-io": "^2.1.1",
     "normalize.css": "^8.0.1",
     "pace-js": "^1.0.2",
+    "resize-base64": "^1.0.12",
     "roboto-fontface": "^0.10.0",
     "rxjs": "^6.4.0",
     "rxjs-compat": "^6.4.0",

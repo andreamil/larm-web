@@ -15,7 +15,7 @@ import {
   NbThemeModule,
   // NbUserModule,
   NbCheckboxModule,
-//  NbPopoverModule,
+  NbPopoverModule,
   NbContextMenuModule,
   NbProgressBarModule,
 //  NbCalendarModule,
@@ -32,10 +32,10 @@ import {
   NbAlertModule,
   NbSpinnerModule,
   NbRadioModule,
-  NbUserModule,
+  // NbUserModule,
 //  NbSelectModule,
 //  NbChatModule,
-//  NbTooltipModule,
+  NbTooltipModule,
 //  NbCalendarKitModule,
 } from '@nebular/theme';
 
@@ -48,9 +48,9 @@ import {
 //  ThemeSettingsComponent,
 //  SwitcherComponent,
 //  LayoutDirectionSwitcherComponent,
-//  ThemeSwitcherComponent,
+  ThemeSwitcherComponent,
 //  TinyMCEComponent,
-//  ThemeSwitcherListComponent,
+  ThemeSwitcherListComponent,
 } from './components';
 import {
   CapitalizePipe,
@@ -59,7 +59,8 @@ import {
   TimingPipe,
   NumberWithCommasPipe,
   EvaIconsPipe,
-  FilterPipe
+  FilterPipe,
+  TempoTotalPipe
 } from './pipes';
 import {
    SampleLayoutComponent,
@@ -68,7 +69,7 @@ import {
 } from './layouts';
 import { CORPORATE_THEME } from './styles/theme.corporate';
 import { SafeHtmlPipe } from './pipes/safehtml.pipe';
-import { NbLarmUserModule } from './larm-user.module';
+import { NbLarmUserModule } from './components/larm-user/larm-user.module';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -84,7 +85,7 @@ const NB_MODULES = [
   NbSearchModule,
   NbSidebarModule,
   NbCheckboxModule,
-  // NbPopoverModule,
+  NbPopoverModule,
   NbContextMenuModule,
   NgbModule,
   NbSecurityModule, // *nbIsGranted directive,
@@ -100,32 +101,32 @@ const NB_MODULES = [
   // NbDatepickerModule,
   NbDialogModule,
   // NbWindowModule,
-   NbAlertModule,
-   NbSpinnerModule,
+  NbAlertModule,
+  NbSpinnerModule,
   NbRadioModule,
   // NbSelectModule,
   // NbChatModule,
-  // NbTooltipModule,
+  NbTooltipModule,
   // NbCalendarKitModule,
 ];
 
 const COMPONENTS = [
   // SwitcherComponent,
   // LayoutDirectionSwitcherComponent,
-  // ThemeSwitcherComponent,
-  // ThemeSwitcherListComponent,
+  ThemeSwitcherComponent,
+  ThemeSwitcherListComponent,
   HeaderComponent,
   FooterComponent,
   SearchInputComponent,
   // ThemeSettingsComponent,
   // TinyMCEComponent,
-   SampleLayoutComponent,
+  SampleLayoutComponent,
   // ThreeColumnsLayoutComponent,
   // TwoColumnsLayoutComponent,
 ];
 
 const ENTRY_COMPONENTS = [
-  // ThemeSwitcherListComponent,
+   ThemeSwitcherListComponent,
 ];
 
 const PIPES = [
@@ -136,7 +137,8 @@ const PIPES = [
   NumberWithCommasPipe,
   EvaIconsPipe,
   FilterPipe,
-  SafeHtmlPipe
+  SafeHtmlPipe,
+  TempoTotalPipe
 ];
 
 const NB_THEME_PROVIDERS = [

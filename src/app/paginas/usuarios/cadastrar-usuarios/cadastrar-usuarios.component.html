@@ -19,10 +19,11 @@
                         <button class="btn btn-outline-danger btn-icon" type="button" (click)="excluirUsuario() "><i class="nb-trash"></i></button>
                       </div></div>Usuario</nb-card-header>
                 <nb-card-body>
-                  <form  
+                  <form  autocomplete="off"
                   #form="ngForm"
-                  (ngSubmit)="form.valid&&user.rfid!=''&&user.rfid!=undefined&&user.rfid!=null?cadastrarUsuario():checkForm=true" >
+                  (ngSubmit)="form.valid?cadastrarUsuario():checkForm=true" >
             <div class="row">
+                <input autocomplete="false" name="hidden" type="text" style="display:none;">
                 <div class="col-lg-6">
                 <nb-card>
                 <nb-card-header>Dados</nb-card-header>
@@ -223,6 +224,7 @@
                                         [imageChangedEvent]="imageChangedEvent"
                                         [maintainAspectRatio]="true"
                                         format="png"
+                                        [resizeToWidth]="400"
                                         (imageCropped)="imageCropped($event)"
                                         (imageLoaded)="imageLoaded()"
                                         (loadImageFailed)="loadImageFailed()"
@@ -284,6 +286,46 @@
                           </div></div>
                           </div>
                         </div>
+                            <div *ngIf="user._id">
+                        <div class="form-group row"  *nbIsGranted="['edit', 'user']">
+                          <label for="idDigital" class="col-sm-3 col-form-label">Biometria</label>
+                          <div class="col-sm-9" style="text-align: center;">
+                            <div class="row">
+                              <div class="col-6 col-xxl-3" style="margin: auto;">
+                                <button class="btn btn-outline-primary btn-icon" style="width: 100%; height: 7rem; margin: auto;" type="button" (click)="cadastrarDigital() ">
+                                  <img src="https://www.materialui.co/materialIcons/action/fingerprint_black_192x192.png" style="max-height: 4rem;max-width: 4rem;">
+                                </button>
+                                 
+                              </div>
+                              <div class="col-6 col-xxl-3" style="margin: auto;">
+                                <span  style="
+                                font-size: 1rem;
+                            ">{{user.idDigital?'id: '+user.idDigital:digitalmsg?'msg: '+digitalmsg:'Não registrado'}}</span>
+                                 
+                              </div>
+                          <div class="col-6 col-xxl-3"  [nbSpinner]="cadastrandoDentro" nbSpinnerStatus="success"
+                           nbSpinnerSize="large" nbSpinnerMessage="" [ngClass]="{'margin-auto':!cadastrandoDentro}">
+                           
+                           <button class="btn btn-icon" style="width: 100%; height: 7rem; margin: auto;" type="button" [ngClass]="{'btn-outline-success':cadastradoDentro,'btn-outline-danger':!cadastradoDentro}">
+                            <i style="max-height: 5rem;max-width: 5rem;" [ngClass]="{'nb-checkmark':cadastradoDentro,'nb-close':!cadastradoDentro}"></i>
+                          </button>
+                           <span  style="
+                           font-size: 1rem;
+                       ">Dentro</span>
+                          </div>
+                          <div class="col-6 col-xxl-3"  [nbSpinner]="cadastrandoFora" nbSpinnerStatus="success"
+                           nbSpinnerSize="large" nbSpinnerMessage="" [ngClass]="{'margin-auto':!cadastrandoFora}">
+                           
+                           <button class="btn btn-icon" style="width: 100%; height: 7rem; margin: auto;" type="button" [ngClass]="{'btn-outline-success':cadastradoFora,'btn-outline-danger':!cadastradoFora}">
+                            <i style="max-height: 5rem;max-width: 5rem;" [ngClass]="{'nb-checkmark':cadastradoFora,'nb-close':!cadastradoFora}"></i>
+                          </button>
+                           <span  style="
+                           font-size: 1rem;
+                       ">Fora</span>
+                          </div>
+                        </div>
+                          </div>
+                        </div> </div>
                         
                       </form>
                     </nb-card-body>

@@ -8,6 +8,11 @@ export interface Notificacao {
   title: string;
   config: NbToastrConfig;
 }
+export interface StatusDigital {
+  msg: string;
+  status: string;
+  id: Number;
+}
 
 @Injectable({providedIn: 'root'})
 export class SocketService extends Socket {
@@ -21,6 +26,7 @@ export class SocketService extends Socket {
   msg = this.fromEvent<Notificacao>('notificacao');
   autorizado = this.fromEvent<boolean>('autorizado');
   novoRFID = this.fromEvent<string>('novo RFID');
+  statusCadastroDigital = this.fromEvent<StatusDigital>('status digital');
   getFotoLarm = this.fromEvent<any>('foto larm');
   getUsuariosNoLab = this.fromEvent<any>('get usuarios no lab');
   

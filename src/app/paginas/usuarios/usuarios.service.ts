@@ -37,6 +37,12 @@ export class ResponseUsuario{
 }
 @Injectable()
 export class UsuariosService {
+  getUsuarioHistoricoRecente(id: string): Observable<ResponseUsuario> {
+    return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'registro/relatorio/porta/id/'+id+'?_page=1&_limit=10&_mode=recente')
+  }
+  //getUsuarioHistorico(id: string): Observable<ResponseUsuario> {
+  //  return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'registro/relatorio/porta/id/'+id+'?_page=1&_limit=10&_mode=recente')
+  //}
   excluirUsuario(userId: any){
     return this.http.delete(Config.BASE_API_URL + 'usuarios/excluir/'+userId)
   } 
@@ -56,5 +62,8 @@ export class UsuariosService {
   }
   getUsuarioEu(): Observable<ResponseUsuario> {
     return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'usuarios/eu/')
+  }
+  getProfessores(): Observable<ResponseUsuario> {
+    return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'usuarios/professores/')
   }
 }

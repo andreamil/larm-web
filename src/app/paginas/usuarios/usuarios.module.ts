@@ -9,6 +9,7 @@ import { UsuariosService } from './usuarios.service';
 import { NbDialogModule } from '@nebular/theme';
 import { ImageCropperModule } from 'ngx-image-cropper'
 import { AuthGuard } from '../../auth-guard.service';
+import { InfoUsuarioComponent } from './info-usuario/info-usuario.component';
 const routes: Routes = [{
   path: '',
   //redirectTo: 'meuperfil',
@@ -24,6 +25,10 @@ const routes: Routes = [{
     {
       path: 'criar-editar-usuario/:id', canLoad: [AuthGuard],canActivate: [AuthGuard],
       component: CadastrarUsuariosComponent,
+    },
+    {
+      path: 'info-usuario/:id', canLoad: [AuthGuard],canActivate: [AuthGuard],
+      component: InfoUsuarioComponent,
     },
     {
       path: 'meu-perfil',
@@ -45,7 +50,8 @@ const routes: Routes = [{
     ListarUsuariosComponent,
     CadastrarUsuariosComponent,
     DialogUsuarioComponent,
-    DialogExcluirUsuarioComponent
+    DialogExcluirUsuarioComponent,
+    InfoUsuarioComponent
   ],
   providers: [
     UsuariosService
