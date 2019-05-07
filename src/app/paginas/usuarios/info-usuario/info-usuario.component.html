@@ -85,12 +85,12 @@
                   <ul class="list-group" >
                     <div *ngFor="let item of registros" class="item-group">
                         <div *ngIf="item.horaEntrada&&item.horaSaida" >
-                            <li class="saida"><span title="{{item.horaSaida|date:'medium'}}">{{item.horaSaida|date:'short'}}</span><i class="ion-log-out"></i></li><div class="total"><span class="totalText">{{item|tempoTotal}}</span></div>
-                            <li class="entrada"><i class="ion-log-in"></i><span title="{{item.horaEntrada|date:'medium'}}">{{item.horaEntrada|date:'short'}}</span></li>
+                            <li class="saida"><span title="{{item.horaSaida|date:'medium'}}">{{item.horaSaida|date:'dd/MM/yy, HH:mm'}}</span><i class="ion-log-out"></i></li><div class="total"><span class="totalText">{{item|tempoTotal}}</span></div>
+                            <li class="entrada"><i class="ion-log-in"></i><span title="{{item.horaEntrada|date:'medium'}}">{{item.horaSaida|date:'dd/MM/yy, HH:mm'}}</span></li>
                             </div>
                         <div *ngIf="item.horaEntrada?!item.horaSaida:item.horaSaida">
-                          <li *ngIf="item.horaSaida" class="saida"><i class="ion-log-out"></i><span title="{{item.horaSaida|date:'medium'}}">{{item.horaSaida|date:'short'}}</span></li>
-                          <li *ngIf="item.horaEntrada" class="entrada"><i class="ion-log-in"></i><span title="{{item.horaEntrada|date:'medium'}}">{{item.horaEntrada|date:'short'}}</span></li>
+                          <li *ngIf="item.horaSaida" class="saida"><i class="ion-log-out"></i><span title="{{item.horaSaida|date:'medium'}}">{{item.horaSaida|date:'dd/MM/yy, HH:mm'}}</span></li>
+                          <li *ngIf="item.horaEntrada" class="entrada"><i class="ion-log-in"></i><span title="{{item.horaEntrada|date:'medium'}}">{{item.horaSaida|date:'dd/MM/yy, HH:mm'}}</span></li>
                       </div>
                     </div>
                   </ul>

@@ -4,7 +4,7 @@
       <div class="contact" *ngFor="let r of registros" (mouseover)="r.hover=true" (mouseleave)="r.hover=false">
           <nb-user [usuario]="r.usuario" [title]="r.usuario.role.includes('aluno')?'aluno':r.usuario.role.includes('professor')?'professor':''" size="medium"></nb-user>
       
-        <span class="time">{{r.horaEntrada| date:'medium'}}</span>
+        <span class="time">{{r.horaEntrada| date:'medium' :undefined :'pt'}}</span>
           <div style="position:absolute;right: 2rem;background: white;" *ngIf="r.hover">
           <button *nbIsGranted="['edit','user']" class="btn btn-outline-danger btn-icon" type="button" (click)="registrarSaida(r.usuario.rfid) "><i class="ion-log-out"></i></button>
         </div>
