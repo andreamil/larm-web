@@ -1,6 +1,11 @@
-import { Component, OnInit, Input, ViewEncapsulation, OnDestroy, ViewChild } from '@angular/core';
-import { UsuariosService, Usuario } from '../usuarios.service';
-import { NbDialogService } from '@nebular/theme';
+import { Component, OnInit, OnDestroy/*, Input, ViewEncapsulation, ViewChild*/ } from '@angular/core';
+import { UsuariosService/*, Usuario*/ } from '../usuarios.service';
+// import { NbDialogService } from '@nebular/theme';
+
+import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Config } from '../../../config';
 @Component({
   selector: 'ngx-info-usuario',
   templateUrl: './info-usuario.component.html',
@@ -77,41 +82,37 @@ export class InfoUsuarioComponent implements OnInit, OnDestroy {
 import { NbDialogRef } from '@nebular/theme';
 import { ImageCroppedEvent, ImageCropperComponent } from 'ngx-image-cropper';
 import { SocketService } from '../../socket.service';
-import { Subscription } from 'rxjs';
-import { take } from 'rxjs/operators';
-import { ActivatedRoute, Router } from '@angular/router';
 import { NbAuthService } from '@nebular/auth';
-import { Config } from '../../../config';
 import { stringify } from '@angular/compiler/src/util';
 
-@Component({
-  selector: 'ngx-dialog-usuario',
-  encapsulation: ViewEncapsulation.None,
-  template: `
-<nb-card>
-  <nb-card-header>{{ title }}</nb-card-header>
-  <nb-card-body>
-   Mensagem do servidor: {{conteudo}}
-  </nb-card-body>
-  <nb-card-footer>
-    <button nbButton status="primary" (click)="dismiss()">OK</button>
-  </nb-card-footer>
-</nb-card>`,
-  styles: [`  
-    .cdk-global-scrollblock {
-      position: initial;
-      width: initial;
-      overflow: hidden;
-    }`],
-})
-export class DialogUsuarioComponent {
+// @Component({
+//   selector: 'ngx-dialog-usuario',
+//   encapsulation: ViewEncapsulation.None,
+//   template: `
+// <nb-card>
+//   <nb-card-header>{{ title }}</nb-card-header>
+//   <nb-card-body>
+//    Mensagem do servidor: {{conteudo}}
+//   </nb-card-body>
+//   <nb-card-footer>
+//     <button nbButton status="primary" (click)="dismiss()">OK</button>
+//   </nb-card-footer>
+// </nb-card>`,
+//   styles: [`  
+//     .cdk-global-scrollblock {
+//       position: initial;
+//       width: initial;
+//       overflow: hidden;
+//     }`],
+// })
+// export class DialogUsuarioComponent {
 
-  @Input() title: string;
-  @Input() conteudo: string;
+//   @Input() title: string;
+//   @Input() conteudo: string;
 
-  constructor(protected ref: NbDialogRef<DialogUsuarioComponent>) { }
+//   constructor(protected ref: NbDialogRef<DialogUsuarioComponent>) { }
 
-  dismiss() {
-    this.ref.close();
-  }
-}
+//   dismiss() {
+//     this.ref.close();
+//   }
+// }

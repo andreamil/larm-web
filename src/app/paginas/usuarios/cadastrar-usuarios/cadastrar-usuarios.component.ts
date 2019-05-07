@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, ViewEncapsulation, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { UsuariosService, Usuario } from '../usuarios.service';
 import { NbDialogService } from '@nebular/theme';
-import * as resizeBase64 from 'resize-base64';
 @Component({
   selector: 'ngx-cadastrar-usuarios',
   templateUrl: './cadastrar-usuarios.component.html',
