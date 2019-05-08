@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TempoTotalPipe implements PipeTransform {
   transform(items: any): any {
-    if(!items) return [];
+    if(!items||!items.horaSaida||!items.horaEntrada) return '';
     let segundos = Math.round((+new Date(items.horaSaida) - +new Date(items.horaEntrada)) / 1000);
     const intervalos = {
         'ano': 31536000,
