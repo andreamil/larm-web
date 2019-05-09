@@ -34,6 +34,8 @@ export class InfoUsuarioComponent implements OnInit, OnDestroy {
     private router: Router) { }
   private _getUsuarioIDSub: Subscription;
 
+  professorSelecionado:any={}
+  professores=[{}]
   croppedImage: any = 'http://sg-fs.com/wp-content/uploads/2017/08/user-placeholder.png';
   rfidLoading = false;
   meuperfil = false;
@@ -57,12 +59,18 @@ export class InfoUsuarioComponent implements OnInit, OnDestroy {
   ngOnInit() {
     let idUser: string = this.route.snapshot.paramMap.get('id');
     if (idUser) {
-      this._getUsuarioIDSub = this.usuarioService.getUsuarioID(idUser).pipe(take(1)).subscribe((body) => {
+      this.usuarioService.getUsuarioID(idUser).then((body) => {
         this.user = body.user;
         this.setupUser();
       })
-      this._getUsuarioHistoricoRecenteSub = this.usuarioService.getUsuarioHistoricoRecente(idUser).pipe(take(1)).subscribe((body) => {
+      this.usuarioService.getUsuarioHistoricoRecente(idUser).then((body) => {
         this.registros=body.registros;
+      })
+      this.usuarioService.getProfessores().then((body)=>{ 
+        this.professores = body.usuarios;
+        if(this.user.profResponsavel){
+          this.professorSelecionado=this.professores.find((prof)=>prof["_id"]==this.user.profResponsavel)
+        }
       })
     }
     // this.registros.forEach((val,i) => {
@@ -73,8 +81,8 @@ export class InfoUsuarioComponent implements OnInit, OnDestroy {
     // })
   }
   ngOnDestroy(): void {
-    this._getUsuarioIDSub && (this._getUsuarioIDSub.unsubscribe());
-    this._getUsuarioHistoricoRecenteSub && (this._getUsuarioHistoricoRecenteSub.unsubscribe());
+    // this._getUsuarioIDSub && (this._getUsuarioIDSub.unsubscribe());
+    // this._getUsuarioHistoricoRecenteSub && (this._getUsuarioHistoricoRecenteSub.unsubscribe());
   }
   idbkp: Number;
 

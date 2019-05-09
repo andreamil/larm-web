@@ -35,15 +35,44 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
     private socketService : SocketService,
     private route: ActivatedRoute,
     private authService: NbAuthService,
-    private router: Router) { }
+    private router: Router) {    
+      if(this.usuarioService.usuarioEdit){
+      console.log(this.usuarioService.usuarioEdit);
+      this.user = this.usuarioService.usuarioEdit;
+      this.setupUser();
+      this.usuarioService.usuarioEdit=null;
+    }else if(this.route.snapshot.paramMap.get('id')){
+      this.usuarioService.getUsuarioID(this.route.snapshot.paramMap.get('id')).then((body)=>{
+          this.user = body.user;
+          this.setupUser();
+        })
+      } 
+      else if(this.route.snapshot.url[0].path=='meu-perfil'){
+        this.meuperfil=true;
+        this.usuarioService.getUsuarioEu().then((body)=>{
+          this.user = body.user;
+          this.setupUser();
+        })
+    } 
+
+    this.usuarioService.getProfessores().then((body)=>{ 
+      this.professores = body.usuarios;
+      if(this.user.profResponsavel){
+        this.professorSelecionado=this.professores.find((prof)=>prof["_id"]==this.user.profResponsavel)
+      }
+    })
+  }
   private _lendoConfirmacaoSub: Subscription;
   private _getFotoLarmSub: Subscription;
   private _novoRFIDSub: Subscription;
   private _getUsuarioIDSub: Subscription;
+  private _getProfessoresSub: Subscription;
   private _cadastrarUsuarioSub: Subscription;
   private _statusCadastroDigitalSub: Subscription;
   private _imageCroppedBase64Sub: Subscription;
   
+  professorSelecionado:any={}
+  professores=[{}]
   imageChangedEvent: any = '';
   croppedImage: any = 'http://sg-fs.com/wp-content/uploads/2017/08/user-placeholder.png';
   showCropper = false;
@@ -61,24 +90,7 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
     }
   }
   ngOnInit() { 
-    if(this.usuarioService.usuarioEdit){
-      console.log(this.usuarioService.usuarioEdit);
-      this.user = this.usuarioService.usuarioEdit;
-      this.setupUser();
-      this.usuarioService.usuarioEdit=null;
-    }else if(this.route.snapshot.paramMap.get('id')){
-      this._getUsuarioIDSub=this.usuarioService.getUsuarioID(this.route.snapshot.paramMap.get('id')).pipe(take(1)).subscribe((body)=>{
-          this.user = body.user;
-          this.setupUser();
-        })
-      } 
-      else if(this.route.snapshot.url[0].path=='meu-perfil'){
-        this.meuperfil=true;
-        this._getUsuarioIDSub=this.usuarioService.getUsuarioEu().pipe(take(1)).subscribe((body)=>{
-          this.user = body.user;
-          this.setupUser();
-        })
-    }
+
     
     
   }
@@ -87,6 +99,7 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
     this._novoRFIDSub&&(this._novoRFIDSub.unsubscribe());
     this._getFotoLarmSub&&(this._getFotoLarmSub.unsubscribe());
     this._getUsuarioIDSub&&(this._getUsuarioIDSub.unsubscribe());    
+    this._getProfessoresSub&&(this._getProfessoresSub.unsubscribe());    
     this._cadastrarUsuarioSub&&(this._cadastrarUsuarioSub.unsubscribe());
     this._statusCadastroDigitalSub&&(this._statusCadastroDigitalSub.unsubscribe());
     this._imageCroppedBase64Sub&&(this._imageCroppedBase64Sub.unsubscribe());
@@ -132,7 +145,7 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
     })
     .onClose.subscribe(resposta => {
       if(resposta){
-        this._cadastrarUsuarioSub=this.usuarioService.excluirUsuario(this.user._id).subscribe((res) => {
+        this.usuarioService.excluirUsuario(this.user._id).then((res) => {
           this.dialogService.open(DialogUsuarioComponent, {
             context: {
               title: res["success"]?"Sucesso":"Falha",
@@ -208,7 +221,7 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
     this.user.role=this.checkboxAdmin?[this.user.role,'admin']:[this.user.role];
     console.log(this.user.role);
     
-    this._cadastrarUsuarioSub=this.usuarioService.cadastrarUsuario(this.user).subscribe((res) => {
+    this.usuarioService.cadastrarUsuario(this.user).then((res) => {
       this.dialogService.open(DialogUsuarioComponent, {
         context: {
           title: res["success"]?"Sucesso":"Falha",

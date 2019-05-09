@@ -3,7 +3,9 @@
 @import '~@nebular/theme/styles/global/breakpoints';
 
 @include nb-install-component() {
-
+  .dropdown.btn-group .dropdown-toggle{
+    width: 100%;
+  }
   .cdk-global-scrollblock {
     position: initial;
     width: initial;

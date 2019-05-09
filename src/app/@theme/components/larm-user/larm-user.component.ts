@@ -110,6 +110,8 @@ export class NbLarmUserComponent {
    */
   @Input() name: string = 'Anonymous';
 
+  @Input() link: boolean = true;
+
 
 
 

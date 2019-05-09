@@ -21,7 +21,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
   constructor(private usuariosService: UsuariosService,private socketService: SocketService) {
 
     this._getUsuariosLabSub = this.socketService.getUsuariosNoLab.subscribe(()=>{
-      this.usuariosService.getUsuariosNoLab().pipe(take(1)).subscribe((response)=>{
+      this.usuariosService.getUsuariosNoLab().then((response)=>{
         this.registros= response.registros;
         console.log(response.registros[0].usuario.horaEntrada);
       })
@@ -30,9 +30,8 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.usuariosService.getUsuariosNoLab().pipe(take(1)).subscribe((response)=>{
+    this.usuariosService.getUsuariosNoLab().then((response)=>{
       this.registros= response.registros;
-      console.log(response.msg);
     })
   }
   registrarSaida(rfid){

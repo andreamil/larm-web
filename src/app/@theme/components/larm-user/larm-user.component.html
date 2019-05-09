@@ -13,7 +13,8 @@
   <!--div class="info-container" [nbPopover]="userPopoverComponent" nbPopoverTrigger="hint" nbPopoverPlacement="bottom"-->
   <div class="info-container">
     <div *ngIf="showNameValue && name">
-      <a *ngIf="user" routerLink="/paginas/usuarios/info-usuario/{{user._id}}" class="user-name">{{ name }}</a>
+        <a *ngIf="user&&link" routerLink="/paginas/usuarios/info-usuario/{{user._id}}" class="user-name">{{ name }}</a>
+        <a *ngIf="user&&!link" class="user-name">{{ name }}</a>
       <div *ngIf="!user" class="user-name">{{ name }}</div>
     </div>
     <div *ngIf="showTitleValue && title" class="user-title">{{ title }}</div>

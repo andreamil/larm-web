@@ -143,19 +143,49 @@
                             </ng-container>
                         </div>
                     </div>
-                    <div class="form-group row" *ngIf="user.role=='aluno'">
-                      <label for="matricula" class="col-sm-3 col-form-label">Matrícula</label>
-                      <div class="col-sm-9">
-                        <input nbInput type="number" class="form-control" name="matricula" id="matricula" [(ngModel)]="user.matricula"
-                        [required]="user.role=='aluno'"                        
-                        #matricula="ngModel"
-                        [status]="(checkForm||matricula.dirty) ? (matricula.invalid  ? 'danger' : 'success') : ''">
-                        <ng-container  *ngIf="checkForm&&matricula.errors?.required">
-                            <p class="error-message">
-                              Matrícula é obrigatória!
-                            </p>
-                          </ng-container>
-                      </div>
+                    <div *ngIf="user.role=='aluno'">
+                        <div class="form-group row" >
+                          <label for="matricula" class="col-sm-3 col-form-label">Matrícula</label>
+                          <div class="col-sm-9">
+                            <input nbInput type="number" class="form-control" name="matricula" id="matricula" [(ngModel)]="user.matricula"
+                            [required]="user.role=='aluno'"                        
+                            #matricula="ngModel"
+                            [status]="(checkForm||matricula.dirty) ? (matricula.invalid  ? 'danger' : 'success') : ''">
+                            <ng-container  *ngIf="checkForm&&matricula.errors?.required">
+                                <p class="error-message">
+                                  Matrícula é obrigatória!
+                                </p>
+                              </ng-container>
+                          </div>
+                        </div>
+                        <div class="form-group row" >
+                          <label for="profResponsavel" class="col-sm-3 col-form-label">Prof. Responsável</label>
+                          <div class=" col-sm-9 ">
+                              <div *ngIf="user.profResponsavel" style="display: flex;
+                              height: 3.25rem;
+                              justify-content: space-between;">
+                                <nb-user [usuario]="professorSelecionado"  [link]="false" size="medium"></nb-user>
+                                <div  *nbIsGranted="['edit', 'user']"><button ngbButton class="btn btn-danger" type="button" (click)="professorSelecionado={fullname:''}&&user.profResponsavel=''&&textoFiltroProf=''" > <i class="nb-close"></i></button></div>
+                               </div>
+                              <div *ngIf="!user.profResponsavel||user.profResponsavel==''">
+                            <input nbInput type="hidden" name="profResponsavel" id="profResponsavel" [(ngModel)]="user.profResponsavel"
+                            [required]="user.role=='aluno'" #profResponsavel="ngModel">
+                            <div class="dropdown btn-group" ngbDropdown #myDrop="ngbDropdown">
+                                <input  [(ngModel)]="textoFiltroProf" [ngModelOptions]="{standalone: true}" nbInput class="form-control"                        
+                                 ngbDropdownAnchor (focus)="myDrop.open()" #profResponsavelFiltro="ngModel"
+                                [status]="(checkForm||profResponsavelFiltro.dirty) ? (profResponsavel.invalid  ? 'danger' : 'success') : ''">
+                                <button type="button" class="btn btn-primary dropdown-toggle" (click)="myDrop.open()" style="width:10%;"></button>
+                                <ul class="dropdown-menu" ngbDropdownMenu>
+                                  <li class="dropdown-item" *ngFor="let professor of professores | filter : textoFiltroProf : 10" (click)="user.profResponsavel=professor._id&&professorSelecionado=professor"><nb-user [usuario]="professor" [link]="false" size="medium"></nb-user></li>
+                                </ul>
+                              </div>
+                            <ng-container  *ngIf="checkForm&&profResponsavel.errors?.required">
+                                <p class="error-message">
+                                  Professor responsável é obrigatório!
+                                </p>
+                              </ng-container></div>
+                          </div>
+                        </div>
                     </div>
                     <div class="form-group row" *ngIf="user.role=='professor'">
                       <label for="siape" class="col-sm-3 col-form-label">SIAPE</label>

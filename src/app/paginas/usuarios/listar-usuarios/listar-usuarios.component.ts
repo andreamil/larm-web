@@ -47,7 +47,7 @@ export class ListarUsuariosComponent implements OnInit {
   }
   getUsuarios() {
       this.usuarioService.getUsuarios()
-          .subscribe(response => {
+          .then(response => {
               if (response) {
                   this.usuarios = response.usuarios;
                   this.msg = response.msg;

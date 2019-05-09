@@ -55,10 +55,18 @@
                     {{user.permisssao}}
                   </div>
                 </div>-->
-                <div class="row" *ngIf="user.role=='aluno'">
-                  <label for="matricula" class="col-sm-6 col-form-label">Matrícula</label>
-                  <div class="col-sm-6 col-form-label">
-                    {{user.matricula||'Não cadastrado'}}
+                <div *ngIf="user.role=='aluno'">
+                <div class="row">
+                    <label for="matricula" class="col-sm-6 col-form-label">Matrícula</label>
+                    <div class="col-sm-6 col-form-label">
+                      {{user.matricula||'Não cadastrado'}}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <label for="profResponsavel" class="col-sm-6 col-form-label">Prof. Responsável</label>
+                    <div class="col-sm-6 col-form-label">
+                      <nb-user [usuario]="professorSelecionado" [link]="false" [showTitle]="false" size="small"></nb-user>
+                    </div>
                   </div>
                 </div>
                 <div class="row" *ngIf="user.role=='professor'">

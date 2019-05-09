@@ -37,33 +37,33 @@ export class ResponseUsuario{
 }
 @Injectable()
 export class UsuariosService {
-  getUsuarioHistoricoRecente(id: string): Observable<ResponseUsuario> {
-    return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'registro/relatorio/porta/id/'+id+'?_page=1&_limit=10&_mode=recente')
+  getUsuarioHistoricoRecente(id: string): Promise<ResponseUsuario> {
+    return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'registro/relatorio/porta/id/'+id+'?_page=1&_limit=10&_mode=recente').toPromise()
   }
   //getUsuarioHistorico(id: string): Observable<ResponseUsuario> {
   //  return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'registro/relatorio/porta/id/'+id+'?_page=1&_limit=10&_mode=recente')
   //}
   excluirUsuario(userId: any){
-    return this.http.delete(Config.BASE_API_URL + 'usuarios/excluir/'+userId)
+    return this.http.delete(Config.BASE_API_URL + 'usuarios/excluir/'+userId).toPromise()
   } 
   constructor(private http: HttpClient) { }
   public usuarioEdit:any;
   cadastrarUsuario(user: any){
-    return this.http.post(Config.BASE_API_URL + 'usuarios/criar',user)
+    return this.http.post(Config.BASE_API_URL + 'usuarios/criar',user).toPromise()
   } 
-  getUsuarios() : Observable<ResponseUsuario>{
-    return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'usuarios/user')
+  getUsuarios() : Promise<ResponseUsuario>{
+    return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'usuarios/user').toPromise()
   }
-  getUsuariosNoLab() : Observable<ResponseUsuario>{
-    return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'registro/relatorio/porta/agora')
+  getUsuariosNoLab() : Promise<ResponseUsuario>{
+    return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'registro/relatorio/porta/agora').toPromise()
   }
-  getUsuarioID(id:string): Observable<ResponseUsuario> {
-    return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'usuarios/user/'+id)
+  getUsuarioID(id:string): Promise<ResponseUsuario> {
+    return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'usuarios/user/'+id).toPromise()
   }
-  getUsuarioEu(): Observable<ResponseUsuario> {
-    return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'usuarios/eu/')
+  getUsuarioEu(): Promise<ResponseUsuario> {
+    return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'usuarios/eu/').toPromise()
   }
-  getProfessores(): Observable<ResponseUsuario> {
-    return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'usuarios/professores/')
+  getProfessores(): Promise<ResponseUsuario> {
+    return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'usuarios/professores/').toPromise()
   }
 }
