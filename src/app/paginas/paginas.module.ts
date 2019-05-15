@@ -7,6 +7,7 @@ import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { SolicitacoesModule } from './solicitacoes/solicitacoes.module';
 import { PortaModule } from './porta/porta.module';
+import { RegistroService } from './registro.service';
 
 @NgModule({
   imports: [
@@ -19,6 +20,9 @@ import { PortaModule } from './porta/porta.module';
   ],
   declarations: [
     PaginasComponent
+  ],
+  providers: [
+    RegistroService
   ],
   exports: [
   ]

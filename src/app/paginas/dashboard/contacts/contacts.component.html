@@ -1,4 +1,9 @@
-<nb-card size="xxlarge">
+<nb-card size="xlarge"><div style="    position: absolute;
+  height: 54px;
+  right: 16px;
+  padding: 0.5rem;">
+    <button class="btn btn-outline-primary btn-icon" style="height: 100%;right: 0;"type="button" (click)="getUsuariosNoLab() "><i class="nb-loop"></i></button>
+  </div>
   <nb-tabset fullWidth>
     <nb-tab tabTitle="Usuarios no Lab">
       <div class="contact" *ngFor="let r of registros" (mouseover)="r.hover=true" (mouseleave)="r.hover=false">

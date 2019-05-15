@@ -36,6 +36,12 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
     private route: ActivatedRoute,
     private authService: NbAuthService,
     private router: Router) {    
+      this.usuarioService.getProfessores().then((body)=>{ 
+        this.professores = body.usuarios;
+        if(this.user.profResponsavel){
+          this.professorSelecionado=this.professores.find((prof)=>prof["_id"]==this.user.profResponsavel)
+        }
+      })
       if(this.usuarioService.usuarioEdit){
       console.log(this.usuarioService.usuarioEdit);
       this.user = this.usuarioService.usuarioEdit;
@@ -55,12 +61,6 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
         })
     } 
 
-    this.usuarioService.getProfessores().then((body)=>{ 
-      this.professores = body.usuarios;
-      if(this.user.profResponsavel){
-        this.professorSelecionado=this.professores.find((prof)=>prof["_id"]==this.user.profResponsavel)
-      }
-    })
   }
   private _lendoConfirmacaoSub: Subscription;
   private _getFotoLarmSub: Subscription;

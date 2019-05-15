@@ -30,6 +30,7 @@ export class InfoUsuarioComponent implements OnInit, OnDestroy {
   entradasSaidas: any[]=[];
   constructor(
     private usuarioService: UsuariosService,
+    private registroService: RegistroService,
     private route: ActivatedRoute,
     private router: Router) { }
   private _getUsuarioIDSub: Subscription;
@@ -63,7 +64,7 @@ export class InfoUsuarioComponent implements OnInit, OnDestroy {
         this.user = body.user;
         this.setupUser();
       })
-      this.usuarioService.getUsuarioHistoricoRecente(idUser).then((body) => {
+      this.registroService.getRegistroHistoricoRecente(idUser).then((body) => {
         this.registros=body.registros;
       })
       this.usuarioService.getProfessores().then((body)=>{ 
@@ -92,6 +93,7 @@ import { ImageCroppedEvent, ImageCropperComponent } from 'ngx-image-cropper';
 import { SocketService } from '../../socket.service';
 import { NbAuthService } from '@nebular/auth';
 import { stringify } from '@angular/compiler/src/util';
+import { RegistroService } from '../../registro.service';
 
 // @Component({
 //   selector: 'ngx-dialog-usuario',

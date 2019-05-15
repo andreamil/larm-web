@@ -13,6 +13,7 @@ import { ContactsComponent } from './contacts/contacts.component';
 // import { TeamComponent } from './team/team.component';
 // import { KittenComponent } from './kitten/kitten.component';
 import { SecurityCamerasComponent } from './security-cameras/security-cameras.component';
+import { TimelineComponent } from './timeline/timeline.component';
 // import { ElectricityComponent } from './electricity/electricity.component';
 // import { ElectricityChartComponent } from './electricity/electricity-chart/electricity-chart.component';
 // import { WeatherComponent } from './weather/weather.component';
@@ -38,6 +39,7 @@ const routes: Routes = [{
   exports: [RouterModule],
   declarations: [
     DashboardComponent,
+    TimelineComponent,
     // StatusCardComponent,
     // TemperatureDraggerComponent,
     ContactsComponent,

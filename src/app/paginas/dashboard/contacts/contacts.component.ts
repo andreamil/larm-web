@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbThemeService, NbMediaBreakpoint, NbMediaBreakpointsService } from '@nebular/theme';
 
 import { UserService } from '../../../@core/data/users.service';
-import { UsuariosService } from '../../usuarios/usuarios.service';
+import { RegistroService } from '../../registro.service';
 import { Config } from '../../../config';
 import { SocketService } from '../../socket.service';
 import { Subscription } from 'rxjs';
@@ -18,19 +18,19 @@ export class ContactsComponent implements OnInit, OnDestroy {
   registros: any[];
   baseUrl = Config.BASE_API_URL;
   private _getUsuariosLabSub: Subscription;
-  constructor(private usuariosService: UsuariosService,private socketService: SocketService) {
+  constructor(private registroService: RegistroService,private socketService: SocketService) {
 
     this._getUsuariosLabSub = this.socketService.getUsuariosNoLab.subscribe(()=>{
-      this.usuariosService.getUsuariosNoLab().then((response)=>{
-        this.registros= response.registros;
-        console.log(response.registros[0].usuario.horaEntrada);
-      })
+      this.getUsuariosNoLab();
     })
   }
 
   ngOnInit() {
-
-    this.usuariosService.getUsuariosNoLab().then((response)=>{
+    this.getUsuariosNoLab();
+    
+  }
+  getUsuariosNoLab(){
+    this.registroService.getUsuariosNoLab().then((response)=>{
       this.registros= response.registros;
     })
   }

@@ -37,12 +37,6 @@ export class ResponseUsuario{
 }
 @Injectable()
 export class UsuariosService {
-  getUsuarioHistoricoRecente(id: string): Promise<ResponseUsuario> {
-    return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'registro/relatorio/porta/id/'+id+'?_page=1&_limit=10&_mode=recente').toPromise()
-  }
-  //getUsuarioHistorico(id: string): Observable<ResponseUsuario> {
-  //  return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'registro/relatorio/porta/id/'+id+'?_page=1&_limit=10&_mode=recente')
-  //}
   excluirUsuario(userId: any){
     return this.http.delete(Config.BASE_API_URL + 'usuarios/excluir/'+userId).toPromise()
   } 
@@ -53,9 +47,6 @@ export class UsuariosService {
   } 
   getUsuarios() : Promise<ResponseUsuario>{
     return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'usuarios/user').toPromise()
-  }
-  getUsuariosNoLab() : Promise<ResponseUsuario>{
-    return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'registro/relatorio/porta/agora').toPromise()
   }
   getUsuarioID(id:string): Promise<ResponseUsuario> {
     return this.http.get<ResponseUsuario>(Config.BASE_API_URL + 'usuarios/user/'+id).toPromise()
