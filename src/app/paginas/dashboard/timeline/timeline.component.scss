@@ -1,0 +1,105 @@
+@import '../../../@theme/styles/themes';
+@import '~@nebular/bootstrap/styles/hero-buttons';
+
+@include nb-install-component() {
+  .usuario{
+    display: flex;
+  
+    .user-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+  
+    .user-picture {
+      position: relative;
+      border-radius: 50%;
+      flex-shrink: 0;
+  
+      &.image {
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+  
+      &.background {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  
+    .user-title {
+      font-size: 0.75rem;
+    }
+  
+    .info-container {
+      margin-left: 0.5rem;
+    }
+  }
+  /*
+  nb-tabset {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  nb-tab {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0;
+  }
+
+  .contact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: nb-theme(color-fg);
+    padding: 0.7rem;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid nb-theme(separator);
+
+      @include nb-for-theme(corporate) {
+        border-bottom-color: nb-theme(tabs-separator);
+      }
+    }
+    .user-name{
+        text-transform: capitalize;
+    }
+  }
+
+  .i-contact {
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+  .time {
+    font-size: 0.875rem;
+    font-weight: nb-theme(font-weight-light);
+    text-transform: uppercase;
+  }
+
+  nb-user /deep/ {
+    .info-container {
+      @include nb-ltr(margin-left, 0.875rem);
+      @include nb-rtl(margin-right, 0.875rem);
+    }
+
+    .user-name {
+      font-family: nb-theme(font-secondary);
+      font-weight: nb-theme(font-weight-bold);
+      color: nb-theme(color-fg-heading);
+      font-size: 1.25rem;
+
+      @include nb-for-theme(cosmic) {
+        font-weight: nb-theme(font-weight-bolder);
+      }
+    }
+
+    .user-title {
+      font-size: 0.875rem;
+      font-weight: nb-theme(font-weight-light);
+      text-transform: uppercase;
+    }
+  }*/
+}
