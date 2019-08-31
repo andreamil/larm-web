@@ -17,8 +17,8 @@ import { NbLarmUserComponent } from '../../../@theme/components/larm-user/larm-u
   providers: [TempoTotalPipe],entryComponents:[NbLarmUserComponent]
 })
 export class TimelineComponent implements OnInit, OnDestroy {
-  @ViewChild('timeline') timelineContainer: ElementRef;
-  @ViewChild('usercontainer', { read: ViewContainerRef }) entry: ViewContainerRef ;
+  @ViewChild('timeline', { static: true }) timelineContainer: ElementRef;
+  @ViewChild('usercontainer', { read: ViewContainerRef, static: true }) entry: ViewContainerRef ;
   componentFactory ;
   componentRef;
   tlContainer: any;

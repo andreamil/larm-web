@@ -28,7 +28,7 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
   enviandoFoto: boolean;
   baseUrl = Config.BASE_API_URL;
   checkboxAdmin=false;
-  @ViewChild(ImageCropperComponent) imageCropper : ImageCropperComponent;
+  @ViewChild(ImageCropperComponent, { static: true }) imageCropper : ImageCropperComponent;
   constructor(
     private usuarioService: UsuariosService,
     private dialogService : NbDialogService,

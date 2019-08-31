@@ -27,6 +27,7 @@
                 "input": "node_modules/leaflet/dist/images",
                 "output": "/assets/img/markers"
               },
+              "src/manifest.json",
               "src/manifest.json"
             ],
             "styles": [
@@ -46,7 +47,7 @@
               "node_modules/echarts/dist/echarts.min.js",
               "node_modules/echarts/dist/extension/bmap.min.js",
               "node_modules/chart.js/dist/Chart.min.js",
-              "node_modules/vis/dist/vis.min.js" 
+              "node_modules/vis/dist/vis.min.js"
             ]
           },
           "configurations": {
@@ -134,6 +135,7 @@
                 "input": "node_modules/leaflet/dist/images",
                 "output": "/assets/img/markers"
               },
+              "src/manifest.json",
               "src/manifest.json"
             ]
           }
