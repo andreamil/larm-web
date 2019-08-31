@@ -23,5 +23,17 @@
         ]
       }
     }
-  ]
+  ],
+  "dataGroups":
+  [
+    {
+      "name": "api",
+      "urls": ["/httpsCamera","/httpsCameraImage","/infodump"],
+      "cacheConfig": {
+        "maxSize": 0,
+        "maxAge": "0u",
+        "strategy": "freshness"
+      }
+    }
+  ],
 }
