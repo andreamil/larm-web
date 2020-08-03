@@ -32,53 +32,53 @@
               font-weight: 500;
           ">
                 <div class="row">
-                  <label for="inputEmail1" class="col-sm-6 col-form-label">Email</label>
-                  <div class="col-sm-6 col-form-label">
+                  <label for="inputEmail1" class="col-6 col-form-label">Email</label>
+                  <div class="col-6 col-form-label">
                     {{user.email||'Não cadastrado'}}
                   </div>
                 </div>
                 <div class="row">
-                  <label for="dataDeNascimento" class="col-sm-6 col-form-label">Data de Nascimento</label>
-                  <div class="col-sm-6 col-form-label">
+                  <label for="dataDeNascimento" class="col-6 col-form-label">Data de Nascimento</label>
+                  <div class="col-6 col-form-label">
                     {{user.dataDeNascimento||'Não cadastrado'}}
                   </div>
                 </div>
                 <div class="row">
-                  <label for="role" class="col-sm-6 col-form-label">Permissão</label>
-                  <div class="col-sm-6 col-form-label">
+                  <label for="role" class="col-6 col-form-label">Permissão</label>
+                  <div class="col-6 col-form-label">
                     {{user.role}}
                   </div>
                 </div>
                 <!--div class="row">
-                  <label for="permissao" class="col-sm-6 col-form-label">Permissão Porta</label>
-                  <div class="col-sm-6 col-form-label">
+                  <label for="permissao" class="col-6 col-form-label">Permissão Porta</label>
+                  <div class="col-6 col-form-label">
                     {{user.permisssao}}
                   </div>
                 </div>-->
                 <div *ngIf="user.role=='aluno'">
                 <div class="row">
-                    <label for="matricula" class="col-sm-6 col-form-label">Matrícula</label>
-                    <div class="col-sm-6 col-form-label">
+                    <label for="matricula" class="col-6 col-form-label">Matrícula</label>
+                    <div class="col-6 col-form-label">
                       {{user.matricula||'Não cadastrado'}}
                     </div>
                   </div>
                   <div class="row">
-                    <label for="profResponsavel" class="col-sm-6 col-form-label">Prof. Responsável</label>
-                    <div class="col-sm-6 col-form-label">
+                    <label for="profResponsavel" class="col-6 col-form-label">Prof. Responsável</label>
+                    <div class="col-6 col-form-label">
                       <nb-user [usuario]="professorSelecionado" [link]="false" [showTitle]="false"></nb-user>
                     </div>
                   </div>
                 </div>
                 <div class="row" *ngIf="user.role=='professor'">
-                  <label for="siape" class="col-sm-6 col-form-label">SIAPE</label>
-                  <div class="col-sm-6 col-form-label">
+                  <label for="siape" class="col-6 col-form-label">SIAPE</label>
+                  <div class="col-6 col-form-label">
                     {{user.siape||'Não cadastrado'}}
                   </div>
                 </div>
                 <div *nbIsGranted="['edit', 'user']">
                   <div class="row">
-                    <label for="rfid" class="col-sm-6 col-form-label">RFID</label>
-                    <div class="col-sm-6 col-form-label">
+                    <label for="rfid" class="col-6 col-form-label">RFID</label>
+                    <div class="col-6 col-form-label">
                       <span>{{user.rfid||'Não registrado'}}</span>
                     </div>
                   </div>

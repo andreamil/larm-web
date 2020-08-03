@@ -1,6 +1,6 @@
 {
-  "name": "ngx-admin-demo",
-  "short_name": "ngx-admin-demo",
+  "name": "LARM Admin",
+  "short_name": "LARM",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",

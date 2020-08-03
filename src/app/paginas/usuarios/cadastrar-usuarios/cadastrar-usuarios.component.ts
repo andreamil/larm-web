@@ -74,7 +74,7 @@ export class CadastrarUsuariosComponent implements OnInit, OnDestroy, AfterViewI
   professorSelecionado:any={}
   professores=[{}]
   imageChangedEvent: any = '';
-  croppedImage: any = 'http://sg-fs.com/wp-content/uploads/2017/08/user-placeholder.png';
+  croppedImage: any = 'assets/images/user-placeholder.png';
   showCropper = false;
   rfidLoading=false;
   meuperfil=false;

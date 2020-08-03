@@ -13,11 +13,11 @@
     background-color: nb-theme(layout-bg);
   }
 
-  /deep/ .leaflet-bar {
+  ::ng-deep .leaflet-bar {
     box-shadow: none;
   }
 
-  /deep/ .leaflet-control-zoom {
+  ::ng-deep .leaflet-control-zoom {
     border: none;
 
     a {
@@ -40,7 +40,7 @@
     }
   }
 
-  /deep/ .leaflet-control-attribution {
+  ::ng-deep .leaflet-control-attribution {
     background: transparent;
 
     a {

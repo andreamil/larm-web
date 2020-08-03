@@ -16,7 +16,7 @@ export class SecurityCamerasComponent {
     for (let i = 0; i < 4; i++) {
       this.cameras[i]={};
       this.cameras[i].title= 'Camera #'+(i+1);
-      this.cameras[i].html= '<iframe id="iframe0" name="iframe0" src="https://www.larm.gq:4444/httpsCamera/0'+(i+1)+'?ngsw-bypass=true" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>';
+      this.cameras[i].html= '<iframe id="iframe0" name="iframe0" src="/httpsCamera/0'+(i+1)+'?ngsw-bypass=true" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>';
     }
     this.selectedCamera = this.cameras[0];
   }
